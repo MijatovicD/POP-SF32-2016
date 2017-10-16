@@ -1,1 +1,2 @@
 c:\users\temp.ftn.000\documents\visual studio 2015\Projects\POP-SF32-2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.exe.config
+C:\Users\TEMP.FTN.000\Source\Repos\POP-SF32-2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.exe.config
