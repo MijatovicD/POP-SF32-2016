@@ -1,2 +1,9 @@
 c:\users\temp.ftn.000\documents\visual studio 2015\Projects\POP-SF32-2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.exe.config
 C:\Users\TEMP.FTN.000\Source\Repos\POP-SF32-2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.exe.config
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\obj\Debug\POP-SF32-2016.csprojResolveAssemblyReference.cache
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\obj\Debug\POP-SF32-2016.csproj.CoreCompileInputs.cache
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.exe.config
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.exe
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\bin\Debug\POP-SF32-2016.pdb
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\obj\Debug\POP-SF32-2016.exe
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF32-2016\obj\Debug\POP-SF32-2016.pdb

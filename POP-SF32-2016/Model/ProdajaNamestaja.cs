@@ -15,6 +15,7 @@ namespace POP_SF32_2016.Model
         public string Kupac { get; set; }
         public double PDV { get; set; }
         public List<DodatnaUsluga> DodatnaUsluga { get; set; }
+        public const double PD = 0.02;
         public double UkupanIznos { get; set; }
 
     }

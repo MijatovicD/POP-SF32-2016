@@ -8,9 +8,10 @@ namespace POP_SF32_2016.Model
 {
     public class Salon
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Naziv { get; set; }
+        public string Adresa { get; set; }
 
         public string Telefon { get; set; }
 
