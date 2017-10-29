@@ -49,9 +49,23 @@ namespace POP_SF32_2016
                 KolicinaUMagacinu = 2
             };
 
-           
+            var n2 = new Namestaj()
+            {
+                Id = 2,
+                Naziv = "Extra sofa",
+                Sifra = "SN sifra za sofe",
+                JedinicnaCena = 34,
+                TipNamestaja = tn2,
+                KolicinaUMagacinu = 8
+            };
+
+
 
             Namestaj.Add(n1);
+            Namestaj.Add(n2);
+
+            TipNamestaja.Add(tn1);
+            TipNamestaja.Add(tn2);
 
             Console.WriteLine($"===== Dobrodosli u salon{s1.Naziv}");
 
@@ -83,12 +97,16 @@ namespace POP_SF32_2016
                 case 1:
                     IspisiMeniNamestaja();
                     break;
+                case 2:
+                    IspisiMeniTipaNamestaja();
+                    break;
                 default:
                     break;
             }
 
 
         }
+
 
         private static void IspisiMeniNamestaja()
         {
@@ -122,12 +140,14 @@ namespace POP_SF32_2016
                 case 3:
                     IzmenaNamestaja();
                     break;
+                case 4:
+                    IzbrisiNamestaj();
+                    break;
                 default:
                     break;
             }
         }
 
-       
 
         private static void IzlistajNamestaj()
         {
@@ -136,7 +156,7 @@ namespace POP_SF32_2016
             {
                 if (!Namestaj[i].Obrisan)
                 {
-                    Console.WriteLine($"{i + 1}.{Namestaj[i].Naziv},cena: {Namestaj[i].JedinicnaCena}, tip namestaja: {Namestaj[i].TipNamestaja}");
+                    Console.WriteLine($"{i + 1}.{Namestaj[i].Naziv},cena: {Namestaj[i].JedinicnaCena}, tip namestaja: {Namestaj[i].TipNamestaja.Naziv}");
                 }
 
 
@@ -167,6 +187,7 @@ namespace POP_SF32_2016
             TipNamestaja trazeniTipNamestaja = null;
             //da korisnik moze da unese tip namestaja koji postoji u listi
             
+
             do
             {
                 Console.WriteLine("Unesite tip namestaja: ");
@@ -192,16 +213,16 @@ namespace POP_SF32_2016
         private static void IzmenaNamestaja()
         {
             Namestaj trazeniNamestaj = null;
-            string nazivTrazenogNamestaja = "";
+            int iDTrazenogNamestaja = 0;
 
             do
             {
-                Console.WriteLine("Unesite naziv namestaja: ");
-                nazivTrazenogNamestaja = Console.ReadLine();
+                Console.WriteLine("Unesite id namestaja: ");
+                iDTrazenogNamestaja = int.Parse(Console.ReadLine());
 
                foreach(var namestaj in Namestaj)
                 {
-                    if(namestaj.Naziv == nazivTrazenogNamestaja)
+                    if(namestaj.Id == iDTrazenogNamestaja)
                     {
                         trazeniNamestaj = namestaj;
                     }
@@ -211,14 +232,154 @@ namespace POP_SF32_2016
 
             Console.WriteLine("Unesite novi naziv namestaja: ");
             trazeniNamestaj.Naziv = Console.ReadLine();
-
+            
             Console.WriteLine("Unesite novu cenu namestaja: ");
             trazeniNamestaj.JedinicnaCena = double.Parse(Console.ReadLine());
 
             IspisiMeniNamestaja();
-            
-            
+              
+        }
+
+        private static void IzbrisiNamestaj()
+        {
+            Namestaj trazeniNamestaj = null;
+            int iDTrazenogNamestaja = 0;
+
+            Console.WriteLine("Unesite id namestaja: ");
+            iDTrazenogNamestaja = int.Parse(Console.ReadLine());
+
+                foreach (var namestaj in Namestaj)
+                {
+                    if (namestaj.Id == iDTrazenogNamestaja)
+                    {
+                        namestaj.Obrisan = true;
+                    }
+                }
+
+            IspisiMeniNamestaja();
+        }
+
+        private static void IspisiMeniTipaNamestaja()
+        {
+
+            int izbor = 0;
+
+            do
+            {
+                Console.WriteLine("=== Meni tipa namestaja ===");
+                Console.WriteLine("1. Izlisaj tipove namestaja");
+                Console.WriteLine("2. Dodaj novi tip namestaj");
+                Console.WriteLine("3. Izmeni postojeci tip namestaj");
+                Console.WriteLine("4. Obrisi postojeci tip namestaja");
+                Console.WriteLine("0. Povratak u glavni meni");
+
+                izbor = int.Parse(Console.ReadLine());
+            } while (izbor < 0 || izbor > 4);
+
+
+            switch (izbor)
+            {
+                case 0:
+                    IspisGlavnogMenija();
+                    break;
+                case 1:
+                    IzlistajTipNamestaj();
+                    break;
+                case 2:
+                    DodavanjeNovogTipaNamestaja();
+                    break;
+                case 3:
+                    IzmenaTipaNamestaja();
+                    break;
+                case 4:
+                    IzbrisiTipNamestaj();
+                    break;
+                default:
+                    break;
+            }
 
         }
+
+        private static void IzlistajTipNamestaj()
+        {
+            Console.WriteLine("=== Izlistavanje tipa namestaja ===");
+
+            for (int i = 0; i < TipNamestaja.Count; i++)
+            {
+                if (!TipNamestaja[i].Obrisan)
+                {
+                    Console.WriteLine($"{i + 1}.{TipNamestaja[i].Naziv}");
+                }
+            }
+
+            IspisiMeniTipaNamestaja();
+        }
+
+        private static void DodavanjeNovogTipaNamestaja()
+        {
+            Console.WriteLine("=== Dodavanje tipa namestaja ===");
+
+            var noviTipNamestaj = new TipNamestaja();
+            noviTipNamestaj.Id = TipNamestaja.Count + 1;
+
+            Console.WriteLine("Unesite naziv tipa namestaja: ");
+            noviTipNamestaj.Naziv = Console.ReadLine();
+
+            TipNamestaja.Add(noviTipNamestaj);
+            IspisiMeniTipaNamestaja();
+
+        }
+
+        private static void IzmenaTipaNamestaja()
+        {
+
+            TipNamestaja trazeniTipNamestaj = null;
+            int iDTrazenogTipaNamestaja = 0;
+
+            do
+            {
+                Console.WriteLine("Unesite id tipa namestaja: ");
+                iDTrazenogTipaNamestaja = int.Parse(Console.ReadLine());
+
+                foreach (var tipNamestaja in TipNamestaja)
+                {
+                    if (tipNamestaja.Id == iDTrazenogTipaNamestaja)
+                    {
+                        trazeniTipNamestaj = tipNamestaja;
+                    }
+                }
+
+            } while (trazeniTipNamestaj == null);
+
+            Console.WriteLine("Unesite novi naziv namestaja: ");
+            trazeniTipNamestaj.Naziv = Console.ReadLine();
+            
+            IspisiMeniTipaNamestaja();
+
+        }
+
+
+        private static void IzbrisiTipNamestaj()
+        {
+
+            TipNamestaja trazeniTipNamestaj = null;
+            int iDTrazenogTipaNamestaja = 0;
+
+            Console.WriteLine("Unesite id tipa namestaja: ");
+            iDTrazenogTipaNamestaja = int.Parse(Console.ReadLine());
+
+            foreach (var tipNamestaja in TipNamestaja)
+            {
+                if (tipNamestaja.Id == iDTrazenogTipaNamestaja)
+                {
+                    tipNamestaja.Obrisan = true;
+                }
+            }
+
+            IspisiMeniTipaNamestaja();
+
+        }
+   
     }
+
 }
