@@ -17,8 +17,8 @@ namespace POP_SF32_2016.Model
         public double JedinicnaCena { get; set; }
 
         public int KolicinaUMagacinu { get; set; }
-
-        public TipNamestaja TipNamestaja { get; set; }
+        public int? AkcijaId { get; set; }
+        public int? TipNamestajaId { get; set; }
         public bool Obrisan { get; set; }
     }
 }

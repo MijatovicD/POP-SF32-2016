@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace POP_SF32_2016
     {
         static List<Namestaj> Namestaj {get; set;} = new List<Namestaj>();
         static List<TipNamestaja> TipNamestaja { get; set; } = new List<TipNamestaja>();
+        static List<Korisnik> Korisnik { get; set; } = new List<Korisnik>();
         static void Main(string[] args)
         {
             var s1 = new Salon()
@@ -45,7 +47,7 @@ namespace POP_SF32_2016
                 Naziv = "Super sofa",
                 Sifra = "SF sifra za sofe",
                 JedinicnaCena = 28,
-                TipNamestaja = tn1,
+                TipNamestajaId = 1,
                 KolicinaUMagacinu = 2
             };
 
@@ -55,17 +57,52 @@ namespace POP_SF32_2016
                 Naziv = "Extra sofa",
                 Sifra = "SN sifra za sofe",
                 JedinicnaCena = 34,
-                TipNamestaja = tn2,
+                TipNamestajaId = 2,
                 KolicinaUMagacinu = 8
             };
 
+            var k1 = new Korisnik()
+            {
+                Id = 3,
+                Ime = "Pera",
+                Prezime = "Peric"
+            };
 
 
             Namestaj.Add(n1);
-            Namestaj.Add(n2);
-
             TipNamestaja.Add(tn1);
-            TipNamestaja.Add(tn2);
+            Korisnik.Add(k1);
+           
+
+            var ln1 = new List<Namestaj>();
+            ln1.Add(n1);
+
+            var ln2 = new List<TipNamestaja>();
+            ln2.Add(tn1);
+
+            var lk1 = new List<Korisnik>();
+            lk1.Add(k1);
+
+
+
+            Console.WriteLine("Sirijalicija...");
+
+
+            Console.WriteLine("Unesite naziv namestaja: ");
+            string naziv = Console.ReadLine();
+
+            Console.WriteLine("Unesite id tipa namestaja: ");
+            int idTipNamestaja = int.Parse(Console.ReadLine());
+
+
+
+            GenericSerializer.Serialize<TipNamestaja>("tipoviNamestaja.xml", ln2);
+            GenericSerializer.Serialize<Korisnik>("korisnik.xml", lk1);
+
+            List<Namestaj> ucitanaLista = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+
+            Console.WriteLine("Finised sirijalicajija");
+            Console.ReadLine();
 
             Console.WriteLine($"===== Dobrodosli u salon{s1.Naziv}");
 
