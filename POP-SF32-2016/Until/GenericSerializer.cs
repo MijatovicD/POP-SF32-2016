@@ -49,10 +49,6 @@ namespace POP_SF32_2016.Until
 
         }
 
-        internal static void Serialize<T>(string v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

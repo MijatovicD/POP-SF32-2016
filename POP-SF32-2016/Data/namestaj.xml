@@ -6,46 +6,48 @@
     <Sifra>SF sifra za sofe</Sifra>
     <JedinicnaCena>28</JedinicnaCena>
     <KolicinaUMagacinu>2</KolicinaUMagacinu>
-    <TipNamestaja>
-      <Id>1</Id>
-      <Naziv>Sofa</Naziv>
-      <Obrisan>false</Obrisan>
-    </TipNamestaja>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>28</Id>
-    <Naziv>Remix knjaz</Naziv>
-    <JedinicnaCena>0</JedinicnaCena>
-    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <Id>3</Id>
+    <Naziv>dasdhk</Naziv>
+    <Sifra>874239</Sifra>
+    <JedinicnaCena>48329</JedinicnaCena>
+    <KolicinaUMagacinu>94823</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>28</Id>
-    <Naziv>Remix knjaz</Naziv>
-    <JedinicnaCena>0</JedinicnaCena>
-    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <Id>4</Id>
+    <Naziv>hkajds</Naziv>
+    <Sifra>fkldsf</Sifra>
+    <JedinicnaCena>875834</JedinicnaCena>
+    <KolicinaUMagacinu>8347593</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>28</Id>
-    <Naziv>Remix knjaz</Naziv>
-    <JedinicnaCena>0</JedinicnaCena>
-    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <Id>5</Id>
+    <Naziv>Foteljaaaa</Naziv>
+    <Sifra>FTR</Sifra>
+    <JedinicnaCena>500</JedinicnaCena>
+    <KolicinaUMagacinu>70</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>28</Id>
-    <Naziv>Remix knjaz</Naziv>
-    <JedinicnaCena>0</JedinicnaCena>
-    <KolicinaUMagacinu>0</KolicinaUMagacinu>
-    <Obrisan>false</Obrisan>
-  </Namestaj>
-  <Namestaj>
-    <Id>28</Id>
-    <Naziv>Remix knjaz</Naziv>
-    <JedinicnaCena>0</JedinicnaCena>
-    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <Id>5</Id>
+    <Naziv>fkldjaskldf</Naziv>
+    <Sifra>678</Sifra>
+    <JedinicnaCena>345</JedinicnaCena>
+    <KolicinaUMagacinu>123</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

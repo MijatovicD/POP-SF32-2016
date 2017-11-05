@@ -2,12 +2,22 @@
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
     <Id>1</Id>
-    <Naziv>Sofa</Naziv>
+    <Naziv>uuuu</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
     <Id>12</Id>
-    <Naziv>Polica</Naziv>
+    <Naziv>Fotelja na razvlacenje</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Id>4</Id>
+    <Naziv>kjgfksd</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <Id>4</Id>
+    <Naziv>hgytiedbcd</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

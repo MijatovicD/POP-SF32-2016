@@ -20,5 +20,6 @@ namespace POP_SF32_2016.Model
         public int? AkcijaId { get; set; }
         public int? TipNamestajaId { get; set; }
         public bool Obrisan { get; set; }
+        //public int IdTipaNamestaja { get; set; }
     }
 }

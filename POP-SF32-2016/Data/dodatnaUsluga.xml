@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDodatnaUsluga xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DodatnaUsluga>
+    <Id>1</Id>
+    <Naziv>Montiranje</Naziv>
+    <Cena>1000</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>3</Id>
+    <Naziv>kjdfhsak</Naziv>
+    <Cena>5345325</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>3</Id>
+    <Naziv>kfdjlasf</Naziv>
+    <Cena>86568</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+</ArrayOfDodatnaUsluga>

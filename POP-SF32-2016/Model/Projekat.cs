@@ -12,14 +12,13 @@ namespace POP_SF32_2016.Model
         public static Projekat Instance { get; } = new Projekat();
 
         private List<Namestaj> namestaj;
-       
 
         public List<Namestaj> Namestaj
         {
             get
             {
                 this.namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
-                return this.namestaj;
+                return namestaj;
             }
             set
             {
@@ -27,6 +26,7 @@ namespace POP_SF32_2016.Model
                 GenericSerializer.Serialize<Namestaj>("namestaj.xml", namestaj);
             }
         }
+
 
         private List<TipNamestaja> tipNamestaja;
 
@@ -43,27 +43,26 @@ namespace POP_SF32_2016.Model
                 GenericSerializer.Serialize<TipNamestaja>("tipoviNamestaja.xml", tipNamestaja);
             }
         }
+        
 
         private List<Korisnik> korisnik;
-
 
         public List<Korisnik> Korisnik
         {
             get
             {
-                this.korisnik = GenericSerializer.Deserialize<Korisnik>("korisnici.xml");
+                this.korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
                 return korisnik;
             }
             set
             {
-                this.korisnik = value;
-                GenericSerializer.Serialize<Korisnik>("korisnici.xml", korisnik);
+                korisnik = value;
+                GenericSerializer.Serialize<Korisnik>("korisnik.xml", korisnik);
             }
         }
-
+       
 
         private List<DodatnaUsluga> dodatnaUsluga;
-
 
         public List<DodatnaUsluga> DodatnaUsluga
         {
@@ -74,11 +73,61 @@ namespace POP_SF32_2016.Model
             }
             set
             {
-                this.dodatnaUsluga = value;
+                dodatnaUsluga = value;
                 GenericSerializer.Serialize<DodatnaUsluga>("dodatnaUsluga.xml", dodatnaUsluga);
             }
         }
 
+        
+        private List<Salon> salon;
+
+        public List<Salon> Salon
+        {
+            get
+            {
+                this.salon = GenericSerializer.Deserialize<Salon>("salon.xml");
+                return salon;
+            }
+            set
+            {
+                salon = value;
+                GenericSerializer.Serialize<Salon>("salon.xml", salon);
+            }
+        }
+
+
+        private List<AkcijskaProdaja> akcijskaProdaja;
+
+        public List<AkcijskaProdaja> AkcijskaProdaja
+        {
+            get
+            {
+                this.akcijskaProdaja = GenericSerializer.Deserialize<AkcijskaProdaja>("akcijskaProdaja.xml");
+                return akcijskaProdaja;
+            }
+            set
+            {
+                akcijskaProdaja = value;
+                GenericSerializer.Serialize<AkcijskaProdaja>("akcijskaProdaja.xml", akcijskaProdaja);
+            }
+        }
+
+
+        private List<ProdajaNamestaja> prodajaNamestaja;
+
+        public List<ProdajaNamestaja> ProdajaNamestaja
+        {
+            get
+            {
+                this.prodajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+                return prodajaNamestaja;
+            }
+            set
+            {
+                prodajaNamestaja = value;
+                GenericSerializer.Serialize<ProdajaNamestaja>("prodajaNamestaja.xml", prodajaNamestaja);
+            }
+        }
 
     }
 }

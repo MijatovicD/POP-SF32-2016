@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Data\dodatnaUsluga.xml" />
     <Content Include="Data\korisnik.xml" />
     <Content Include="Data\namestaj.xml" />
     <Content Include="Data\tipoviNamestaja.xml" />
