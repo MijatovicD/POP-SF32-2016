@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POP-SF32-2016", "POP-SF32-2016\POP-SF32-2016.csproj", "{59DCE532-D10C-419F-8A13-2EC38F470753}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POP-SF-32-2016-GUI", "POP-SF-32-2016-GUI\POP-SF-32-2016-GUI.csproj", "{12A66320-202F-444A-A128-0CAFA5A73D56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59DCE532-D10C-419F-8A13-2EC38F470753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59DCE532-D10C-419F-8A13-2EC38F470753}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59DCE532-D10C-419F-8A13-2EC38F470753}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59DCE532-D10C-419F-8A13-2EC38F470753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A66320-202F-444A-A128-0CAFA5A73D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A66320-202F-444A-A128-0CAFA5A73D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A66320-202F-444A-A128-0CAFA5A73D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A66320-202F-444A-A128-0CAFA5A73D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC2328E4-3A50-4E17-A739-2EE1C59FA030}
 	EndGlobalSection
 EndGlobal

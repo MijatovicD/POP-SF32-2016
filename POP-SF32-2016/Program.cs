@@ -96,13 +96,17 @@ namespace POP_SF32_2016
 
             Console.WriteLine($"=== Dobrodosli u salon {s1.Naziv} ===");
             LogIn();
-            /*
+            
             Console.WriteLine("Serializition....");
-            GenericSerializer.Serialize<Namestaj>("namestaj.xml", ln1);
-            GenericSerializer.Serialize<TipNamestaja>("tipoviNamestaja.xml", ln2);
-            GenericSerializer.Serialize<Korisnik>("korisnik.xml", lk1);
-            GenericSerializer.Serialize<DodatnaUsluga>("dodatnaUsluga.xml", ld1);
+            //GenericSerializer.Serialize<Namestaj>("namestaj.xml", ln1);
+            //GenericSerializer.Serialize<TipNamestaja>("tipoviNamestaja.xml", ln2);
+            //GenericSerializer.Serialize<Korisnik>("korisnik.xml", lk1);
+            //GenericSerializer.Serialize<DodatnaUsluga>("dodatnaUsluga.xml", ld1);
 
+            //GenericSerializer.Serialize<Salon>("salon.xml", ld1);
+
+
+            /*
             var namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
 
             Console.WriteLine("Unesite naziv namestaja: ");

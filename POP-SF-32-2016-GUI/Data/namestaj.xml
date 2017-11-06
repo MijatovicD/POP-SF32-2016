@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Namestaj>
+    <Id>1</Id>
+    <Naziv>Super sofa</Naziv>
+    <Sifra>SF sifra za sofe</Sifra>
+    <JedinicnaCena>28</JedinicnaCena>
+    <KolicinaUMagacinu>1</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>3</Id>
+    <Naziv>Extra stolica</Naziv>
+    <Sifra>874239</Sifra>
+    <JedinicnaCena>48329</JedinicnaCena>
+    <KolicinaUMagacinu>94823</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>4</Id>
+    <Naziv>rerefasd</Naziv>
+    <Sifra>fkldsf</Sifra>
+    <JedinicnaCena>875834</JedinicnaCena>
+    <KolicinaUMagacinu>8347593</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>5</Id>
+    <Naziv>Foteljaaaa</Naziv>
+    <Sifra>FTR</Sifra>
+    <JedinicnaCena>500</JedinicnaCena>
+    <KolicinaUMagacinu>70</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>7</Id>
+    <Naziv>Stolica</Naziv>
+    <JedinicnaCena>0</JedinicnaCena>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>6</Id>
+    <Naziv>Lapma</Naziv>
+    <JedinicnaCena>0</JedinicnaCena>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <AkcijaId xsi:nil="true" />
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+</ArrayOfNamestaj>

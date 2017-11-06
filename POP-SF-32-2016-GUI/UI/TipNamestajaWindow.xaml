@@ -1,0 +1,19 @@
+﻿<Window x:Class="POP_SF_32_2016_GUI.UI.TipNamestajaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="TipNamestajaWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="117*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv"/>
+        <Button Grid.Row="1" Content="Sacuvaj" Margin="0,150,196,0" Click="SacuvajIzmene"/>
+        <Button Grid.Row="1" Content="Izadji" Margin="194,152,0,0" RenderTransformOrigin="0.37,1.45" Click="Zatvori"/>
+    </Grid>
+</Window>
