@@ -21,5 +21,23 @@ namespace POP_SF32_2016.Model
         public string Lozinka { get; set; }
         public TipKorisnika TipKorisnika { get; set; }
         public bool Obrisan { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Ime}, {Prezime}, {KorisnickoIme}";
+        }
+
+
+        public static Korisnik GetById(int id)
+        {
+            foreach (var korisnik in Projekat.Instance.Korisnik)
+            {
+                if (korisnik.Id == id)
+                {
+                    return korisnik;
+                }
+            }
+            return null;
+        }
     }
 }

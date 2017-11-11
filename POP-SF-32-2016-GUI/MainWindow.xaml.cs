@@ -25,62 +25,37 @@ namespace POP_SF_32_2016_GUI
         public MainWindow()
         {
             InitializeComponent();
-
-            OsveziPrikaz();
-        }
-
-        private void OsveziPrikaz()
-        {
-            lbNamestaj.Items.Clear();
-
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                lbNamestaj.Items.Add(namestaj);
-            }
-
-            lbNamestaj.SelectedIndex = 0;
-        }
-
-
-        private void DodajNamestaj(object sender, RoutedEventArgs e)
-        {
-            var noviNamestaj = new Namestaj()
-            {
-                Naziv = ""
-            };
             
-            var namestajProzor = new NamestajWindow(noviNamestaj, NamestajWindow.Operacija.DODAVANJE);
-            namestajProzor.Show();
+           
+        }
+       
 
-            
+        private void Namestaji(object sender, RoutedEventArgs e)
+        {
+
+            var namestajProzor = new NamestajWindow();
+            namestajProzor.Show();            
+
         }
 
+        private void TipNamestaja(object sender, RoutedEventArgs e)
+        {
+
+            var tipNamestajaProzor = new TipNamestajaWindow();
+            tipNamestajaProzor.Show();
+
+        }
+
+        private void DodatnaUsluga(object sender, RoutedEventArgs e)
+        {
+            var dodatnaProzor = new DodatnaWindow();
+            dodatnaProzor.Show();
+        }
+        
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-
-        private void IzmeniNamestaj(object sender, RoutedEventArgs e)
-        {
-
-            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
-
-            var namestajProzor = new NamestajWindow(izabraniNamestaj, NamestajWindow.Operacija.IZMENA);
-            namestajProzor.Show();
-
-            
-        }
-
-        private void Izmeni(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            Console.WriteLine("=== Osvezio se prozor ===");
-            OsveziPrikaz();
-        }
     }
 }

@@ -7,15 +7,9 @@
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
   <DodatnaUsluga>
-    <Id>3</Id>
-    <Naziv>kjdfhsak</Naziv>
-    <Cena>5345325</Cena>
-    <Obrisan>false</Obrisan>
-  </DodatnaUsluga>
-  <DodatnaUsluga>
-    <Id>3</Id>
-    <Naziv>kfdjlasf</Naziv>
-    <Cena>86568</Cena>
+    <Id>2</Id>
+    <Naziv>Utovaranje</Naziv>
+    <Cena>345</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>

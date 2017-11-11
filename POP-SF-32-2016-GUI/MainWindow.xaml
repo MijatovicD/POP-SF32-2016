@@ -5,16 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="563.889" Width="765.625" Activated="Window_Activated">
+        >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="406*"/>
-            <RowDefinition Height="127*"/>
-        </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" FontSize="20" Name="lbNamestaj"/>
-        <Button Grid.Row="1" Content="Dodaj" Height="40" Width="80" Margin="10,48,668,39" Click="DodajNamestaj"/>
-        <Button Grid.Row="1" Content="Izmeni" Height="40" Width="80" RenderTransformOrigin="-1.614,0.957" Margin="147,48,531,39" Click="IzmeniNamestaj"/>
-        <Button Grid.Row="1" Content="Izbrisi" Height="40" Width="80" RenderTransformOrigin="-1.371,0.41" Margin="273,48,405,39"/>
-        <Button Grid.Row="1" Content="Izadji" Height="40" Width="80" Margin="414,48,264,39" Click="Zatvori"/>
+        <Button Content="Rad sa namestajem" Width="150" Click="Namestaji" Margin="50,223,560,223" RenderTransformOrigin="-0.1,0.552"/>
+        <Button Content="Rad sa tipom namestaja" Height="58" Width="150" Click="TipNamestaja" RenderTransformOrigin="0.767,0.207" Margin="255,223,355,223"/>
+        <Button Content="Rad sa dodatnom uslugom" HorizontalAlignment="Left" Height="58" Margin="445,223,0,0" VerticalAlignment="Top" Width="155" Click="DodatnaUsluga"/>
     </Grid>
 </Window>

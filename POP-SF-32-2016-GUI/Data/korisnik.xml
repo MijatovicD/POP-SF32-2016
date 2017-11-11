@@ -6,7 +6,7 @@
     <Prezime>Peric</Prezime>
     <KorisnickoIme>pera12</KorisnickoIme>
     <Lozinka>12pera</Lozinka>
-    <TipKorisnikaId xsi:nil="true" />
+    <TipKorisnika>Administrator</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

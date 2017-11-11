@@ -1,0 +1,39 @@
+﻿<Window x:Class="POP_SF_32_2016_GUI.UI.DodavanjeIzmenaNamestaja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="DodavanjeIzmenaNamestaja" Height="350" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="187*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Sifra:" FontSize="15"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbSifra"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Cena:" FontSize="15"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbCena"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Kolicina:" FontSize="15"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbKolicina"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Akcija:" FontSize="15"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="tbAkcija"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Tip:" FontSize="15"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Width="Auto" Name="tbTip"/>
+        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="6" Click="SacuvajIzmene"/>
+        <Button Grid.Row="6" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
+    </Grid>
+</Window>

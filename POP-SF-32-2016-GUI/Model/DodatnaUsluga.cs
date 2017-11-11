@@ -12,5 +12,24 @@ namespace POP_SF32_2016.Model
         public string Naziv { get; set; }
         public double Cena { get; set; }
         public bool Obrisan { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Naziv}, {Cena}";
+        }
+
+
+        public static DodatnaUsluga GetById(int id)
+        {
+            foreach (var usluga in Projekat.Instance.DodatnaUsluga)
+            {
+                if (usluga.Id == id)
+                {
+                    return usluga;
+                }
+            }
+            return null;
+        }
     }
+
 }

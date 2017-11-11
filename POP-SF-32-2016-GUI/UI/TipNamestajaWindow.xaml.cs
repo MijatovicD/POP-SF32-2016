@@ -20,27 +20,55 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class TipNamestajaWindow : Window
     {
-
-        public enum Operacija
-        {
-            DODAVANJE,
-            IZMENA
-        };
-
-        private TipNamestaja tipNamestaja;
-        private Operacija operacija;
-        public TipNamestajaWindow(TipNamestaja tipNamestaja, Operacija operacija)
+        public TipNamestajaWindow()
         {
             InitializeComponent();
+
+            OsveziPrikaz();
+
         }
 
 
-        private void InicijalizujVrednosti(TipNamestaja tipNamestaja, Operacija operacija)
+        private void DodajTip(object sender, RoutedEventArgs e)
         {
-            this.tipNamestaja = tipNamestaja;
-            this.operacija = operacija;
+            var noviTip = new TipNamestaja()
+            {
+                Naziv = ""
+            };
 
-            this.tbNaziv.Text = tipNamestaja.Naziv;
+            var tipProzor = new DodavanjeIzmenaTipaNamestaja(noviTip, DodavanjeIzmenaTipaNamestaja.Operacija.DODAVANJE);
+            tipProzor.Show();
+        }
+
+        private void IzmeniTip(object sender, RoutedEventArgs e)
+        {
+            var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
+
+            var tipProzor = new DodavanjeIzmenaTipaNamestaja(izabraniTip, DodavanjeIzmenaTipaNamestaja.Operacija.IZMENA);
+            tipProzor.Show();
+
+        }
+
+        private void OsveziPrikaz()
+        {
+            lbTipNamestaja.Items.Clear();
+
+            foreach (var t in Projekat.Instance.TipNamestaja)
+            {
+                lbTipNamestaja.Items.Add(t);
+            }
+
+            lbTipNamestaja.SelectedIndex = 0;
+        }
+
+        private void Zatvori(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            OsveziPrikaz();
         }
     }
 }

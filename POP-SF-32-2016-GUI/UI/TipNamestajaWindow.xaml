@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="300" Width="300">
+        Title="TipNamestajaWindow" Height="300" Width="400" Activated="Window_Activated">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="46*"/>
-            <RowDefinition Height="117*"/>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="28*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv"/>
-        <Button Grid.Row="1" Content="Sacuvaj" Margin="0,150,196,0" Click="SacuvajIzmene"/>
-        <Button Grid.Row="1" Content="Izadji" Margin="194,152,0,0" RenderTransformOrigin="0.37,1.45" Click="Zatvori"/>
+        <ListBox Grid.Row="0" FontSize="20" Name="lbTipNamestaja"/>
+        <Button Grid.Row="1" Content="Dodaj" Margin="0,24,321,0" Click="DodajTip"/>
+        <Button Grid.Row="1" Content="Izmeni" Margin="105,24,221,0" Click="IzmeniTip"/>
+        <Button Grid.Row="1" Content="Izbrisi" Margin="200,24,126,0"/>
+        <Button Grid.Row="1" Content="Izadji" Margin="316,24,10,0" Click="Zatvori"/>
     </Grid>
 </Window>

@@ -14,5 +14,18 @@ namespace POP_SF32_2016.Model
         public DateTime DatumZavrsetka { get; set; }
         public List<Namestaj> NamestajNaPopustu { get; set; }
         public bool Obrisan { get; set; }
+
+
+        public static AkcijskaProdaja GetById(int id)
+        {
+            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
+            {
+                if (akcija.Id == id)
+                {
+                    return akcija;
+                }
+            }
+            return null;
+        }
     }
 }

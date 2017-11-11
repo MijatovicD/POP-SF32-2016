@@ -20,66 +20,92 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-        public enum Operacija
-        {
-            DODAVANJE,
-            IZMENA
-        };
 
-        private Namestaj namestaj;
-        private Operacija operacija;
-
-        public NamestajWindow(Namestaj namestaj, Operacija operacija)
+        public NamestajWindow()
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(namestaj, operacija);
+            OsveziPrikaz();
+
         }
 
-        private void InicijalizujVrednosti(Namestaj namestaj, Operacija operacija)
+
+        private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
-            this.namestaj = namestaj;
-            this.operacija = operacija;
-
-            this.tbNaziv.Text = namestaj.Naziv;
-        }
-
-        private void SacuvajIzmene(object sender, RoutedEventArgs e)
-        {
-            var listaNamestaja = Projekat.Instance.Namestaj;
-
-            switch (operacija)
+            var noviNamestaj = new Namestaj()
             {
-                case Operacija.DODAVANJE:
-                    var noviNamestaj = new Namestaj()
-                    {
-                        Id = listaNamestaja.Count + 1,
-                        Naziv = this.tbNaziv.Text
-                    };
-                    listaNamestaja.Add(noviNamestaj);
-                    break;
-                case Operacija.IZMENA:
-                    foreach (var n in listaNamestaja)
-                    {
-                        if (n.Id == namestaj.Id)
-                        {
-                            n.Naziv = this.tbNaziv.Text;
-                            break;
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                Naziv = "",
+                Sifra = "",
+                JedinicnaCena = 0,
+                KolicinaUMagacinu = 0,
+                AkcijaId = 0,
+                TipNamestajaId = 0
+            };
+
+            var namestajProzor = new DodavanjeIzmenaNamestaja(noviNamestaj, DodavanjeIzmenaNamestaja.Operacija.DODAVANJE);
+            namestajProzor.Show();
+        }
+
+        private void IzmeniNamestaj(object sender, RoutedEventArgs e)
+        {
+            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
+
+            var namestajProzor = new DodavanjeIzmenaNamestaja(izabraniNamestaj, DodavanjeIzmenaNamestaja.Operacija.IZMENA);
+            namestajProzor.Show();
+
+        }
+
+        private void Izbrisi(object sender, RoutedEventArgs e)
+        {
+            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
+
+            var namestajProzor = new DodavanjeIzmenaNamestaja(izabraniNamestaj, DodavanjeIzmenaNamestaja.Operacija.IZBRISI);
+            namestajProzor.Close();
+
+        }
+
+        private void OsveziPrikaz()
+        {
+            lbNamestaj.Items.Clear();
+
+            foreach (var namestaj in Projekat.Instance.Namestaj)
+            {
+                lbNamestaj.Items.Add(namestaj);
             }
 
-            Projekat.Instance.Namestaj = listaNamestaja;
-
-            Close();
+            lbNamestaj.SelectedIndex = 0;
         }
+        
+        /*
+        private void SortirajNamestaj()
+        {
+            ComboBox box = new ComboBox();
+        
+            box.Items.Add("Po nazivu");
+            box.Text = "Po sifri";
+            cb.Text = "Po tipu";
 
+        }
+        */
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            OsveziPrikaz();
+        }
+
+        /*
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(cb.Text + " " + Convert.ToString((int)cb.SelectedValue));
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cb.Items.Add(Enum.GetValues(typeof(TipKorisnika)));
+        }
+        */
     }
 }

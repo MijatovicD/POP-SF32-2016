@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\App.xaml
-2-2054523422
+8353063516
 
-15-934448067
+21893188897
 131569487696
-MainWindow.xaml;UI\NamestajWindow.xaml;
+MainWindow.xaml;UI\DodatnaWindow.xaml;UI\DodavanjeIzmenaNamestaja.xaml;UI\DodavanjeIzmenaTipaNamestaja.xaml;UI\DodavanjeIzmenaUsluge.xaml;UI\Login.xaml;UI\NamestajWindow.xaml;UI\TipNamestajaWindow.xaml;
 
 False
 
