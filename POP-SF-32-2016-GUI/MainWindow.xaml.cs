@@ -51,7 +51,18 @@ namespace POP_SF_32_2016_GUI
             var dodatnaProzor = new DodatnaWindow();
             dodatnaProzor.Show();
         }
-        
+
+        private void Salon(object sender, RoutedEventArgs e)
+        {
+            var salonProzor = new SalonWindow();
+            salonProzor.Show();
+        }
+
+        private void Korisnik(object sender, RoutedEventArgs e)
+        {
+            var korisnikProzor = new KorisnikWindow();
+            korisnikProzor.Show();
+        }
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();

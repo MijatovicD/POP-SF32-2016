@@ -29,7 +29,7 @@ namespace POP_SF_32_2016_GUI.UI
         }
 
 
-        private void DodajTip(object sender, RoutedEventArgs e)
+        private void DodajTip_Click(object sender, RoutedEventArgs e)
         {
             var noviTip = new TipNamestaja()
             {
@@ -37,15 +37,19 @@ namespace POP_SF_32_2016_GUI.UI
             };
 
             var tipProzor = new DodavanjeIzmenaTipaNamestaja(noviTip, DodavanjeIzmenaTipaNamestaja.Operacija.DODAVANJE);
-            tipProzor.Show();
+            tipProzor.ShowDialog();
+
+            OsveziPrikaz();
         }
 
-        private void IzmeniTip(object sender, RoutedEventArgs e)
+        private void IzmeniTip_Click(object sender, RoutedEventArgs e)
         {
             var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
 
             var tipProzor = new DodavanjeIzmenaTipaNamestaja(izabraniTip, DodavanjeIzmenaTipaNamestaja.Operacija.IZMENA);
-            tipProzor.Show();
+            tipProzor.ShowDialog();
+
+            OsveziPrikaz();
 
         }
 
@@ -53,22 +57,40 @@ namespace POP_SF_32_2016_GUI.UI
         {
             lbTipNamestaja.Items.Clear();
 
-            foreach (var t in Projekat.Instance.TipNamestaja)
+            foreach (var tip in Projekat.Instance.TipNamestaja)
             {
-                lbTipNamestaja.Items.Add(t);
+                if (tip.Obrisan == false)
+                {
+                    lbTipNamestaja.Items.Add(tip);
+                }
             }
 
             lbTipNamestaja.SelectedIndex = 0;
         }
 
-        private void Zatvori(object sender, RoutedEventArgs e)
+        private void Zatvori_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void Izbrisi_Clik(object sender, RoutedEventArgs e)
         {
-            OsveziPrikaz();
+            var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
+            var listaTipa = Projekat.Instance.TipNamestaja;
+            if (MessageBox.Show($"Da li zelite da obrisete: {izabraniTip.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var tip in listaTipa)
+                {
+                    if (tip.Id == izabraniTip.Id)
+                    {
+                        tip.Obrisan = true;
+                    }
+                }
+
+                Projekat.Instance.TipNamestaja = listaTipa;
+
+                OsveziPrikaz();
+            }
         }
     }
 }

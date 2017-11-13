@@ -27,7 +27,7 @@ namespace POP_SF_32_2016_GUI.UI
             OsveziPrikaz();
         }
 
-        private void DodajUslugu(object sender, RoutedEventArgs e)
+        private void DodajUslugu_Click(object sender, RoutedEventArgs e)
         {
             var novaUsluga = new DodatnaUsluga()
             {
@@ -36,19 +36,23 @@ namespace POP_SF_32_2016_GUI.UI
             };
 
             var uslugaProzor = new DodavanjeIzmenaUsluge(novaUsluga, DodavanjeIzmenaUsluge.Operacija.DODAVANJE);
-            uslugaProzor.Show();
+            uslugaProzor.ShowDialog();
+
+            OsveziPrikaz();
         }
 
-        private void IzmeniUslugu(object sender, RoutedEventArgs e)
+        private void IzmeniUslugu_Click(object sender, RoutedEventArgs e)
         {
             var izabranaUsluga = (DodatnaUsluga)lbUsluga.SelectedItem;
 
             var uslugaProzor = new DodavanjeIzmenaUsluge(izabranaUsluga, DodavanjeIzmenaUsluge.Operacija.IZMENA);
-            uslugaProzor.Show();
+            uslugaProzor.ShowDialog();
+
+            OsveziPrikaz();
 
         }
 
-        private void Zatvori(object sender, RoutedEventArgs e)
+        private void Zatvori_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -59,15 +63,34 @@ namespace POP_SF_32_2016_GUI.UI
 
             foreach (var usluga in Projekat.Instance.DodatnaUsluga)
             {
-                lbUsluga.Items.Add(usluga);
+                if (usluga.Obrisan == false)
+                {
+                    lbUsluga.Items.Add(usluga);
+                }
             }
 
             lbUsluga.SelectedIndex = 0;
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void Izbrsi_Click(object sender, RoutedEventArgs e)
         {
-            OsveziPrikaz();
+
+            var izabranaUsluga = (DodatnaUsluga)lbUsluga.SelectedItem;
+            var listaUsluga = Projekat.Instance.DodatnaUsluga;
+            if (MessageBox.Show($"Da li zelite da obrisete: {izabranaUsluga.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var usluga in listaUsluga)
+                {
+                    if (usluga.Id == izabranaUsluga.Id)
+                    {
+                        usluga.Obrisan = true;
+                    }
+                }
+
+                Projekat.Instance.DodatnaUsluga = listaUsluga;
+
+                OsveziPrikaz();
+            }
         }
     }
 }

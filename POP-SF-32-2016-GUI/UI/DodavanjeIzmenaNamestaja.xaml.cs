@@ -23,8 +23,7 @@ namespace POP_SF_32_2016_GUI.UI
         public enum Operacija
         {
             DODAVANJE,
-            IZMENA,
-            IZBRISI
+            IZMENA
         };
 
         public DodavanjeIzmenaNamestaja(Namestaj namestaj, Operacija operacija)
@@ -43,8 +42,33 @@ namespace POP_SF_32_2016_GUI.UI
             this.tbSifra.Text = namestaj.Sifra;
             this.tbCena.Text = System.Convert.ToString(namestaj.JedinicnaCena);
             this.tbKolicina.Text = System.Convert.ToString(namestaj.KolicinaUMagacinu);
-            this.tbAkcija.Text = System.Convert.ToString(namestaj.AkcijaId);
-            this.tbTip.Text = System.Convert.ToString(namestaj.TipNamestajaId);
+
+            foreach (var akcija in Projekat.Instance.AkcijskaProdaja)
+            {
+                cbAkcija.Items.Add(akcija);
+            }
+            foreach (AkcijskaProdaja akcija in cbAkcija.Items)
+            {
+                if (akcija.Id == akcija.Id)
+                {
+                    cbAkcija.SelectedItem = akcija;
+                    break;
+                }
+            }
+
+
+            foreach (var tipNamestaja in Projekat.Instance.TipNamestaja)
+            {
+                cbTip.Items.Add(tipNamestaja);
+            }
+            foreach (TipNamestaja tipNamestaja in cbTip.Items)
+            {
+                if (tipNamestaja.Id == namestaj.TipNamestajaId)
+                {
+                    cbTip.SelectedItem = tipNamestaja;
+                    break;
+                }
+            }
         }
 
         private Namestaj namestaj;
@@ -53,6 +77,8 @@ namespace POP_SF_32_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
+            var izabraniTipNamestaja = (TipNamestaja)cbTip.SelectedItem;
+            var izabranaAkcija = (AkcijskaProdaja)cbAkcija.SelectedItem;
 
             switch (operacija)
             {
@@ -64,9 +90,8 @@ namespace POP_SF_32_2016_GUI.UI
                         Sifra = this.tbSifra.Text,
                         JedinicnaCena = double.Parse(tbCena.Text),
                         KolicinaUMagacinu = int.Parse(tbKolicina.Text),
-                        AkcijaId = int.Parse(tbAkcija.Text),
-                        TipNamestajaId = int.Parse(tbTip.Text)
-
+                        AkcijaId = izabranaAkcija.Id,
+                        TipNamestajaId = izabraniTipNamestaja.Id
                     };
                     listaNamestaja.Add(noviNamestaj);
                     break;
@@ -80,18 +105,8 @@ namespace POP_SF_32_2016_GUI.UI
                             n.Sifra = this.tbSifra.Text;
                             n.JedinicnaCena = double.Parse(tbCena.Text);
                             n.KolicinaUMagacinu = int.Parse(tbKolicina.Text);
-                            n.AkcijaId = int.Parse(tbAkcija.Text);
-                            n.TipNamestajaId = int.Parse(tbTip.Text);
-                            break;
-                        }
-                    }
-                    break;
-                case Operacija.IZBRISI:
-                    foreach (var n in listaNamestaja)
-                    {
-                        if (n.Id == namestaj.Id)
-                        {
-                            n.Obrisan = true;
+                            n.AkcijaId = izabranaAkcija.Id;
+                            n.TipNamestajaId = izabraniTipNamestaja.Id;
                             break;
                         }
                     }

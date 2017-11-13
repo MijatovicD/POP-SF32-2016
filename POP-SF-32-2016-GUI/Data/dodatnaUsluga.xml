@@ -6,10 +6,4 @@
     <Cena>1000</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
-  <DodatnaUsluga>
-    <Id>2</Id>
-    <Naziv>Utovaranje</Naziv>
-    <Cena>345</Cena>
-    <Obrisan>false</Obrisan>
-  </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>

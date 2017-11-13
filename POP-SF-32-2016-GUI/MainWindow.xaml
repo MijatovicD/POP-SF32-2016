@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI"
         mc:Ignorable="d"
-        >
+        Title="MainWindow" Height="400" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Rad sa namestajem" Width="150" Click="Namestaji" Margin="50,223,560,223" RenderTransformOrigin="-0.1,0.552"/>
-        <Button Content="Rad sa tipom namestaja" Height="58" Width="150" Click="TipNamestaja" RenderTransformOrigin="0.767,0.207" Margin="255,223,355,223"/>
-        <Button Content="Rad sa dodatnom uslugom" HorizontalAlignment="Left" Height="58" Margin="445,223,0,0" VerticalAlignment="Top" Width="155" Click="DodatnaUsluga"/>
+        <Button Content="Rad sa namestajem" Click="Namestaji" Height="45" Margin="25,125,237,199" />
+        <Button Content="Rad sa tipom namestaja" Click="TipNamestaja" Height="45" Margin="185,125,62,199"/>
+        <Button Content="Rad sa dodatnom uslugom" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="145" Click="DodatnaUsluga" Margin="185,190,0,0"/>
+        <Button Content="Rad sa salonom" HorizontalAlignment="Left" Height="45" Margin="25,190,0,0" VerticalAlignment="Top" Width="130" Click="Salon" RenderTransformOrigin="0.548,0.431"/>
+        <Button Content="Rad sa korisnikom" Click="Korisnik" Height="45" Margin="25,270,237,54"/>
     </Grid>
 </Window>

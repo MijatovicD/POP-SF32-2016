@@ -57,6 +57,9 @@
     <Compile Include="UI\DodatnaWindow.xaml.cs">
       <DependentUpon>DodatnaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\DodavanjeIzmenaKorisnika.xaml.cs">
+      <DependentUpon>DodavanjeIzmenaKorisnika.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\DodavanjeIzmenaNamestaja.xaml.cs">
       <DependentUpon>DodavanjeIzmenaNamestaja.xaml</DependentUpon>
     </Compile>
@@ -66,8 +69,14 @@
     <Compile Include="UI\DodavanjeIzmenaUsluge.xaml.cs">
       <DependentUpon>DodavanjeIzmenaUsluge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\KorisnikWindow.xaml.cs">
+      <DependentUpon>KorisnikWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\NamestajWindow.xaml.cs">
       <DependentUpon>NamestajWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SalonWindow.xaml.cs">
+      <DependentUpon>SalonWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
@@ -89,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\DodavanjeIzmenaKorisnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\DodavanjeIzmenaNamestaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,7 +114,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\KorisnikWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\NamestajWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SalonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\salon.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\prodaja.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,8 +17,6 @@ C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Namesta
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\NamestajWindow.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\TipNamestajaWindow.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\TipNamestajaWindow.baml
-C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Login.g.cs
-C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Login.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaNamestaja.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaNamestaja.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaTipaNamestaja.g.cs
@@ -27,3 +25,9 @@ C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Dodavan
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodatnaWindow.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodatnaWindow.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaUsluge.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\SalonWindow.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\SalonWindow.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaKorisnika.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\KorisnikWindow.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaKorisnika.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\KorisnikWindow.baml

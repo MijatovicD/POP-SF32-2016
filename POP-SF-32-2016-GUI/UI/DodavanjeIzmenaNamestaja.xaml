@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="DodavanjeIzmenaNamestaja" Height="350" Width="300">
+        Title="DodavanjeIzmenaNamestaja" Height="350" Width="300" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30*"/>
@@ -30,9 +30,9 @@
         <Label Grid.Row="3" Grid.Column="0" Content="Kolicina:" FontSize="15"/>
         <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbKolicina"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Akcija:" FontSize="15"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="tbAkcija"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="cbAkcija"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Tip:" FontSize="15"/>
-        <TextBox Grid.Row="5" Grid.Column="1" Width="Auto" Name="tbTip"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" Width="Auto" Name="cbTip"/>
         <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="6" Click="SacuvajIzmene"/>
         <Button Grid.Row="6" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
     </Grid>

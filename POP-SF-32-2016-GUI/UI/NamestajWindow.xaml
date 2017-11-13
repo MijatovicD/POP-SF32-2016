@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="300" Width="400" Activated="Window_Activated">
+        Title="NamestajWindow" Height="300" Width="400" WindowStartupLocation="CenterScreen">
     <Border Background="AliceBlue">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -16,10 +16,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ListBox Grid.Row="0" FontSize="20" Name="lbNamestaj" Grid.Column="1"/>
-            <Button Content="Dodaj" Margin="0,0,0,232" Click="DodajNamestaj"/>
-            <Button Content="Izmeni" Margin="0,42,0,190" Click="IzmeniNamestaj"/>
-            <Button Content="Izbrisi" Margin="0,130,0,102"/>
-            <Button Content="Izadji" Margin="0,185,0,47" Click="Zatvori"/>
+            <Button Content="Dodaj" Margin="0,0,0,232" Click="DodajNamestaj_Click"/>
+            <Button Content="Izmeni" Margin="0,42,0,190" Click="IzmeniNamestaj_Click"/>
+            <Button Content="Izbrisi" Margin="0,130,0,102" Click="ObrsiNamestaj_Click"/>
+            <Button Content="Izadji" Margin="0,185,0,47" Click="Zatvori_Click"/>
         </Grid>
     </Border>
 </Window>

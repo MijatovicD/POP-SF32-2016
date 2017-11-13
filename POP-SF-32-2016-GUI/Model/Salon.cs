@@ -23,5 +23,17 @@ namespace POP_SF32_2016.Model
         {
             return $"{Naziv}, {Adresa}, {Telefon}, {Email}, {InternetAdresa}, {PIB}, {MaticniBroj}, {ZiroRacun}";
         }
+
+        public static Salon GetById(int id)
+        {
+            foreach (var salon in Projekat.Instance.Salon)
+            {
+                if (salon.Id == id)
+                {
+                    return salon;
+                }
+            }
+            return null;
+        }
     }
 }
