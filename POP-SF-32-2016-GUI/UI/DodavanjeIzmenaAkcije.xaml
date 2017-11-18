@@ -1,0 +1,33 @@
+﻿<Window x:Class="POP_SF_32_2016_GUI.UI.DodavanjeIzmenaAkcije"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="DodavanjeIzmenaAkcije" Height="254.5" Width="355">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="46*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="87*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Datum pocetka:" FontSize="15"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Popust:" FontSize="15"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbPopust"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Datum &#xD;&#xA;zavrsetka:" FontSize="15"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Namestaj na &#xD;&#xA;popustu:" FontSize="15"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbNamestaj"/>
+        <Button Content="Sacuvaj" Grid.Column="1" Width="Auto"  Grid.Row="4" Click="SacuvajIzmene"/>
+        <Button Grid.Row="4" Content="Izadji" Width="Auto" Click="Zatvori"/>
+        <DatePicker x:Name="dpDatumPocetka" Grid.Column="1" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="207"/>
+        <DatePicker x:Name="dpDatumZavrsetka" Grid.Column="1" HorizontalAlignment="Left" Height="47" Grid.Row="2" VerticalAlignment="Top" Width="207"/>
+    </Grid>
+</Window>

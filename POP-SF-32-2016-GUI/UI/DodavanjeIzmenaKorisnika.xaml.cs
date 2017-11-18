@@ -28,8 +28,7 @@ namespace POP_SF_32_2016_GUI.UI
         public enum Operacija
         {
             DODAVANJE,
-            IZMENA,
-            IZBRISI
+            IZMENA
         };
 
         public DodavanjeIzmenaKorisnika(Korisnik korisnik, Operacija operacija)
@@ -51,18 +50,20 @@ namespace POP_SF_32_2016_GUI.UI
 
             foreach (var tipKorisnika in Projekat.Instance.Korisnik)
             {
-                cbTipKorisnika.Items.Add(tipKorisnika);
+                cbTipKorisnika.Items.Add(tipKorisnika.TipKorisnika);
             }
-            /*
-            foreach (Korisnik tipKorisnika in cbTipKorisnika.Items)
+
+
+            foreach (var tipKorisnika in cbTipKorisnika.Items)
             {
-                if (tipKorisnika.Id == tipKorisnika)
+                if (tipKorisnika == tipKorisnika)
                 {
                     cbTipKorisnika.SelectedItem = tipKorisnika;
                     break;
                 }
             }
-            */
+
+
         }
 
         private Korisnik korisnik;
@@ -82,7 +83,7 @@ namespace POP_SF_32_2016_GUI.UI
                         Prezime = this.tbPrezime.Text,
                         KorisnickoIme = this.tbKoriIme.Text,
                         Lozinka = this.tbLozinka.Text,
-                        //TipKorisnika = Enum.Parse(tbTipKori.Text)
+                        TipKorisnika = (TipKorisnika)cbTipKorisnika.SelectedItem
                     };
                     listaKorisnika.Add(noviKorisnik);
                     break;
@@ -96,12 +97,10 @@ namespace POP_SF_32_2016_GUI.UI
                             k.Prezime = this.tbPrezime.Text;
                             k.KorisnickoIme = this.tbKoriIme.Text;
                             k.Lozinka = this.tbLozinka.Text;
-                            //k.TipKorisnika = this.tbTipKori.Text;
+                            k.TipKorisnika = (TipKorisnika)this.cbTipKorisnika.SelectedItem;
                             break;
                         }
                     }
-                    break;
-                case Operacija.IZBRISI:
                     break;
                 default:
                     break;

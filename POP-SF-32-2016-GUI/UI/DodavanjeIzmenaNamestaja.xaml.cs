@@ -119,16 +119,7 @@ namespace POP_SF_32_2016_GUI.UI
 
             Close();
         }
-
-        /*
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in Enum.GetValues(typeof(TipKorisnika)))
-            {
-                cbTip.Items.Add(item);
-            }
-        }
-        */
+ 
 
         private void Zatvori(object sender, RoutedEventArgs e)
         {

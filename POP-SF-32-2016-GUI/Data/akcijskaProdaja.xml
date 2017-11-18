@@ -1,17 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAkcijskaProdaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AkcijskaProdaja>
     <Id>1</Id>
-    <Popust>20</Popust>
     <DatumPocetka>2017-08-04T10:30:00</DatumPocetka>
+    <Popust>20</Popust>
     <DatumZavrsetka>2017-09-07T14:25:00</DatumZavrsetka>
+    <NamestajNaPopustu />
     <Obrisan>false</Obrisan>
   </AkcijskaProdaja>
   <AkcijskaProdaja>
     <Id>2</Id>
-    <Popust>20</Popust>
     <DatumPocetka>2017-04-05T09:35:00</DatumPocetka>
+    <Popust>20</Popust>
     <DatumZavrsetka>2017-07-15T18:45:00</DatumZavrsetka>
+    <NamestajNaPopustu />
     <Obrisan>false</Obrisan>
   </AkcijskaProdaja>
 </ArrayOfAkcijskaProdaja>

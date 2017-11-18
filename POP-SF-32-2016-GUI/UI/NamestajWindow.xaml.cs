@@ -1,6 +1,8 @@
 ﻿using POP_SF32_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +22,6 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-
         public NamestajWindow()
         {
             InitializeComponent();
@@ -28,7 +29,6 @@ namespace POP_SF_32_2016_GUI.UI
             OsveziPrikaz();
 
         }
-
 
         private void DodajNamestaj_Click(object sender, RoutedEventArgs e)
         {
@@ -72,18 +72,8 @@ namespace POP_SF_32_2016_GUI.UI
 
             lbNamestaj.SelectedIndex = 0;
         }
-        
-        /*
-        private void SortirajNamestaj()
-        {
-            ComboBox box = new ComboBox();
-        
-            box.Items.Add("Po nazivu");
-            box.Text = "Po sifri";
-            cb.Text = "Po tipu";
 
-        }
-        */
+        
         private void Zatvori_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -109,16 +99,5 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
-
-        /*
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(cb.Text + " " + Convert.ToString((int)cb.SelectedValue));
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            cb.Items.Add(Enum.GetValues(typeof(TipKorisnika)));
-        }
-        */
     }
 }

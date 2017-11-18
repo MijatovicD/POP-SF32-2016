@@ -7,10 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Rad sa namestajem" Click="Namestaji" Height="45" Margin="25,125,237,199" />
-        <Button Content="Rad sa tipom namestaja" Click="TipNamestaja" Height="45" Margin="185,125,62,199"/>
-        <Button Content="Rad sa dodatnom uslugom" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="145" Click="DodatnaUsluga" Margin="185,190,0,0"/>
-        <Button Content="Rad sa salonom" HorizontalAlignment="Left" Height="45" Margin="25,190,0,0" VerticalAlignment="Top" Width="130" Click="Salon" RenderTransformOrigin="0.548,0.431"/>
-        <Button Content="Rad sa korisnikom" Click="Korisnik" Height="45" Margin="25,270,237,54"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <HeaderedContentControl HorizontalAlignment="Center">Dobro dosli u salon namestaja</HeaderedContentControl>
+        <Button Content="Rad sa namestajem" Click="Namestaji" Margin="25,34,237,239" Grid.Row="1" />
+        <Button Content="Rad sa tipom namestaja" Click="TipNamestaja" Margin="195,34,64,239" Grid.Row="1" HorizontalAlignment="Left"/>
+        <Button Content="Rad sa dodatnom &#xD;&#xA;uslugom" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="133" Click="DodatnaUsluga" Margin="195,91,0,0" Grid.Row="1"/>
+        <Button Content="Rad sa salonom" HorizontalAlignment="Left" Height="45" Margin="25,91,0,0" VerticalAlignment="Top" Width="130" Click="Salon" RenderTransformOrigin="0.548,0.431" Grid.Row="1"/>
+        <Button Content="Rad sa korisnikom" Click="Korisnik" Height="45" Margin="25,145,237,109" RenderTransformOrigin="0.527,-0.633" Grid.Row="1"/>
+        <Button Content="Rad sa akcijskom &#xD;&#xA;prodajom" Click="AkcijskaProdaja" Height="45" Margin="195,155,64,119" Grid.Row="1"/>
+        <Button Content="Prodaja namestaja" Height="45" Click="ProdajaNamestaja" Margin="25,213,237,42" RenderTransformOrigin="0.527,-0.633" Grid.Row="1"/>
     </Grid>
 </Window>

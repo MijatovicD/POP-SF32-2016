@@ -31,3 +31,13 @@ C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Dodavan
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\KorisnikWindow.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaKorisnika.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\KorisnikWindow.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\AkcijaWindow.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\AkcijaWindow.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\LoginWindow.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\LoginWindow.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\ProdajaNamestajaWindow.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\ProdajaNamestajaWindow.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaAkcije.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaAkcije.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaProdaje.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaProdaje.baml

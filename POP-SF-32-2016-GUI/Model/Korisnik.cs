@@ -24,7 +24,7 @@ namespace POP_SF32_2016.Model
 
         public override string ToString()
         {
-            return $"{Ime}, {Prezime}, {KorisnickoIme}";
+            return $"{Ime}, {Prezime}, {KorisnickoIme}, {TipKorisnika}";
         }
 
 

@@ -63,6 +63,18 @@ namespace POP_SF_32_2016_GUI
             var korisnikProzor = new KorisnikWindow();
             korisnikProzor.Show();
         }
+
+        private void AkcijskaProdaja(object sender, RoutedEventArgs e)
+        {
+            var akcijaProzor = new AkcijaWindow();
+            akcijaProzor.Show();
+        }
+
+        private void ProdajaNamestaja(object sender, RoutedEventArgs e)
+        {
+            var prodajaProzor = new ProdajaNamestajaWindow();
+            prodajaProzor.Show();
+        }
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -9,4 +9,31 @@
     <TipKorisnika>Administrator</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
+  <Korisnik>
+    <Id>2</Id>
+    <Ime>Zika</Ime>
+    <Prezime>Zikic</Prezime>
+    <KorisnickoIme>zika12</KorisnickoIme>
+    <Lozinka>12zika</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <Id>3</Id>
+    <Ime>fsadf</Ime>
+    <Prezime>fsd</Prezime>
+    <KorisnickoIme>dfsa</KorisnickoIme>
+    <Lozinka>dfsfd</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>true</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <Id>4</Id>
+    <Ime>df</Ime>
+    <Prezime>fdsa</Prezime>
+    <KorisnickoIme>a</KorisnickoIme>
+    <Lozinka>a</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
 </ArrayOfKorisnik>

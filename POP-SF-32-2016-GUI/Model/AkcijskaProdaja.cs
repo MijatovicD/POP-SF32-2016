@@ -16,6 +16,11 @@ namespace POP_SF32_2016.Model
         public bool Obrisan { get; set; }
 
 
+        public override string ToString()
+        {
+            return $"{DatumPocetka}, {Popust}, {DatumZavrsetka}";
+        }
+
         public static AkcijskaProdaja GetById(int id)
         {
             foreach (var akcija in Projekat.Instance.AkcijskaProdaja)

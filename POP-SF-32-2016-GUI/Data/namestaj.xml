@@ -23,10 +23,10 @@
   <Namestaj>
     <Id>3</Id>
     <Naziv>Stolica</Naziv>
-    <Sifra>kjldsfkl</Sifra>
+    <Sifra>4532</Sifra>
     <JedinicnaCena>5432</JedinicnaCena>
-    <KolicinaUMagacinu>87585</KolicinaUMagacinu>
-    <AkcijaId>2</AkcijaId>
+    <KolicinaUMagacinu>432</KolicinaUMagacinu>
+    <AkcijaId>1</AkcijaId>
     <TipNamestajaId>2</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
