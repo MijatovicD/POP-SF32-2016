@@ -62,7 +62,11 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void IzmeniAkciju_Click(object sender, RoutedEventArgs e)
         {
+            var izabranaAkcija = (AkcijskaProdaja)lbAkcija.SelectedItem;
 
+            var akcijaProzor = new DodavanjeIzmenaAkcije(izabranaAkcija, DodavanjeIzmenaAkcije.Operacija.IZMENA);
+            akcijaProzor.ShowDialog();
+            OsveziPrikaz();
         }
 
         private void ObrsiAkciju_Click(object sender, RoutedEventArgs e)

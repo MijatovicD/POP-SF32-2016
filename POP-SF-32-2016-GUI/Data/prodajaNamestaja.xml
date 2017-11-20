@@ -2,7 +2,7 @@
 <ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProdajaNamestaja>
     <Id>1</Id>
-    <NamestajZaProdaju>Super sofa</NamestajZaProdaju>
+    <NamestajZaProdaju>1</NamestajZaProdaju>
     <DatumProdaje>2017-10-01T14:35:00</DatumProdaje>
     <BrojRacuna>2</BrojRacuna>
     <Kupac>Zika</Kupac>

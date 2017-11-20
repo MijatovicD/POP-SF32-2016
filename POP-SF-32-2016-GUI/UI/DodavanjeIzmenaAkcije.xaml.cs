@@ -27,11 +27,6 @@ namespace POP_SF_32_2016_GUI.UI
             IZMENA
         };
 
-        public DodavanjeIzmenaAkcije()
-        {
-            InitializeComponent();
-        }
-
         public DodavanjeIzmenaAkcije(AkcijskaProdaja akcijskaProdaja, Operacija operacija)
         {
 
@@ -71,18 +66,16 @@ namespace POP_SF_32_2016_GUI.UI
                     break;
 
                 case Operacija.IZMENA:
-                    foreach (var akcija in listaAkcija)
+                    foreach (var a in listaAkcija)
                     {
-                        //if (akcija.Id == akcija.Id)
-                        //{
-                        //    n.Naziv = this.tbNaziv.Text;
-                        //    n.Sifra = this.tbSifra.Text;
-                        //    n.JedinicnaCena = double.Parse(tbCena.Text);
-                        //    n.KolicinaUMagacinu = int.Parse(tbKolicina.Text);
-                        //    n.AkcijaId = izabranaAkcija.Id;
-                        //    n.TipNamestajaId = izabraniTipNamestaja.Id;
-                        //    break;
-                        //}
+                        if (a.Id == akcijskaProdaja.Id)
+                        {
+                            a.Id = listaAkcija.Count + 1;
+                            a.DatumPocetka = this.dpDatumPocetka.SelectedDate.Value;
+                            a.Popust = decimal.Parse(tbPopust.Text);
+                            a.DatumZavrsetka = this.dpDatumZavrsetka.SelectedDate.Value;
+                            break;
+                        }
                     }
                     break;
                 default:

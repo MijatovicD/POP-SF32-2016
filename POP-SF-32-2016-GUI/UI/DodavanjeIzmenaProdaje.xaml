@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DodavanjeIzmenaProdaje" Height="300" Width="300" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DatePicker x:Name="dDatumProdaje" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="170" Margin="122,0,0,0"/>
+        <DatePicker Name="dDatumProdaje" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="170" Margin="122,0,0,0"/>
         <Label Content="Datum prodaje:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122"/>
         <Label Content="Namestaj:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,36,0,0"/>
         <Label Content="Broj racuna:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,72,0,0"/>
@@ -20,6 +20,6 @@
         <TextBox HorizontalAlignment="Left" Height="36" Margin="122,72,0,0" TextWrapping="Wrap" Name="tbBrojRacuna" VerticalAlignment="Top" Width="170"/>
         <ComboBox HorizontalAlignment="Left" Height="36" Margin="122,108,0,0" VerticalAlignment="Top" Name="cbKupac" Width="170"/>
         <ComboBox HorizontalAlignment="Left" Height="36" Margin="122,144,0,0" VerticalAlignment="Top" Name="cbDodatna" Width="170"/>
-        <TextBox x:Name="tbCena" HorizontalAlignment="Left" Height="46" Margin="122,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <TextBox Name="tbCena" HorizontalAlignment="Left" Height="46" Margin="122,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
     </Grid>
 </Window>

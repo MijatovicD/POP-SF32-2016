@@ -54,9 +54,9 @@ namespace POP_SF_32_2016_GUI.UI
             }
 
 
-            foreach (var tipKorisnika in cbTipKorisnika.Items)
+            foreach (TipKorisnika tipKorisnika in cbTipKorisnika.Items)
             {
-                if (tipKorisnika == tipKorisnika)
+                if (tipKorisnika == korisnik.TipKorisnika)
                 {
                     cbTipKorisnika.SelectedItem = tipKorisnika;
                     break;

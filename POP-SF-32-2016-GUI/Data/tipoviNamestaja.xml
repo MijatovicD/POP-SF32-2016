@@ -6,18 +6,8 @@
     <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
-    <Id>2</Id>
+    <Id>1</Id>
     <Naziv>Fotelja na razvlacenje</Naziv>
-    <Obrisan>false</Obrisan>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Id>3</Id>
-    <Naziv>Ogledalo</Naziv>
-    <Obrisan>true</Obrisan>
-  </TipNamestaja>
-  <TipNamestaja>
-    <Id>4</Id>
-    <Naziv>Ogledalo</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

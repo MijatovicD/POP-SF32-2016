@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,12 +23,15 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
+
+        public Namestaj IzabraniNamestaj { get; set; }
+
         public NamestajWindow()
         {
             InitializeComponent();
-
-            OsveziPrikaz();
-
+            dgNamestaj.IsSynchronizedWithCurrentItem = true;
+            dgNamestaj.DataContext = this;
+            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
         }
 
         private void DodajNamestaj_Click(object sender, RoutedEventArgs e)
@@ -44,34 +48,16 @@ namespace POP_SF_32_2016_GUI.UI
 
             var namestajProzor = new DodavanjeIzmenaNamestaja(noviNamestaj, DodavanjeIzmenaNamestaja.Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
-            OsveziPrikaz();
         }
 
         private void IzmeniNamestaj_Click(object sender, RoutedEventArgs e)
         {
-            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
-
-            var namestajProzor = new DodavanjeIzmenaNamestaja(izabraniNamestaj, DodavanjeIzmenaNamestaja.Operacija.IZMENA);
+            Namestaj kopija = (Namestaj)IzabraniNamestaj.Clone();
+            var namestajProzor = new DodavanjeIzmenaNamestaja(kopija, DodavanjeIzmenaNamestaja.Operacija.IZMENA);
             namestajProzor.ShowDialog();
-            OsveziPrikaz();
 
         }
 
-
-        private void OsveziPrikaz()
-        {
-            lbNamestaj.Items.Clear();
-
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                if(namestaj.Obrisan == false)
-                {
-                    lbNamestaj.Items.Add(namestaj);
-                }
-            }
-
-            lbNamestaj.SelectedIndex = 0;
-        }
 
         
         private void Zatvori_Click(object sender, RoutedEventArgs e)
@@ -81,7 +67,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void ObrsiNamestaj_Click(object sender, RoutedEventArgs e)
         {
-            var izabranNamestaj = (Namestaj)lbNamestaj.SelectedItem;
+            var izabranNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             var listaNamestaj = Projekat.Instance.Namestaj;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -90,12 +76,12 @@ namespace POP_SF_32_2016_GUI.UI
                     if (n.Id == izabranNamestaj.Id)
                     {
                         n.Obrisan = true;
+                        break;
                     }
                 }
 
-                Projekat.Instance.Namestaj = listaNamestaj;
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaj);
 
-                OsveziPrikaz();
             }
         }
 

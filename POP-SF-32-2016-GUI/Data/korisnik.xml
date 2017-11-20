@@ -18,22 +18,4 @@
     <TipKorisnika>Prodavac</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
-  <Korisnik>
-    <Id>3</Id>
-    <Ime>fsadf</Ime>
-    <Prezime>fsd</Prezime>
-    <KorisnickoIme>dfsa</KorisnickoIme>
-    <Lozinka>dfsfd</Lozinka>
-    <TipKorisnika>Prodavac</TipKorisnika>
-    <Obrisan>true</Obrisan>
-  </Korisnik>
-  <Korisnik>
-    <Id>4</Id>
-    <Ime>df</Ime>
-    <Prezime>fdsa</Prezime>
-    <KorisnickoIme>a</KorisnickoIme>
-    <Lozinka>a</Lozinka>
-    <TipKorisnika>Prodavac</TipKorisnika>
-    <Obrisan>false</Obrisan>
-  </Korisnik>
 </ArrayOfKorisnik>

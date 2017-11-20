@@ -35,8 +35,8 @@ namespace POP_SF_32_2016_GUI.UI
             foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
             {
                     lbProdaja.Items.Add(prodaja);
-               
-            }
+
+            }            
 
             lbProdaja.SelectedIndex = 0;
         }
@@ -61,7 +61,12 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void IzmeniProdaju_Click(object sender, RoutedEventArgs e)
         {
+            var izabranaProdaja = (ProdajaNamestaja)lbProdaja.SelectedItem;
 
+            var prodajaProzor = new DodavanjeIzmenaProdaje(izabranaProdaja, DodavanjeIzmenaProdaje.Operacija.IZMENA);
+            prodajaProzor.ShowDialog();
+
+            OsveziPrikaz();
         }
 
 

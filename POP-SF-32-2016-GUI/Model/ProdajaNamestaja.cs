@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_SF32_2016.Model
 {
-    public class ProdajaNamestaja
+    public class ProdajaNamestaja : INotifyPropertyChanged
     {
         public int Id { get; set; }
         public List<Namestaj> NamestajZaProdaju { get; set; }
@@ -15,6 +16,9 @@ namespace POP_SF32_2016.Model
         public string Kupac { get; set; }
         public List<DodatnaUsluga> DodatnaUsluga { get; set; }
         public const double PDV = 0.02;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public double UkupanIznos { get; set; }
 
         public override string ToString()
@@ -32,6 +36,11 @@ namespace POP_SF32_2016.Model
                 }
             }
             return null;
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

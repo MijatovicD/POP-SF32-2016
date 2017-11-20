@@ -11,7 +11,7 @@
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>2</Id>
+    <Id>1</Id>
     <Naziv>Ekstra sofa</Naziv>
     <Sifra>874239</Sifra>
     <JedinicnaCena>48329</JedinicnaCena>
@@ -21,13 +21,13 @@
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>3</Id>
+    <Id>2</Id>
     <Naziv>Stolica</Naziv>
     <Sifra>4532</Sifra>
     <JedinicnaCena>5432</JedinicnaCena>
     <KolicinaUMagacinu>432</KolicinaUMagacinu>
     <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>2</TipNamestajaId>
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

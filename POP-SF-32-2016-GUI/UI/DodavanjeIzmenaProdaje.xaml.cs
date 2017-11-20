@@ -38,31 +38,31 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.prodajaNamestaja = prodajaNamestaja;
             this.operacija = operacija;
-            /*
-            prodajaNamestaja.NamestajZaProdaju = new List<Namestaj>();
+            
+            //prodajaNamestaja.NamestajZaProdaju = new List<int>();
             foreach (var namestaj in Projekat.Instance.Namestaj)
             {
-                cbNamestaj.Items.Add(namestaj);
+                cbNamestaj.Items.Add(Namestaj.GetById(namestaj.Id));
             }
 
-            foreach (Namestaj n in cbNamestaj.Items)
+            foreach (var n in cbNamestaj.Items)
             {
-                if (n.Id == n.Id)
+                if (n == n)
                 {
                     cbNamestaj.SelectedItem = n;
                     break;
                 }
             }
-
-            this.tbBrojRacuna.Text = prodajaNamestaja.BrojRacuna;
-            this.cbKupac.SelectedItem = prodajaNamestaja.Kupac;
-            prodajaNamestaja.DodatnaUsluga = new List<DodatnaUsluga>();
-            foreach (var usluga in Projekat.Instance.DodatnaUsluga)
-            {
-                cbDodatna.Items.Add(usluga);
-            }
-            this.tbCena.Text = System.Convert.ToString(prodajaNamestaja.UkupanIznos);
-            */
+            
+            //this.tbBrojRacuna.Text = prodajaNamestaja.BrojRacuna;
+            //this.cbKupac.SelectedItem = prodajaNamestaja.Kupac;
+            //prodajaNamestaja.DodatnaUsluga = new List<DodatnaUsluga>();
+            //foreach (var usluga in Projekat.Instance.DodatnaUsluga)
+            //{
+            //    cbDodatna.Items.Add(DodatnaUsluga.GetById(usluga.Id));
+            //}
+            //this.tbCena.Text = System.Convert.ToString(prodajaNamestaja.UkupanIznos);
+            
         }
         
 
@@ -72,26 +72,27 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaProdaje = Projekat.Instance.ProdajaNamestaja;
+            //var listaProdaje = Projekat.Instance.ProdajaNamestaja;
 
-            
-            switch (operacija)
-            {
-                case Operacija.DODAVANJE:
-                    var novaProdaja = new ProdajaNamestaja()
-                    {
-                        Id = listaProdaje.Count + 1,
-                        DatumProdaje = this.dDatumProdaje.SelectedDate.Value,
-                        BrojRacuna = this.tbBrojRacuna.Text,
-                        Kupac = (String)cbKupac.SelectedItem,
-                    };
-                    listaProdaje.Add(novaProdaja);
-                    break;
-                case Operacija.IZMENA:
-                    break;
-                default:
-                    break;
-            }
+            //switch (operacija)
+            //{
+            //    case Operacija.DODAVANJE:
+            //        var novaProdaja = new ProdajaNamestaja()
+            //        {
+            //            Id = listaProdaje.Count + 1,
+            //            NamestajZaProdaju = new List<Namestaj>(),
+            //            DatumProdaje = this.dDatumProdaje.SelectedDate.Value,
+            //            BrojRacuna = this.tbBrojRacuna.Text,
+            //            Kupac = (String)cbKupac.SelectedItem,
+            //            DodatnaUsluga = new List<DodatnaUsluga>()
+            //        };
+            //        listaProdaje.Add(novaProdaja);
+            //        break;
+            //    case Operacija.IZMENA:
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
     }

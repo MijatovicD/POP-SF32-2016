@@ -14,7 +14,7 @@
                 <Label Content="Lozinka:" HorizontalAlignment="Left" Height="27" Margin="64,97,0,0" VerticalAlignment="Top" Width="57"/>
                 <TextBox HorizontalAlignment="Left" Height="27" Name="tbKoriIme" Margin="29,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
                 <PasswordBox HorizontalAlignment="Left" Height="27" Name="tbLozinka" Margin="29,129,0,33" Width="140"/>
-                <Button Content="Prijava" HorizontalAlignment="Left" Name="btPrijava" Height="29" Margin="53,160,0,0" VerticalAlignment="Top" Width="80" Click="btPrijava_Click"/>
+                <Button Content="Prijava" HorizontalAlignment="Left" Name="btPrijava" Height="29" Margin="53,160,0,0" VerticalAlignment="Top" Width="80" Click="btPrijava_Click" IsDefault="True"/>
 
             </Grid>
         </StackPanel>

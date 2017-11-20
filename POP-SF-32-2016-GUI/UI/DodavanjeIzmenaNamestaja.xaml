@@ -22,7 +22,7 @@
             <ColumnDefinition Width="187*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv" Text="{Binding Path=Naziv}"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Sifra:" FontSize="15"/>
         <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbSifra"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Cena:" FontSize="15"/>
@@ -32,7 +32,7 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Akcija:" FontSize="15"/>
         <ComboBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="cbAkcija"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Tip:" FontSize="15"/>
-        <ComboBox Grid.Row="5" Grid.Column="1" Width="Auto" Name="cbTip"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" Width="Auto" Name="cbTip" SelectedItem="{Binding Path=TipNamestaja}"/>
         <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="6" Click="SacuvajIzmene"/>
         <Button Grid.Row="6" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
     </Grid>
