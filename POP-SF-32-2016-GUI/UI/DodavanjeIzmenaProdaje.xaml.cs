@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,72 +28,54 @@ namespace POP_SF_32_2016_GUI.UI
             IZMENA
         };
 
-        public DodavanjeIzmenaProdaje(ProdajaNamestaja novaProdaja, Operacija operacija)
+        public DodavanjeIzmenaProdaje(ProdajaNamestaja prodajaNamestaja, Operacija operacija)
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(prodajaNamestaja, operacija);
-        }
-
-        private void InicijalizujVrednosti(ProdajaNamestaja prodajaNamestaja, Operacija operacija)
-        {
             this.prodajaNamestaja = prodajaNamestaja;
             this.operacija = operacija;
-            
-            //prodajaNamestaja.NamestajZaProdaju = new List<int>();
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                cbNamestaj.Items.Add(Namestaj.GetById(namestaj.Id));
-            }
 
-            foreach (var n in cbNamestaj.Items)
-            {
-                if (n == n)
-                {
-                    cbNamestaj.SelectedItem = n;
-                    break;
-                }
-            }
-            
-            //this.tbBrojRacuna.Text = prodajaNamestaja.BrojRacuna;
-            //this.cbKupac.SelectedItem = prodajaNamestaja.Kupac;
-            //prodajaNamestaja.DodatnaUsluga = new List<DodatnaUsluga>();
-            //foreach (var usluga in Projekat.Instance.DodatnaUsluga)
-            //{
-            //    cbDodatna.Items.Add(DodatnaUsluga.GetById(usluga.Id));
-            //}
-            //this.tbCena.Text = System.Convert.ToString(prodajaNamestaja.UkupanIznos);
-            
+
+            cbNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+            cbKupac.ItemsSource = Projekat.Instance.Korisnik;
+            cbDodatna.ItemsSource = Projekat.Instance.DodatnaUsluga;
+
+            dDatumProdaje.DataContext = prodajaNamestaja;
+            tbCena.DataContext = prodajaNamestaja;
+            tbBrojRacuna.DataContext = prodajaNamestaja;
         }
         
-
         private ProdajaNamestaja prodajaNamestaja;
         private Operacija operacija;
 
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            //var listaProdaje = Projekat.Instance.ProdajaNamestaja;
+            var listaProdaje = Projekat.Instance.ProdajaNamestaja;
+            var izabraniNamestaj = (Namestaj)cbNamestaj.SelectedItem;
 
-            //switch (operacija)
-            //{
-            //    case Operacija.DODAVANJE:
-            //        var novaProdaja = new ProdajaNamestaja()
-            //        {
-            //            Id = listaProdaje.Count + 1,
-            //            NamestajZaProdaju = new List<Namestaj>(),
-            //            DatumProdaje = this.dDatumProdaje.SelectedDate.Value,
-            //            BrojRacuna = this.tbBrojRacuna.Text,
-            //            Kupac = (String)cbKupac.SelectedItem,
-            //            DodatnaUsluga = new List<DodatnaUsluga>()
-            //        };
-            //        listaProdaje.Add(novaProdaja);
-            //        break;
-            //    case Operacija.IZMENA:
-            //        break;
-            //    default:
-            //        break;
-            //}
+            switch (operacija)
+            {
+                case Operacija.DODAVANJE:
+                    prodajaNamestaja.Id = listaProdaje.Count + 1;
+                    prodajaNamestaja.NamestajZaProdaju = new List<Namestaj>(izabraniNamestaj.Id);
+                    prodajaNamestaja.DatumProdaje = dDatumProdaje.SelectedDate.Value;
+                    prodajaNamestaja.BrojRacuna = tbBrojRacuna.Text;
+                    //prodajaNamestaja.Kupac = (String)cbKupac.SelectedItem;
+                    prodajaNamestaja.DodatnaUsluga = new List<DodatnaUsluga>().ToList();
+                    prodajaNamestaja.UkupanIznos = double.Parse(tbCena.Text);
+
+                    listaProdaje.Add(prodajaNamestaja);
+                    break;
+                case Operacija.IZMENA:
+                    break;
+                default:
+                    break;
+            }
+
+            GenericSerializer.Serialize("prodajaNamestaja.xml", listaProdaje);
+
+            Close();
         }
 
     }

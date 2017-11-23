@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="ProdajaNamestajaWindow" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="ProdajaNamestajaWindow" Height="570" Width="770" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="23*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="406*"/>
+            <RowDefinition Height="127*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" FontSize="20" Name="lbProdaja" Grid.Column="1"/>
-        <Button Content="Dodaj" Margin="0,0,0,232" Click="DodajProdaju_Click"/>
-        <Button Content="Izmeni" Margin="0,42,0,190" Click="IzmeniProdaju_Click"/>
-        <Button Content="Izadji" Margin="0,185,0,47" Click="Zatvori_Click"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgProdaja" SelectedItem="{Binding Path=IzabranaProdaja}"/>
+        <Button Grid.Row="1" Content="Dodaj" Height="40" Width="80" Margin="10,48,668,39" Click="DodajProdaju_Click"/>
+        <Button Grid.Row="1" Content="Izmeni" Height="40" Width="80" RenderTransformOrigin="-1.614,0.957" Margin="147,48,531,39" Click="IzmeniProdaju_Click"/>
+        <Button Grid.Row="1" Content="Izadji" Height="40" Margin="601,49,69,39" Click="Zatvori_Click"/>
+        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="410,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="tbPretraga_TextChanged" Grid.Row="1"/>
     </Grid>
 </Window>

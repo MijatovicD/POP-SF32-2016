@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,18 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class KorisnikWindow : Window
     {
+
+        public Korisnik IzabraniKorisnik { get; set; }
         public KorisnikWindow()
         {
             InitializeComponent();
-            OsveziPrikaz();
+            dgKorisnik.IsSynchronizedWithCurrentItem = true;
+            dgKorisnik.DataContext = this;
+            dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
+
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource);
+            view.Filter = Pretraga;
         }
 
         private void DodajKorisnika(object sender, RoutedEventArgs e)
@@ -40,40 +49,23 @@ namespace POP_SF_32_2016_GUI.UI
             var korisnikProzor = new DodavanjeIzmenaKorisnika(noviKorisnik, DodavanjeIzmenaKorisnika.Operacija.DODAVANJE);
             korisnikProzor.ShowDialog();
 
-            OsveziPrikaz();
         }
 
         private void IzmeniKorisnika(object sender, RoutedEventArgs e)
         {
-            var izabraniKorisnik = (Korisnik)lbKorisnik.SelectedItem;
+            Korisnik kopija = (Korisnik)IzabraniKorisnik.Clone();
 
-            var korisnikProzor = new DodavanjeIzmenaKorisnika(izabraniKorisnik, DodavanjeIzmenaKorisnika.Operacija.IZMENA);
+            var korisnikProzor = new DodavanjeIzmenaKorisnika(kopija, DodavanjeIzmenaKorisnika.Operacija.IZMENA);
             korisnikProzor.ShowDialog();
 
-            OsveziPrikaz();
 
         }
 
 
-
-        private void OsveziPrikaz()
-        {
-            lbKorisnik.Items.Clear();
-
-            foreach (var korisnik in Projekat.Instance.Korisnik)
-            {
-                if (korisnik.Obrisan == false)
-                {
-                    lbKorisnik.Items.Add(korisnik);
-                }
-            }
-
-            lbKorisnik.SelectedIndex = 0;
-        }
 
         private void Izbrisi(object sender, RoutedEventArgs e)
         {
-            var izabraniKorisnik = (Korisnik)lbKorisnik.SelectedItem;
+            var izabraniKorisnik = (Korisnik)dgKorisnik.SelectedItem;
             var listaKorisnika = Projekat.Instance.Korisnik;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabraniKorisnik.KorisnickoIme}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -85,9 +77,8 @@ namespace POP_SF_32_2016_GUI.UI
                     }
                 }
 
-                Projekat.Instance.Korisnik = listaKorisnika;
+                GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
 
-                OsveziPrikaz();
             }
         }
 
@@ -96,5 +87,25 @@ namespace POP_SF_32_2016_GUI.UI
             this.Close();
         }
 
+
+        private bool Pretraga(object item)
+        {
+
+            if (String.IsNullOrEmpty(tbPretraga.Text))
+            {
+                return true;
+            }
+
+            else
+            {
+                return ((item as Korisnik).Ime.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Korisnik).Prezime.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Korisnik).KorisnickoIme.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource).Refresh();
+        }
     }
 }

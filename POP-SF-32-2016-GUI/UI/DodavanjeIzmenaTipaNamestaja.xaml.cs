@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,11 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class DodavanjeIzmenaTipaNamestaja : Window
     {
-        public DodavanjeIzmenaTipaNamestaja()
-        {
-            InitializeComponent();
-        }
 
         public enum Operacija
         {
             DODAVANJE,
-            IZMENA,
-            IZBRISI
+            IZMENA
         };
 
         public DodavanjeIzmenaTipaNamestaja(TipNamestaja tipNamestaja, Operacija operacija)
@@ -37,16 +33,12 @@ namespace POP_SF_32_2016_GUI.UI
 
             InitializeComponent();
 
-            InicijalizujVrednosti(tipNamestaja, operacija);
-        }
-        private void InicijalizujVrednosti(TipNamestaja tipNamestaja, Operacija operacija)
-        {
             this.tipNamestaja = tipNamestaja;
             this.operacija = operacija;
 
-            this.tbNaziv.Text = tipNamestaja.Naziv;
+            tbNaziv.DataContext = tipNamestaja;
         }
-
+  
         private TipNamestaja tipNamestaja;
         private Operacija operacija;
 
@@ -57,13 +49,11 @@ namespace POP_SF_32_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var noviTip = new TipNamestaja()
-                    {
-                        Id = listaTipa.Count + 1,
-                        Naziv = this.tbNaziv.Text
 
-                    };
-                    listaTipa.Add(noviTip);
+                    tipNamestaja.Id = listaTipa.Count + 1;
+                    tipNamestaja.Naziv = tbNaziv.Text;
+
+                    listaTipa.Add(tipNamestaja);
                     break;
 
                 case Operacija.IZMENA:
@@ -71,19 +61,17 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         if (t.Id == tipNamestaja.Id)
                         {
-                            t.Naziv = this.tbNaziv.Text;
+                            t.Naziv = tipNamestaja.Naziv;
                             break;
                         }
                     }
 
                     break;
-                case Operacija.IZBRISI:
-                    break;
                 default:
                     break;
             }
 
-            Projekat.Instance.TipNamestaja = listaTipa;
+            GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipa);
 
             Close();
         }

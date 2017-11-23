@@ -32,6 +32,14 @@ namespace POP_SF_32_2016_GUI.UI
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+
+            cbSortiraj.Items.Add("Naziv");
+            cbSortiraj.Items.Add("JedinicnaCena");
+            cbSortiraj.Items.Add("Tipu namestaja");
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
+            view.Filter = Pretraga;
+            
         }
 
         private void DodajNamestaj_Click(object sender, RoutedEventArgs e)
@@ -59,7 +67,7 @@ namespace POP_SF_32_2016_GUI.UI
         }
 
 
-        
+
         private void Zatvori_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -85,5 +93,44 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
+        private bool Pretraga(object item)
+        {
+
+            if (String.IsNullOrEmpty(tbPretraga.Text))
+            {
+                return true;
+            }
+
+            else
+            {
+                return ((item as Namestaj).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Namestaj).Sifra.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Namestaj).TipNamestaja.Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource).Refresh();
+        }
+
+        private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cbSortiraj.SelectedIndex == 0)
+            {
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
+
+            }
+
+            else if(cbSortiraj.SelectedIndex == 1)
+            {
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("JedinicnaCena", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 2)
+            {
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestaja", ListSortDirection.Descending));
+            }
+        }
     }
 }

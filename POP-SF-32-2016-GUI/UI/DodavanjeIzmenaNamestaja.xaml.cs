@@ -41,6 +41,9 @@ namespace POP_SF_32_2016_GUI.UI
             cbAkcija.ItemsSource = Projekat.Instance.AkcijskaProdaja;
 
             tbNaziv.DataContext = namestaj;
+            tbSifra.DataContext = namestaj;
+            tbCena.DataContext = namestaj;
+            tbKolicina.DataContext = namestaj;
             cbTip.DataContext = namestaj;
             cbAkcija.DataContext = namestaj;
         }
@@ -57,16 +60,15 @@ namespace POP_SF_32_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    namestaj.Id = listaNamestaja.Count + 1;
-                   
-                        //Id = listaNamestaja.Count + 1,
-                        //Naziv = this.tbNaziv.Text,
-                        //Sifra = this.tbSifra.Text,
-                        //JedinicnaCena = double.Parse(tbCena.Text),
-                        //KolicinaUMagacinu = int.Parse(tbKolicina.Text),
-                        //AkcijaId = izabranaAkcija.Id,
-                        //TipNamestajaId = izabraniTipNamestaja.Id
-                    
+
+                        namestaj.Id = listaNamestaja.Count + 1;
+                        namestaj.Naziv = tbNaziv.Text;
+                        namestaj.Sifra = tbSifra.Text;
+                        namestaj.JedinicnaCena = double.Parse(tbCena.Text);
+                        namestaj.KolicinaUMagacinu = int.Parse(tbKolicina.Text);
+                        namestaj.AkcijaId = izabranaAkcija.Id;
+                        namestaj.TipNamestajaId = izabraniTipNamestaja.Id; 
+
                     listaNamestaja.Add(namestaj);
                     break;
 

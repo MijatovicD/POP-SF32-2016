@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,6 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class DodavanjeIzmenaKorisnika : Window
     {
-        public DodavanjeIzmenaKorisnika()
-        {
-            InitializeComponent();
-        }
 
         public enum Operacija
         {
@@ -36,34 +33,17 @@ namespace POP_SF_32_2016_GUI.UI
 
             InitializeComponent();
 
-            InicijalizujVrednosti(korisnik, operacija);
-        }
-        private void InicijalizujVrednosti(Korisnik korisnik, Operacija operacija)
-        {
             this.korisnik = korisnik;
             this.operacija = operacija;
 
-            this.tbIme.Text = korisnik.Ime;
-            this.tbPrezime.Text = korisnik.Prezime;
-            this.tbKoriIme.Text = korisnik.KorisnickoIme;
-            this.tbLozinka.Text = korisnik.Lozinka;
+            cbTipKorisnika.Items.Add("Administrator");
+            cbTipKorisnika.Items.Add("Prodavac");
 
-            foreach (var tipKorisnika in Projekat.Instance.Korisnik)
-            {
-                cbTipKorisnika.Items.Add(tipKorisnika.TipKorisnika);
-            }
-
-
-            foreach (TipKorisnika tipKorisnika in cbTipKorisnika.Items)
-            {
-                if (tipKorisnika == korisnik.TipKorisnika)
-                {
-                    cbTipKorisnika.SelectedItem = tipKorisnika;
-                    break;
-                }
-            }
-
-
+            tbIme.DataContext = korisnik;
+            tbPrezime.DataContext = korisnik;
+            tbKoriIme.DataContext = korisnik;
+            tbLozinka.DataContext = korisnik;
+            cbTipKorisnika.DataContext = korisnik;
         }
 
         private Korisnik korisnik;
@@ -72,20 +52,20 @@ namespace POP_SF_32_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaKorisnika = Projekat.Instance.Korisnik;
+            var izabraniTip = (TipKorisnika)cbTipKorisnika.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var noviKorisnik = new Korisnik()
-                    {
-                        Id = listaKorisnika.Count + 1,
-                        Ime = this.tbIme.Text,
-                        Prezime = this.tbPrezime.Text,
-                        KorisnickoIme = this.tbKoriIme.Text,
-                        Lozinka = this.tbLozinka.Text,
-                        TipKorisnika = (TipKorisnika)cbTipKorisnika.SelectedItem
-                    };
-                    listaKorisnika.Add(noviKorisnik);
+
+                    korisnik.Id = listaKorisnika.Count + 1;
+                    korisnik.Ime = tbIme.Text;
+                    korisnik.Prezime = tbPrezime.Text;
+                    korisnik.KorisnickoIme = tbKoriIme.Text;
+                    korisnik.Lozinka = tbLozinka.Password;
+                    korisnik.TipKorisnika = izabraniTip;
+                    
+                    listaKorisnika.Add(korisnik);
                     break;
 
                 case Operacija.IZMENA:
@@ -96,7 +76,7 @@ namespace POP_SF_32_2016_GUI.UI
                             k.Ime = this.tbIme.Text;
                             k.Prezime = this.tbPrezime.Text;
                             k.KorisnickoIme = this.tbKoriIme.Text;
-                            k.Lozinka = this.tbLozinka.Text;
+                            k.Lozinka = this.tbLozinka.Password;
                             k.TipKorisnika = (TipKorisnika)this.cbTipKorisnika.SelectedItem;
                             break;
                         }
@@ -106,7 +86,7 @@ namespace POP_SF_32_2016_GUI.UI
                     break;
             }
 
-            Projekat.Instance.Korisnik = listaKorisnika;
+            GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
 
             Close();
         }

@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,17 +33,14 @@ namespace POP_SF_32_2016_GUI.UI
 
             InitializeComponent();
 
-            InicijalizujVrednosti(akcijskaProdaja, operacija);
-        }
-
-        private void InicijalizujVrednosti(AkcijskaProdaja akcijskaProdaja, Operacija operacija)
-        {
             this.akcijskaProdaja = akcijskaProdaja;
             this.operacija = operacija;
 
-            this.tbPopust.Text = System.Convert.ToString(akcijskaProdaja.Popust);
-            //this.tbNamestaj.Text = akcijskaProdaja.NamestajNaPopustu;
-            
+
+            dpDatumPocetka.DataContext = akcijskaProdaja;
+            tbPopust.DataContext = akcijskaProdaja;
+            dpDatumZavrsetka.DataContext = akcijskaProdaja;
+            tbNamestaj.DataContext = akcijskaProdaja;
         }
 
         AkcijskaProdaja akcijskaProdaja;
@@ -55,14 +53,13 @@ namespace POP_SF_32_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var novaAkcija = new AkcijskaProdaja()
-                    {
-                        Id = listaAkcija.Count + 1,
-                        DatumPocetka = this.dpDatumPocetka.SelectedDate.Value,
-                        Popust = decimal.Parse(tbPopust.Text),
-                        DatumZavrsetka = this.dpDatumZavrsetka.SelectedDate.Value
-                    };
-                    listaAkcija.Add(novaAkcija);
+
+                    akcijskaProdaja.Id = listaAkcija.Count + 1;
+                    akcijskaProdaja.DatumPocetka = dpDatumPocetka.SelectedDate.Value;
+                    akcijskaProdaja.Popust = decimal.Parse(tbPopust.Text);
+                    akcijskaProdaja.DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value;
+                    //akcijskaProdaja.NamestajNaPopustu = tbNamestaj.Text;
+                    listaAkcija.Add(akcijskaProdaja);
                     break;
 
                 case Operacija.IZMENA:
@@ -71,9 +68,10 @@ namespace POP_SF_32_2016_GUI.UI
                         if (a.Id == akcijskaProdaja.Id)
                         {
                             a.Id = listaAkcija.Count + 1;
-                            a.DatumPocetka = this.dpDatumPocetka.SelectedDate.Value;
-                            a.Popust = decimal.Parse(tbPopust.Text);
-                            a.DatumZavrsetka = this.dpDatumZavrsetka.SelectedDate.Value;
+                            a.DatumPocetka = akcijskaProdaja.DatumPocetka;
+                            a.Popust = akcijskaProdaja.Popust;
+                            a.DatumZavrsetka = akcijskaProdaja.DatumZavrsetka;
+                            a.NamestajNaPopustu = akcijskaProdaja.NamestajNaPopustu;
                             break;
                         }
                     }
@@ -82,7 +80,7 @@ namespace POP_SF_32_2016_GUI.UI
                     break;
             }
 
-            Projekat.Instance.AkcijskaProdaja = listaAkcija;
+            GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
 
             Close();
         }

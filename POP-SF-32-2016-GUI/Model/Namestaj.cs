@@ -11,6 +11,7 @@ namespace POP_SF32_2016.Model
     public class Namestaj : INotifyPropertyChanged, ICloneable
     {
         private TipNamestaja tipNamestaja;
+        private AkcijskaProdaja akcijskaProdaja;
 
         [XmlIgnore]
         public TipNamestaja TipNamestaja
@@ -30,6 +31,27 @@ namespace POP_SF32_2016.Model
                 OnPropertyChanged("TipNamestaja");
             }
         }
+
+
+        [XmlIgnore]
+        public AkcijskaProdaja AkcijskaProdaja
+        {
+            get
+            {
+                if (akcijskaProdaja == null)
+                {
+                    akcijskaProdaja = AkcijskaProdaja.GetById(AkcijaId);
+                }
+                return akcijskaProdaja;
+            }
+            set
+            {
+                akcijskaProdaja = value;
+                AkcijaId = akcijskaProdaja.Id;
+                OnPropertyChanged("AkcijskaProdaja");
+            }
+        }
+
 
         private int id;
 
@@ -153,15 +175,6 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        //public int Id { get; set; }
-        //public string Naziv { get; set; }
-        //public string Sifra { get; set; }
-        //public double JedinicnaCena { get; set; }
-        //public int KolicinaUMagacinu { get; set; }
-        //public int AkcijaId { get; set; }
-        //public int TipNamestajaId { get; set; }
-        //public bool Obrisan { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
@@ -194,9 +207,11 @@ namespace POP_SF32_2016.Model
             {
                 Id = id,
                 Naziv = naziv,
+                Sifra = sifra,
                 JedinicnaCena = jedinicnaCena,
+                KolicinaUMagacinu = kolicinaUMagacinu,
                 Obrisan = obrisan,
-                TipNamestaja = tipNamestaja,
+                AkcijaId = akcijaId,
                 TipNamestajaId = tipNamestajaId
             };
         }

@@ -1,4 +1,5 @@
 ﻿using POP_SF32_2016.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,33 +21,24 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class DodavanjeIzmenaUsluge : Window
     {
-        public DodavanjeIzmenaUsluge()
-        {
-            InitializeComponent();
-        }
-
-
+ 
         public enum Operacija
         {
             DODAVANJE,
-            IZMENA,
-            IZBRISI
+            IZMENA
         };
 
         public DodavanjeIzmenaUsluge(DodatnaUsluga dodatnaUsluga, Operacija operacija)
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(dodatnaUsluga, operacija);
-        }
-        private void InicijalizujVrednosti(DodatnaUsluga dodatnaUsluga, Operacija operacija)
-        {
             this.dodatnaUsluga = dodatnaUsluga;
             this.operacija = operacija;
 
-            this.tbNaziv.Text = dodatnaUsluga.Naziv;
-            this.tbCena.Text = System.Convert.ToString(dodatnaUsluga.Cena);
+            tbNaziv.DataContext = dodatnaUsluga;
+            tbCena.DataContext = dodatnaUsluga;
         }
+
 
         private DodatnaUsluga dodatnaUsluga;
         private Operacija operacija;
@@ -58,14 +50,12 @@ namespace POP_SF_32_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var novaUsluge = new DodatnaUsluga()
-                    {
-                        Id = listausluge.Count + 1,
-                        Naziv = this.tbNaziv.Text,
-                        Cena = double.Parse(tbCena.Text)
 
-                    };
-                    listausluge.Add(novaUsluge);
+                    dodatnaUsluga.Id = listausluge.Count + 1;
+                    dodatnaUsluga.Naziv = tbNaziv.Text;
+                    dodatnaUsluga.Cena = double.Parse(tbCena.Text);
+
+                    listausluge.Add(dodatnaUsluga);
                     break;
 
                 case Operacija.IZMENA:
@@ -79,13 +69,11 @@ namespace POP_SF_32_2016_GUI.UI
                         }
                     }
                     break;
-                case Operacija.IZBRISI:
-                    break;
                 default:
                     break;
             }
 
-            Projekat.Instance.DodatnaUsluga = listausluge;
+            GenericSerializer.Serialize("dodatnaUslga.xml", listausluge);
             Close();
         }
 

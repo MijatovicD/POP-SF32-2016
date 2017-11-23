@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace POP_SF32_2016.Model
 {
-    public class AkcijskaProdaja : INotifyPropertyChanged
+    public class AkcijskaProdaja : INotifyPropertyChanged, ICloneable
     {
         private int id;
 
@@ -99,13 +99,6 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        //public int Id { get; set; }
-        //public DateTime DatumPocetka { get; set; }
-        //public decimal Popust { get; set; }
-        //public DateTime DatumZavrsetka { get; set; }
-        //public List<Namestaj> NamestajNaPopustu { get; set; }
-        //public bool Obrisan { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
@@ -128,6 +121,18 @@ namespace POP_SF32_2016.Model
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            return new AkcijskaProdaja()
+            {
+                Id = id,
+                DatumPocetka = datumPocetka,
+                Popust = popust,
+                DatumZavrsetka = datumZavrsetka,
+                NamestajNaPopustu = namestajNaPopustu
+            };
         }
     }
 }

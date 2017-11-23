@@ -20,26 +20,19 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class ProdajaNamestajaWindow : Window
     {
+
+        public ProdajaNamestaja IzabranaProdaja { get; set; }
         public ProdajaNamestajaWindow()
         {
             InitializeComponent();
+            dgProdaja.IsSynchronizedWithCurrentItem = true;
+            dgProdaja.DataContext = this;
+            dgProdaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
 
-            OsveziPrikaz();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgProdaja.ItemsSource);
+            view.Filter = Pretraga;
         }
 
-
-        private void OsveziPrikaz()
-        {
-            lbProdaja.Items.Clear();
-
-            foreach (var prodaja in Projekat.Instance.ProdajaNamestaja)
-            {
-                    lbProdaja.Items.Add(prodaja);
-
-            }            
-
-            lbProdaja.SelectedIndex = 0;
-        }
 
         private void DodajProdaju_Click(object sender, RoutedEventArgs e)
         {
@@ -56,17 +49,15 @@ namespace POP_SF_32_2016_GUI.UI
             var prodajaNamestajaProzor = new DodavanjeIzmenaProdaje(novaProdaja, DodavanjeIzmenaProdaje.Operacija.DODAVANJE);
             prodajaNamestajaProzor.ShowDialog();
 
-            OsveziPrikaz();
         }
 
         private void IzmeniProdaju_Click(object sender, RoutedEventArgs e)
         {
-            var izabranaProdaja = (ProdajaNamestaja)lbProdaja.SelectedItem;
-
-            var prodajaProzor = new DodavanjeIzmenaProdaje(izabranaProdaja, DodavanjeIzmenaProdaje.Operacija.IZMENA);
+            ProdajaNamestaja kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
+            
+            var prodajaProzor = new DodavanjeIzmenaProdaje(kopija, DodavanjeIzmenaProdaje.Operacija.IZMENA);
             prodajaProzor.ShowDialog();
 
-            OsveziPrikaz();
         }
 
 
@@ -74,5 +65,26 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.Close();
         }
+
+        private bool Pretraga(object item)
+        {
+
+            if (String.IsNullOrEmpty(tbPretraga.Text))
+            {
+                return true;
+            }
+
+            else
+            {
+                return ((item as ProdajaNamestaja).Kupac.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgProdaja.ItemsSource).Refresh();
+        }
+
     }
 }

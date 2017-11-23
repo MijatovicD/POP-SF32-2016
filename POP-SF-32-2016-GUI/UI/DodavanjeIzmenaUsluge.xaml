@@ -18,9 +18,9 @@
             <ColumnDefinition Width="187*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv" Text="{Binding Path=Naziv}"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Cena:" FontSize="15"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbCena"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbCena" Text="{Binding Path=Cena}"/>
         <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="2" Click="SacuvajIzmene"/>
         <Button Grid.Row="2" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
     </Grid>

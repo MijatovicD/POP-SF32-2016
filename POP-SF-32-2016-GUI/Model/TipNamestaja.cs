@@ -57,11 +57,6 @@ namespace POP_SF32_2016.Model
             }
         }
 
-
-        //public int Id { get; set; }
-        //public string Naziv { get; set; }
-        //public bool Obrisan { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()

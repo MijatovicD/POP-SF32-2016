@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" FontSize="20" Name="lbAkcija" Grid.Column="1"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgAkcija" Grid.Column="1" SelectedItem="{Binding Path=IzabranaAkcija}"/>
         <Button Content="Dodaj" Margin="0,0,0,232" Click="DodajAkciju_Click"/>
         <Button Content="Izmeni" Margin="0,42,0,190" Click="IzmeniAkciju_Click"/>
         <Button Content="Izbrisi" Margin="0,130,0,102" Click="ObrsiAkciju_Click"/>
