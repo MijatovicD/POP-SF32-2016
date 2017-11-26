@@ -48,6 +48,7 @@ namespace POP_SF_32_2016_GUI.UI
                         case TipKorisnika.Administrator:
                             MainWindow mw = new MainWindow();
                             mw.Show();
+                            this.Close();
                             break;
                         case TipKorisnika.Prodavac:
                             NamestajWindow nw = new NamestajWindow();

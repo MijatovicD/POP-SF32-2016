@@ -2,6 +2,7 @@
 using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,11 @@ namespace POP_SF_32_2016_GUI.UI
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipNamestaja.DataContext = this;
             dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
+
+            cbSortiraj.Items.Add("Naziv");
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource);
+            view.Filter = Pretraga;
 
         }
 
@@ -75,6 +81,37 @@ namespace POP_SF_32_2016_GUI.UI
 
                 GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipa);
             }
+        }
+
+        private bool Pretraga(object item)
+        {
+
+            if (String.IsNullOrEmpty(tbPretraga.Text))
+            {
+                return true;
+            }
+
+            else
+            {
+                return ((item as TipNamestaja).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource).Refresh();
+        }
+
+        private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cbSortiraj.SelectedIndex == 0)
+            {
+                dgTipNamestaja.Items.SortDescriptions.Clear();
+                dgTipNamestaja.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
+            }
+
         }
     }
 }

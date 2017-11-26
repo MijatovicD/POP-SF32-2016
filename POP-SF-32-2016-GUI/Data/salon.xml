@@ -7,9 +7,9 @@
     <Adresa>Trg Dositeja Obradovica 6</Adresa>
     <Telefon>021/345-248</Telefon>
     <Email>fakultet@ftn.uns.ac.rs</Email>
-    <AdresaInternetSajta>www.ftn.uns.ac.rs</AdresaInternetSajta>
+    <InternetAdresa>www.ftn.uns.ac.rs</InternetAdresa>
     <PIB>32489624</PIB>
     <MaticniBroj>1896547896</MaticniBroj>
-    <BrojZiroRacuna>208-75982148-35</BrojZiroRacuna>
+    <ZiroRacun>208-75982148-35</ZiroRacun>
   </Salon>
 </ArrayOfSalon>

@@ -20,23 +20,17 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class SalonWindow : Window
     {
+
+        public Salon IzabraniSalon { get; set; }
         public SalonWindow()
         {
             InitializeComponent();
-            OsveziPrikaz();
+            dgSalon.IsSynchronizedWithCurrentItem = true;
+            dgSalon.DataContext = this;
+            dgSalon.ItemsSource = Projekat.Instance.Salon;
+
         }
 
-        private void OsveziPrikaz()
-        {
-            lbSalon.Items.Clear();
-
-            foreach (var salon in Projekat.Instance.Salon)
-            {
-                lbSalon.Items.Add(salon);
-            }
-
-            lbSalon.SelectedIndex = 0;
-        }
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();

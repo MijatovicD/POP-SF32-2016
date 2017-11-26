@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+        Title="TipNamestajaWindow" Height="219" Width="570" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgTipNamestaja" Grid.Column="1" SelectedItem="{Binding Path=IzabraniTip}"/>
-        <Button Content="Dodaj" Margin="0,0,0,232" Click="DodajTip_Click"/>
-        <Button Content="Izmeni" Margin="0,42,0,190" Click="IzmeniTip_Click"/>
-        <Button Content="Izbrisi" Margin="0,130,0,102" Click="Izbrisi_Clik"/>
-        <Button Content="Izadji" Margin="0,185,0,47" Click="Zatvori_Click"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgTipNamestaja" SelectedItem="{Binding Path=IzabraniTip}"/>
+        <Button Content="Dodaj" Margin="0,5,492,5" Click="DodajTip_Click" Grid.Row="1"/>
+        <Button Content="Izmeni" Margin="75,5,403,5" Click="IzmeniTip_Click" Grid.Row="1"/>
+        <Button Content="Izbrisi" Margin="164,5,323,5" Click="Izbrisi_Clik" Grid.Row="1"/>
+        <Button Content="Izadji" Margin="461,3,10,7" Click="Zatvori_Click" Grid.Row="1"/>
+        <TextBox x:Name="tbPretraga" Height="23" Margin="244,10,208,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="tbPretraga_TextChanged" Grid.Row="1" RenderTransformOrigin="1.11,2.405"/>
+        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="30" Margin="359,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="88" SelectionChanged="cbSortiraj_SelectionChanged"/>
     </Grid>
 </Window>

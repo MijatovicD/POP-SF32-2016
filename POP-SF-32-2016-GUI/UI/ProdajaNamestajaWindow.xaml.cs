@@ -1,6 +1,7 @@
 ﻿using POP_SF32_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace POP_SF_32_2016_GUI.UI
             dgProdaja.IsSynchronizedWithCurrentItem = true;
             dgProdaja.DataContext = this;
             dgProdaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
+
+            cbSortiraj.Items.Add("DatumProdaje");
+            cbSortiraj.Items.Add("BrojuRacuna");
+            cbSortiraj.Items.Add("Kupac");
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgProdaja.ItemsSource);
             view.Filter = Pretraga;
@@ -84,6 +89,28 @@ namespace POP_SF_32_2016_GUI.UI
         private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dgProdaja.ItemsSource).Refresh();
+        }
+
+        private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cbSortiraj.SelectedIndex == 0)
+            {
+                dgProdaja.Items.SortDescriptions.Clear();
+                dgProdaja.Items.SortDescriptions.Add(new SortDescription("DatumProdaje", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 1)
+            {
+                dgProdaja.Items.SortDescriptions.Clear();
+                dgProdaja.Items.SortDescriptions.Add(new SortDescription("BrojRacuna", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 2)
+            {
+                dgProdaja.Items.SortDescriptions.Clear();
+                dgProdaja.Items.SortDescriptions.Add(new SortDescription("Kupac", ListSortDirection.Descending));
+            }
         }
 
     }

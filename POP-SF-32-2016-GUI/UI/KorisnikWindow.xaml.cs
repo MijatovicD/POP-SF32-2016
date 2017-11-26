@@ -2,6 +2,7 @@
 using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,11 @@ namespace POP_SF_32_2016_GUI.UI
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.DataContext = this;
             dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
+
+            cbSortiraj.Items.Add("Ime");
+            cbSortiraj.Items.Add("Prezime");
+            cbSortiraj.Items.Add("KorisnickoIme");
+
 
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource);
@@ -106,6 +112,28 @@ namespace POP_SF_32_2016_GUI.UI
         private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource).Refresh();
+        }
+
+        private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cbSortiraj.SelectedIndex == 0)
+            {
+                dgKorisnik.Items.SortDescriptions.Clear();
+                dgKorisnik.Items.SortDescriptions.Add(new SortDescription("Ime", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 1)
+            {
+                dgKorisnik.Items.SortDescriptions.Clear();
+                dgKorisnik.Items.SortDescriptions.Add(new SortDescription("Prezime", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 2)
+            {
+                dgKorisnik.Items.SortDescriptions.Clear();
+                dgKorisnik.Items.SortDescriptions.Add(new SortDescription("KorisnickoIme", ListSortDirection.Descending));
+            }
         }
     }
 }

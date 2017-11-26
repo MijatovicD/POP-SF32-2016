@@ -37,11 +37,12 @@ namespace POP_SF_32_2016_GUI.UI
 
 
             cbNamestaj.ItemsSource = Projekat.Instance.Namestaj;
-            cbKupac.ItemsSource = Projekat.Instance.Korisnik;
             cbDodatna.ItemsSource = Projekat.Instance.DodatnaUsluga;
 
+            cbNamestaj.DataContext = prodajaNamestaja;
+            cbDodatna.DataContext = prodajaNamestaja;
             dDatumProdaje.DataContext = prodajaNamestaja;
-            tbCena.DataContext = prodajaNamestaja;
+            lbCena.DataContext = prodajaNamestaja;
             tbBrojRacuna.DataContext = prodajaNamestaja;
         }
         
@@ -53,6 +54,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var listaProdaje = Projekat.Instance.ProdajaNamestaja;
             var izabraniNamestaj = (Namestaj)cbNamestaj.SelectedItem;
+            var izabranaUsluga = (DodatnaUsluga)cbDodatna.SelectedItem;
 
             switch (operacija)
             {
@@ -61,9 +63,9 @@ namespace POP_SF_32_2016_GUI.UI
                     prodajaNamestaja.NamestajZaProdaju = new List<Namestaj>(izabraniNamestaj.Id);
                     prodajaNamestaja.DatumProdaje = dDatumProdaje.SelectedDate.Value;
                     prodajaNamestaja.BrojRacuna = tbBrojRacuna.Text;
-                    //prodajaNamestaja.Kupac = (String)cbKupac.SelectedItem;
+                    prodajaNamestaja.Kupac = tbKupac.Text;
                     prodajaNamestaja.DodatnaUsluga = new List<DodatnaUsluga>().ToList();
-                    prodajaNamestaja.UkupanIznos = double.Parse(tbCena.Text);
+                    prodajaNamestaja.UkupanIznos = prodajaNamestaja.PDV * (izabraniNamestaj.JedinicnaCena + izabranaUsluga.Cena);
 
                     listaProdaje.Add(prodajaNamestaja);
                     break;

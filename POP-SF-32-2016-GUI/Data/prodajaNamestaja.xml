@@ -7,17 +7,17 @@
     <BrojRacuna>2</BrojRacuna>
     <Kupac>Zika</Kupac>
     <DodatnaUsluga />
-    <PDV>0</PDV>
+    <PDV>0.02</PDV>
     <UkupanIznos>4000</UkupanIznos>
   </ProdajaNamestaja>
   <ProdajaNamestaja>
     <Id>2</Id>
     <NamestajZaProdaju />
-    <DatumProdaje>2017-11-22T00:00:00</DatumProdaje>
-    <BrojRacuna>54325</BrojRacuna>
-    <Kupac />
+    <DatumProdaje>2017-11-26T00:00:00</DatumProdaje>
+    <BrojRacuna>543</BrojRacuna>
+    <Kupac>gf</Kupac>
     <DodatnaUsluga />
-    <PDV>0</PDV>
-    <UkupanIznos>53</UkupanIznos>
+    <PDV>0.02</PDV>
+    <UkupanIznos>20.56</UkupanIznos>
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>

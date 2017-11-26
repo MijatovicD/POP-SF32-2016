@@ -2,6 +2,7 @@
 using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace POP_SF_32_2016_GUI.UI
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
             dgAkcija.ItemsSource = Projekat.Instance.AkcijskaProdaja;
+
+            cbSortiraj.Items.Add("DatumPocetka");
+            cbSortiraj.Items.Add("Popust");
+            cbSortiraj.Items.Add("DatumZavrsetka");
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgAkcija.ItemsSource);
+            //view.Filter = Pretraga;
         }
 
 
@@ -77,5 +85,47 @@ namespace POP_SF_32_2016_GUI.UI
           
             }
         }
+        //private bool Pretraga(object item)
+        //{
+
+        //    if (String.IsNullOrEmpty(tbPretraga.Text))
+        //    {
+        //        return true;
+        //    }
+
+        //    else
+        //    {
+        //        return ((item as AkcijskaProdaja).DatumPocetka.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as AkcijskaProdaja).Popust.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as AkcijskaProdaja).DatumZavrsetka.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        //    }
+
+        //}
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgAkcija.ItemsSource).Refresh();
+        }
+
+        private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cbSortiraj.SelectedIndex == 0)
+            {
+                dgAkcija.Items.SortDescriptions.Clear();
+                dgAkcija.Items.SortDescriptions.Add(new SortDescription("DatumPocetka", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 1)
+            {
+                dgAkcija.Items.SortDescriptions.Clear();
+                dgAkcija.Items.SortDescriptions.Add(new SortDescription("Popust", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 2)
+            {
+                dgAkcija.Items.SortDescriptions.Clear();
+                dgAkcija.Items.SortDescriptions.Add(new SortDescription("DatumZavrsetka", ListSortDirection.Descending));
+            }
+        }
+
     }
 }

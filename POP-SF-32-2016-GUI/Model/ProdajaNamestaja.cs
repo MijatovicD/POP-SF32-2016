@@ -100,7 +100,7 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private double pdv;
+        private const double pdv = 0.02;
 
         public  double PDV
         {
@@ -110,7 +110,7 @@ namespace POP_SF32_2016.Model
             }
             set
             {
-                pdv = value;
+                //pdv = 0.02;
                 OnPropertyChanged("PDV");
             }
         }

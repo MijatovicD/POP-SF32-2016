@@ -77,7 +77,7 @@ namespace POP_SF_32_2016_GUI.UI
                             k.Prezime = this.tbPrezime.Text;
                             k.KorisnickoIme = this.tbKoriIme.Text;
                             k.Lozinka = this.tbLozinka.Password;
-                            k.TipKorisnika = (TipKorisnika)this.cbTipKorisnika.SelectedItem;
+                            k.TipKorisnika = korisnik.TipKorisnika;
                             break;
                         }
                     }

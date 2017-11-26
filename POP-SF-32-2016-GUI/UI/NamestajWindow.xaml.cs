@@ -118,18 +118,20 @@ namespace POP_SF_32_2016_GUI.UI
 
             if (cbSortiraj.SelectedIndex == 0)
             {
+                dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
-
             }
 
             else if(cbSortiraj.SelectedIndex == 1)
             {
+                dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("JedinicnaCena", ListSortDirection.Descending));
             }
 
             else if (cbSortiraj.SelectedIndex == 2)
             {
-                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestaja", ListSortDirection.Descending));
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestajaId", ListSortDirection.Descending));
             }
         }
     }
