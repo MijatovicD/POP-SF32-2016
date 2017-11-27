@@ -11,7 +11,7 @@
             <RowDefinition Height="406*"/>
             <RowDefinition Height="127*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgProdaja" SelectedItem="{Binding Path=IzabranaProdaja}"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgProdaja" SelectedItem="{Binding Path=IzabranaProdaja}" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn" CanUserAddRows="False"/>
         <Button Grid.Row="1" Content="Dodaj" Height="40" Width="80" Margin="10,48,668,39" Click="DodajProdaju_Click"/>
         <Button Grid.Row="1" Content="Izmeni" Height="40" Width="80" RenderTransformOrigin="-1.614,0.957" Margin="147,48,531,39" Click="IzmeniProdaju_Click"/>
         <Button Grid.Row="1" Content="Izadji" Height="40" Margin="601,49,69,39" Click="Zatvori_Click"/>

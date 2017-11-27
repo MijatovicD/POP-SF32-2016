@@ -11,7 +11,7 @@
             <RowDefinition Height="406*"/>
             <RowDefinition Height="127*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgKorisnik" SelectedItem="{Binding Path=IzabraniKorisnik}"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgKorisnik" SelectedItem="{Binding Path=IzabraniKorisnik}" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" CanUserAddRows="False"/>
         <Button Grid.Row="1" Content="Dodaj" Height="40" Width="80" Margin="23,32,580,30" Click="DodajKorisnika"/>
         <Button Grid.Row="1" Content="Izmeni" Height="40" Width="80" RenderTransformOrigin="-1.614,0.957" Margin="139,32,464,30" Click="IzmeniKorisnika"/>
         <Button Grid.Row="1" Content="Izbrisi" Height="40" Width="80" RenderTransformOrigin="-1.371,0.41" Margin="236,32,367,30" Click="Izbrisi"/>

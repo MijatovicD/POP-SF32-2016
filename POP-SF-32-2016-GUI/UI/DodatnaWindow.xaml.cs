@@ -22,20 +22,30 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class DodatnaWindow : Window
     {
+        ICollectionView vieew;
         public DodatnaUsluga IzabranaUsluga { get; set; }
         public DodatnaWindow()
         {
             InitializeComponent();
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
-            dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluga;
+            dgUsluga.ItemsSource = vieew;
+
+            dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             cbSortiraj.Items.Add("Naziv");
             cbSortiraj.Items.Add("Cena");
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgUsluga.ItemsSource);
             view.Filter = Pretraga;
+            vieew.Filter = DodatnaFilter;
 
+        }
+
+        private bool DodatnaFilter(object obj)
+        {
+            return ((DodatnaUsluga)obj).Obrisan == false;
         }
 
         private void DodajUslugu_Click(object sender, RoutedEventArgs e)
@@ -79,6 +89,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (usluga.Id == izabranaUsluga.Id)
                     {
                         usluga.Obrisan = true;
+                        vieew.Refresh();
                     }
                 }
 
@@ -120,6 +131,18 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 dgUsluga.Items.SortDescriptions.Clear();
                 dgUsluga.Items.SortDescriptions.Add(new SortDescription("Cena", ListSortDirection.Descending));
+            }
+        }
+
+        private void dgUsluga_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
             }
         }
     }

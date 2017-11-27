@@ -10,48 +10,6 @@ namespace POP_SF32_2016.Model
 {
     public class Namestaj : INotifyPropertyChanged, ICloneable
     {
-        private TipNamestaja tipNamestaja;
-        private AkcijskaProdaja akcijskaProdaja;
-
-        [XmlIgnore]
-        public TipNamestaja TipNamestaja
-        {
-            get
-            {
-                if(tipNamestaja == null)
-                {
-                   tipNamestaja = TipNamestaja.GetById(TipNamestajaId);
-                }
-                return tipNamestaja;
-            }
-            set
-            {
-                tipNamestaja = value;
-                TipNamestajaId = tipNamestaja.Id;
-                OnPropertyChanged("TipNamestaja");
-            }
-        }
-
-
-        [XmlIgnore]
-        public AkcijskaProdaja AkcijskaProdaja
-        {
-            get
-            {
-                if (akcijskaProdaja == null)
-                {
-                    akcijskaProdaja = AkcijskaProdaja.GetById(AkcijaId);
-                }
-                return akcijskaProdaja;
-            }
-            set
-            {
-                akcijskaProdaja = value;
-                AkcijaId = akcijskaProdaja.Id;
-                OnPropertyChanged("AkcijskaProdaja");
-            }
-        }
-
 
         private int id;
 
@@ -174,6 +132,49 @@ namespace POP_SF32_2016.Model
                 OnPropertyChanged("Obrisan");
             }
         }
+
+        private TipNamestaja tipNamestaja;
+        private AkcijskaProdaja akcijskaProdaja;
+
+        [XmlIgnore]
+        public TipNamestaja TipNamestaja
+        {
+            get
+            {
+                if (tipNamestaja == null)
+                {
+                    tipNamestaja = TipNamestaja.GetById(TipNamestajaId);
+                }
+                return tipNamestaja;
+            }
+            set
+            {
+                tipNamestaja = value;
+                TipNamestajaId = tipNamestaja.Id;
+                OnPropertyChanged("TipNamestaja");
+            }
+        }
+
+
+        [XmlIgnore]
+        public AkcijskaProdaja AkcijskaProdaja
+        {
+            get
+            {
+                if (akcijskaProdaja == null)
+                {
+                    akcijskaProdaja = AkcijskaProdaja.GetById(AkcijaId);
+                }
+                return akcijskaProdaja;
+            }
+            set
+            {
+                akcijskaProdaja = value;
+                AkcijaId = akcijskaProdaja.Id;
+                OnPropertyChanged("AkcijskaProdaja");
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

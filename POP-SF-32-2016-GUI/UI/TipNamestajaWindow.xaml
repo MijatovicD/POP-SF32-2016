@@ -14,7 +14,7 @@
             <RowDefinition Height="71*"/>
             <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgTipNamestaja" SelectedItem="{Binding Path=IzabraniTip}"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgTipNamestaja" SelectedItem="{Binding Path=IzabraniTip}" AutoGeneratingColumn="dgTipNamestaja_AutoGeneratingColumn" CanUserAddRows="False"/>
         <Button Content="Dodaj" Margin="0,5,492,5" Click="DodajTip_Click" Grid.Row="1"/>
         <Button Content="Izmeni" Margin="75,5,403,5" Click="IzmeniTip_Click" Grid.Row="1"/>
         <Button Content="Izbrisi" Margin="164,5,323,5" Click="Izbrisi_Clik" Grid.Row="1"/>

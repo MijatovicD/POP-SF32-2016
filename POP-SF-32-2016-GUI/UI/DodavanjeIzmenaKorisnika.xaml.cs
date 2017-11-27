@@ -36,8 +36,7 @@ namespace POP_SF_32_2016_GUI.UI
             this.korisnik = korisnik;
             this.operacija = operacija;
 
-            cbTipKorisnika.Items.Add("Administrator");
-            cbTipKorisnika.Items.Add("Prodavac");
+            cbTipKorisnika.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
 
             tbIme.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;

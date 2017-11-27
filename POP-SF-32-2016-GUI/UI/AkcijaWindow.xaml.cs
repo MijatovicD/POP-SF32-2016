@@ -22,13 +22,17 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class AkcijaWindow : Window
     {
+        ICollectionView vieew;
         public AkcijskaProdaja IzabranaAkcija { get; set; }
         public AkcijaWindow()
         {
             InitializeComponent();
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijskaProdaja);
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
-            dgAkcija.ItemsSource = Projekat.Instance.AkcijskaProdaja;
+            dgAkcija.ItemsSource = vieew;
+
+            dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             cbSortiraj.Items.Add("DatumPocetka");
             cbSortiraj.Items.Add("Popust");
@@ -36,8 +40,13 @@ namespace POP_SF_32_2016_GUI.UI
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgAkcija.ItemsSource);
             //view.Filter = Pretraga;
+            vieew.Filter = AkcijaFilter;
         }
 
+        private bool AkcijaFilter(object obj)
+        {
+            return ((AkcijskaProdaja)obj).Obrisan == false;
+        }
 
         private void Zatvori_Click(object sender, RoutedEventArgs e)
         {
@@ -78,6 +87,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (akcija.Id == izabranaAkcija.Id)
                     {
                         akcija.Obrisan = true;
+                        vieew.Refresh();
                     }
                 }
 
@@ -127,5 +137,16 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
+        private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

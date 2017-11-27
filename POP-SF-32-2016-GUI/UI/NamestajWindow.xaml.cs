@@ -23,23 +23,32 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-
+        ICollectionView vieew;
         public Namestaj IzabraniNamestaj { get; set; }
 
         public NamestajWindow()
         {
             InitializeComponent();
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
-            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestaj.ItemsSource = vieew;
 
             cbSortiraj.Items.Add("Naziv");
             cbSortiraj.Items.Add("JedinicnaCena");
             cbSortiraj.Items.Add("Tipu namestaja");
 
+            dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
             view.Filter = Pretraga;
+            vieew.Filter = NamestajFilter;
             
+        }
+
+        private bool NamestajFilter(object obj)
+        {
+            return ((Namestaj)obj).Obrisan == false;
         }
 
         private void DodajNamestaj_Click(object sender, RoutedEventArgs e)
@@ -84,6 +93,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (n.Id == izabranNamestaj.Id)
                     {
                         n.Obrisan = true;
+                        vieew.Refresh();
                         break;
                     }
                 }
@@ -132,6 +142,26 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestajaId", ListSortDirection.Descending));
+            }
+        }
+
+        private void dgNamestaj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "TipNamestajaId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "AkcijaId")
+            {
+                e.Cancel = true;
             }
         }
     }

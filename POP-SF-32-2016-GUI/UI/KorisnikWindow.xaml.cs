@@ -22,14 +22,17 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class KorisnikWindow : Window
     {
-
+        ICollectionView vieew;
         public Korisnik IzabraniKorisnik { get; set; }
         public KorisnikWindow()
         {
             InitializeComponent();
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.DataContext = this;
-            dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
+            dgKorisnik.ItemsSource = vieew;
+
+            dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             cbSortiraj.Items.Add("Ime");
             cbSortiraj.Items.Add("Prezime");
@@ -39,6 +42,12 @@ namespace POP_SF_32_2016_GUI.UI
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource);
             view.Filter = Pretraga;
+            vieew.Filter = KorisnikFilter;
+        }
+
+        private bool KorisnikFilter(object obj)
+        {
+            return ((Korisnik)obj).Obrisan == false;
         }
 
         private void DodajKorisnika(object sender, RoutedEventArgs e)
@@ -80,6 +89,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (korisnik.Id == izabraniKorisnik.Id)
                     {
                         korisnik.Obrisan = true;
+                        vieew.Refresh();
                     }
                 }
 
@@ -133,6 +143,18 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 dgKorisnik.Items.SortDescriptions.Clear();
                 dgKorisnik.Items.SortDescriptions.Add(new SortDescription("KorisnickoIme", ListSortDirection.Descending));
+            }
+        }
+
+        private void dgKorisnik_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
             }
         }
     }

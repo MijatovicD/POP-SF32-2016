@@ -22,21 +22,30 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class TipNamestajaWindow : Window
     {
+        ICollectionView vieew;
         public TipNamestaja IzabraniTip { get; set; }
         public TipNamestajaWindow()
         {
             InitializeComponent();
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.TipNamestaja);
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipNamestaja.DataContext = this;
-            dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
+            dgTipNamestaja.ItemsSource = vieew;
+
+            dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             cbSortiraj.Items.Add("Naziv");
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource);
             view.Filter = Pretraga;
+            vieew.Filter = FilterTipNamestaja;
 
         }
 
+        private bool FilterTipNamestaja(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
+        }
 
         private void DodajTip_Click(object sender, RoutedEventArgs e)
         {
@@ -76,6 +85,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (tip.Id == izabraniTip.Id)
                     {
                         tip.Obrisan = true;
+                        vieew.Refresh();
                     }
                 }
 
@@ -112,6 +122,18 @@ namespace POP_SF_32_2016_GUI.UI
                 dgTipNamestaja.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
             }
 
+        }
+
+        private void dgTipNamestaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

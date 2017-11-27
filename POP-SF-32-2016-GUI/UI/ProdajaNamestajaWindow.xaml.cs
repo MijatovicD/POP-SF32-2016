@@ -21,14 +21,17 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class ProdajaNamestajaWindow : Window
     {
-
+        ICollectionView vieew;
         public ProdajaNamestaja IzabranaProdaja { get; set; }
         public ProdajaNamestajaWindow()
         {
             InitializeComponent();
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.ProdajaNamestaja);
             dgProdaja.IsSynchronizedWithCurrentItem = true;
             dgProdaja.DataContext = this;
-            dgProdaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
+            dgProdaja.ItemsSource = vieew;
+
+            dgProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             cbSortiraj.Items.Add("DatumProdaje");
             cbSortiraj.Items.Add("BrojuRacuna");
@@ -113,5 +116,12 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
+        private void dgProdaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }
