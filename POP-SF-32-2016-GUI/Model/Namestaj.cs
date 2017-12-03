@@ -180,7 +180,7 @@ namespace POP_SF32_2016.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {AkcijskaProdaja.GetById(AkcijaId).DatumPocetka}, {TipNamestaja.GetById(TipNamestajaId).Naziv}";
+            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {AkcijskaProdaja.GetById(AkcijaId).Popust}, {TipNamestaja.GetById(TipNamestajaId).Naziv}";
         }
 
 

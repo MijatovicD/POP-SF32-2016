@@ -66,7 +66,7 @@ namespace POP_SF_32_2016_GUI.UI
                         namestaj.Sifra = tbSifra.Text;
                         namestaj.JedinicnaCena = double.Parse(tbCena.Text);
                         namestaj.KolicinaUMagacinu = int.Parse(tbKolicina.Text);
-                        namestaj.AkcijaId = izabranaAkcija.Id;
+                        //namestaj.AkcijaId = izabranaAkcija.Id;
                         namestaj.TipNamestajaId = izabraniTipNamestaja.Id; 
 
                     listaNamestaja.Add(namestaj);

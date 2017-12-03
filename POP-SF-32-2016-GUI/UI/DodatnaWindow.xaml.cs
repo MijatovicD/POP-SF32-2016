@@ -32,13 +32,12 @@ namespace POP_SF_32_2016_GUI.UI
             dgUsluga.DataContext = this;
             dgUsluga.ItemsSource = vieew;
 
-            dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             cbSortiraj.Items.Add("Naziv");
             cbSortiraj.Items.Add("Cena");
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgUsluga.ItemsSource);
-            view.Filter = Pretraga;
+            dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
             vieew.Filter = DodatnaFilter;
 
         }
@@ -89,33 +88,13 @@ namespace POP_SF_32_2016_GUI.UI
                     if (usluga.Id == izabranaUsluga.Id)
                     {
                         usluga.Obrisan = true;
-                        vieew.Refresh();
+                        vieew.Filter = DodatnaFilter;
                     }
                 }
 
                 GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);
 
             }
-        }
-
-        private bool Pretraga(object item)
-        {
-
-            if (String.IsNullOrEmpty(tbPretraga.Text))
-            {
-                return true;
-            }
-
-            else
-            {
-                return ((item as DodatnaUsluga).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 );
-            }
-
-        }
-
-        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dgUsluga.ItemsSource).Refresh();
         }
 
         private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)

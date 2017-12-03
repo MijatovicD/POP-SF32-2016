@@ -36,8 +36,6 @@ namespace POP_SF_32_2016_GUI.UI
 
             cbSortiraj.Items.Add("Naziv");
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource);
-            view.Filter = Pretraga;
             vieew.Filter = FilterTipNamestaja;
 
         }
@@ -91,26 +89,6 @@ namespace POP_SF_32_2016_GUI.UI
 
                 GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipa);
             }
-        }
-
-        private bool Pretraga(object item)
-        {
-
-            if (String.IsNullOrEmpty(tbPretraga.Text))
-            {
-                return true;
-            }
-
-            else
-            {
-                return ((item as TipNamestaja).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-            }
-
-        }
-
-        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource).Refresh();
         }
 
         private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,0 +1,45 @@
+﻿<Window x:Class="POP_SF_32_2016_GUI.UI.IzmenaSalona"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="IzmenaSalona" Height="400" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="187*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
+        <TextBox Width="Auto" Name="tbNaziv" Text="{Binding Path=Naziv}" Grid.Column="1"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Adresa:" FontSize="15"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbAdresa" Text="{Binding Path=Adresa}"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Telefon:" FontSize="15"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbTelefon" Text="{Binding Path=Telefon}"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Email:" FontSize="15"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbEmail" Text="{Binding Path=Email}"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Internet adresa:" FontSize="15"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="tbInternet" Text="{Binding Path=InternetAdresa}"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="PIB:" FontSize="15"/>
+        <TextBox Grid.Row="5" Width="Auto" x:Name="tbPib" Text="{Binding Path=PIB}" Grid.Column="1" IsReadOnly="True"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Maticni broj:" FontSize="15"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Width="Auto" Name="tbMaticni" Text="{Binding Path=MaticniBroj}" RenderTransformOrigin="-0.363,2.538" Height="40" VerticalAlignment="Top" IsReadOnly="True"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="ZiroRacun:" FontSize="15"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Width="Auto" Name="tbRacun" Text="{Binding Path=ZiroRacun}" IsReadOnly="True"/>
+        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="8" Click="SacuvajIzmene"/>
+        <Button Grid.Row="8" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori" Margin="0,0,-5,0"/>
+    </Grid>
+</Window>

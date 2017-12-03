@@ -2,6 +2,7 @@
 using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,11 +37,10 @@ namespace POP_SF_32_2016_GUI.UI
             this.akcijskaProdaja = akcijskaProdaja;
             this.operacija = operacija;
 
-
             dpDatumPocetka.DataContext = akcijskaProdaja;
             tbPopust.DataContext = akcijskaProdaja;
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
-            tbNamestaj.DataContext = akcijskaProdaja;
+            dgNametajLista.ItemsSource = Projekat.Instance.Namestaj;
         }
 
         AkcijskaProdaja akcijskaProdaja;
@@ -49,6 +49,8 @@ namespace POP_SF_32_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaNamestaja = Projekat.Instance.Namestaj;
+            var dgNamestaj = (Namestaj)dgNametajLista.SelectedItem;
 
             switch (operacija)
             {
@@ -58,7 +60,7 @@ namespace POP_SF_32_2016_GUI.UI
                     akcijskaProdaja.DatumPocetka = dpDatumPocetka.SelectedDate.Value;
                     akcijskaProdaja.Popust = decimal.Parse(tbPopust.Text);
                     akcijskaProdaja.DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value;
-                    //akcijskaProdaja.NamestajNaPopustu = tbNamestaj.Text;
+                    akcijskaProdaja.NamestajId = dgNamestaj.Id;
                     listaAkcija.Add(akcijskaProdaja);
                     break;
 
@@ -67,11 +69,11 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         if (a.Id == akcijskaProdaja.Id)
                         {
-                            a.Id = listaAkcija.Count + 1;
-                            a.DatumPocetka = akcijskaProdaja.DatumPocetka;
-                            a.Popust = akcijskaProdaja.Popust;
-                            a.DatumZavrsetka = akcijskaProdaja.DatumZavrsetka;
-                            a.NamestajNaPopustu = akcijskaProdaja.NamestajNaPopustu;
+
+                            a.DatumPocetka = this.dpDatumPocetka.SelectedDate.Value;
+                            a.Popust = decimal.Parse(this.tbPopust.Text);
+                            a.DatumZavrsetka = this.dpDatumZavrsetka.SelectedDate.Value;
+                            a.NamestajId = dgNamestaj.Id;
                             break;
                         }
                     }
@@ -88,6 +90,30 @@ namespace POP_SF_32_2016_GUI.UI
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dgNametajLista_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "AkcijskaProdaja")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "AkcijaId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "TipNamestajaId")
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

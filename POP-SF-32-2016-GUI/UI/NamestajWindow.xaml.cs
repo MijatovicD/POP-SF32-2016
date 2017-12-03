@@ -34,14 +34,16 @@ namespace POP_SF_32_2016_GUI.UI
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = vieew;
 
+            cbSortiraj.Items.Add("");
             cbSortiraj.Items.Add("Naziv");
-            cbSortiraj.Items.Add("JedinicnaCena");
+            cbSortiraj.Items.Add("Sifra");
+            cbSortiraj.Items.Add("Cena");
+            cbSortiraj.Items.Add("Kolcina u Magacinu");
+            cbSortiraj.Items.Add("Akciji");
             cbSortiraj.Items.Add("Tipu namestaja");
 
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
-            view.Filter = Pretraga;
+      
             vieew.Filter = NamestajFilter;
             
         }
@@ -75,8 +77,6 @@ namespace POP_SF_32_2016_GUI.UI
 
         }
 
-
-
         private void Zatvori_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -93,7 +93,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (n.Id == izabranNamestaj.Id)
                     {
                         n.Obrisan = true;
-                        vieew.Refresh();
+                        vieew.Filter = NamestajFilter;
                         break;
                     }
                 }
@@ -113,13 +113,15 @@ namespace POP_SF_32_2016_GUI.UI
 
             else
             {
-                return ((item as Namestaj).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Namestaj).Sifra.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Namestaj).TipNamestaja.Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Namestaj).Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || (item as Namestaj).Sifra.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || (item as Namestaj).TipNamestaja.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase));
             }
 
         }
 
         private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
+            view.Filter = Pretraga;
             CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource).Refresh();
         }
 
@@ -129,16 +131,40 @@ namespace POP_SF_32_2016_GUI.UI
             if (cbSortiraj.SelectedIndex == 0)
             {
                 dgNamestaj.Items.SortDescriptions.Clear();
+
+            }
+
+            else if (cbSortiraj.SelectedIndex == 1)
+            {
+                dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
             }
 
-            else if(cbSortiraj.SelectedIndex == 1)
+            else if (cbSortiraj.SelectedIndex == 2)
+            {
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Descending));
+            }
+
+            else if(cbSortiraj.SelectedIndex == 3)
             {
                 dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("JedinicnaCena", ListSortDirection.Descending));
             }
 
-            else if (cbSortiraj.SelectedIndex == 2)
+            else if (cbSortiraj.SelectedIndex == 4)
+            {
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("KolicinaUMagacinu", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 5)
+            {
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("AkcijaId", ListSortDirection.Descending));
+            }
+
+            else if (cbSortiraj.SelectedIndex == 6)
             {
                 dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("TipNamestajaId", ListSortDirection.Descending));

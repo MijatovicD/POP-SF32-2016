@@ -41,3 +41,7 @@ C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Dodavan
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaAkcije.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaProdaje.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\DodavanjeIzmenaProdaje.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\NamestajZaProdaju.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\NamestajZaProdaju.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\IzmenaSalona.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\IzmenaSalona.baml

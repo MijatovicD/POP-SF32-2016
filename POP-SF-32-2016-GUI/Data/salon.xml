@@ -1,8 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfSalon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Salon>
     <Id>1</Id>
-    <Obrisan>false</Obrisan>
     <Naziv>FTNale</Naziv>
     <Adresa>Trg Dositeja Obradovica 6</Adresa>
     <Telefon>021/345-248</Telefon>
@@ -11,5 +10,6 @@
     <PIB>32489624</PIB>
     <MaticniBroj>1896547896</MaticniBroj>
     <ZiroRacun>208-75982148-35</ZiroRacun>
+    <Obrisan>false</Obrisan>
   </Salon>
 </ArrayOfSalon>

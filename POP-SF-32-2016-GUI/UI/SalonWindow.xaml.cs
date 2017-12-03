@@ -36,5 +36,25 @@ namespace POP_SF_32_2016_GUI.UI
             this.Close();
         }
 
+        private void dgSalon_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+
+        }
+
+        private void Izmeni_Click(object sender, RoutedEventArgs e)
+        {
+            Salon kopija = (Salon)IzabraniSalon.Clone();
+            var salonProzor = new IzmenaSalona(kopija, IzmenaSalona.Operacija.IZMENA);
+            salonProzor.ShowDialog();
+        }
     }
 }

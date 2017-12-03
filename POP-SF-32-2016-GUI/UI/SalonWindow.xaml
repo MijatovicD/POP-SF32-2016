@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="SalonWindow" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="SalonWindow" Height="440" Width="762" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="221*"/>
+            <RowDefinition Height="48*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgSalon" Grid.Column="1" SelectedItem="{Binding Path=IzabraniSalon}"/>
-        <Button Content="Izmeni" Margin="0,42,0,190"/>
-        <Button Content="Izadji" Margin="0,185,0,47" Click="Zatvori"/>
+        <DataGrid Grid.Row="0" FontSize="20" Name="dgSalon" SelectedItem="{Binding Path=IzabraniSalon}" AutoGeneratingColumn="dgSalon_AutoGeneratingColumn" CanUserAddRows="false"/>
+        <Button Content="Izmeni" Margin="28,22,608,20" Grid.Row="1" Click="Izmeni_Click"/>
+        <Button Content="Izadji" Margin="574,22,41,20" Click="Zatvori" Grid.Row="1"/>
 
     </Grid>
 </Window>

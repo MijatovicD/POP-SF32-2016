@@ -5,29 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="DodavanjeIzmenaAkcije" Height="254.5" Width="355">
+        Title="DodavanjeIzmenaAkcije" Height="382.5" Width="551" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="44*"/>
-            <RowDefinition Height="34*"/>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="52*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="171*"/>
             <RowDefinition Height="46*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="59*"/>
-            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Datum pocetka:" FontSize="15"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Popust:" FontSize="15"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbPopust"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Datum &#xD;&#xA;zavrsetka:" FontSize="15"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Namestaj na &#xD;&#xA;popustu:" FontSize="15"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbNamestaj"/>
-        <Button Content="Sacuvaj" Grid.Column="1" Width="Auto"  Grid.Row="4" Click="SacuvajIzmene"/>
-        <Button Grid.Row="4" Content="Izadji" Width="Auto" Click="Zatvori"/>
-        <DatePicker x:Name="dpDatumPocetka" Grid.Column="1" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="207"/>
-        <DatePicker x:Name="dpDatumZavrsetka" Grid.Column="1" HorizontalAlignment="Left" Height="47" Grid.Row="2" VerticalAlignment="Top" Width="207"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Datum pocetka:" FontSize="15" Margin="0,0,369,0"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Popust:" FontSize="15" Margin="0,0,369,0"/>
+        <TextBox Grid.Row="1" Width="Auto" Name="tbPopust" Margin="174,0,0,0" Text="{Binding Path=Popust}"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Datum &#xD;&#xA;zavrsetka:" FontSize="15" Margin="0,0,369,0"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Namestaj na &#xD;&#xA;popustu:" FontSize="15" Margin="0,0,369,108"/>
+        <Button Content="Sacuvaj" Width="Auto"  Grid.Row="4" Click="SacuvajIzmene" Margin="428,0,0,0"/>
+        <Button Grid.Row="4" Content="Izadji" Width="Auto" Click="Zatvori" Margin="0,0,439,0"/>
+        <DatePicker x:Name="dpDatumPocetka" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top" Width="369" Margin="174,0,0,0" Text="{Binding Path=DatumPocetka}"/>
+        <DatePicker x:Name="dpDatumZavrsetka" HorizontalAlignment="Left" Height="49" Grid.Row="2" VerticalAlignment="Top" Width="369" Margin="174,0,0,0" Text="{Binding Path=DatumZavrsetka}"/>
+        <DataGrid x:Name="dgNametajLista" HorizontalAlignment="Left" Height="169" Margin="174,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="369" SelectedItem="{Binding Path=NamestajId}" AutoGeneratingColumn="dgNametajLista_AutoGeneratingColumn"/>
     </Grid>
 </Window>

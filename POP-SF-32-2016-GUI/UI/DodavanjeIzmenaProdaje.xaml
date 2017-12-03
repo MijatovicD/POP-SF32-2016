@@ -5,21 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="DodavanjeIzmenaProdaje" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="DodavanjeIzmenaProdaje" Height="537" Width="412" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DatePicker Name="dDatumProdaje" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="170" Margin="122,0,0,0"/>
+        <DatePicker Name="dDatumProdaje" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="282" Margin="122,0,0,0"/>
         <Label Content="Datum prodaje:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122"/>
         <Label Content="Namestaj:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,36,0,0"/>
-        <Label Content="Broj racuna:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,72,0,0"/>
-        <Label Content="Kupac:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,108,0,0"/>
-        <Label Content="Dodatna usluga:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,149,0,0"/>
-        <Label Content="Ukupan iznos:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,185,0,0"/>
-        <Button Content="Izadji" HorizontalAlignment="Left" Height="43" Margin="0,226,0,0" VerticalAlignment="Top" Width="122"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Height="43" Click="SacuvajIzmene" Margin="122,226,0,0" VerticalAlignment="Top" Width="170"/>
-        <ComboBox HorizontalAlignment="Left" Height="36" Margin="122,36,0,0" Name="cbNamestaj" VerticalAlignment="Top" Width="170"/>
-        <TextBox HorizontalAlignment="Left" Height="36" Margin="122,72,0,0" TextWrapping="Wrap" Name="tbBrojRacuna" VerticalAlignment="Top" Width="170"/>
-        <TextBox HorizontalAlignment="Left" Height="36" Margin="122,108,0,0" VerticalAlignment="Top" Name="tbKupac" Width="170"/>
-        <ComboBox HorizontalAlignment="Left" Height="36" Margin="122,144,0,0" VerticalAlignment="Top" Name="cbDodatna" Width="170"/>
-        <Label Name="lbCena" HorizontalAlignment="Left" Height="46" Margin="122,180,0,0" VerticalAlignment="Top" Width="170"/>
+        <Label Content="Broj racuna:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,173,0,0" RenderTransformOrigin="0.5,2.722"/>
+        <Label Content="Kupac:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,209,0,0"/>
+        <Label Content="Dodatna usluga:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,250,0,0"/>
+        <Label Content="Ukupan iznos:" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="0,408,0,0"/>
+        <Button Content="Izadji" HorizontalAlignment="Left" Height="43" Margin="0,463,0,0" VerticalAlignment="Top" Width="122" RenderTransformOrigin="0.426,1.372"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Height="43" Click="SacuvajIzmene" Margin="234,463,0,0" VerticalAlignment="Top" Width="170"/>
+        <TextBox HorizontalAlignment="Left" Height="36" Margin="122,173,0,0" TextWrapping="Wrap" Name="tbBrojRacuna" VerticalAlignment="Top" Width="282" Text="{Binding Path=BrojRacuna}"/>
+        <TextBox HorizontalAlignment="Left" Height="41" Margin="122,209,0,0" VerticalAlignment="Top" Name="tbKupac" Width="282" Text="{Binding Path=Kupac}"/>
+        <Label Name="lbCena" HorizontalAlignment="Left" Height="51" Margin="122,393,0,0" VerticalAlignment="Top" Width="282" RenderTransformOrigin="0.471,2.717"/>
+        <Button Content="Dodavanje" HorizontalAlignment="Left" Height="36" Margin="0,72,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
+        <DataGrid x:Name="dgNamestajP" HorizontalAlignment="Left" Height="137" Margin="122,36,0,0" VerticalAlignment="Top" Width="282"/>
+        <DataGrid x:Name="dgUslugaP" HorizontalAlignment="Left" Height="148" Margin="122,245,0,0" VerticalAlignment="Top" Width="282" RenderTransformOrigin="0.5,0.5">
+        </DataGrid>
     </Grid>
 </Window>

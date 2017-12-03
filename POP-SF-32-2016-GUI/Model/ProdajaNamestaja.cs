@@ -1,9 +1,12 @@
-﻿using System;
+﻿using POP_SF_32_2016_GUI.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace POP_SF32_2016.Model
 {
@@ -24,21 +27,36 @@ namespace POP_SF32_2016.Model
                 OnPropertyChanged("Id");
             }
         }
-        
-        private List<Namestaj> namestajZaProdaju;
 
-        public List<Namestaj> NamestajZaProdaju
+        //private int namestajId;
+
+        //public int NamestajId
+        //{
+        //    get
+        //    {
+        //        return namestajId;
+        //    }
+        //    set
+        //    {
+        //        namestajId = value;
+        //        OnPropertyChanged("NamestajId");
+        //    }
+        //}
+
+        private ObservableCollection<StavkaProdaje> stavkaProdaje;
+
+        public ObservableCollection<StavkaProdaje> StavkaProdaje
         {
             get
             {
-                return namestajZaProdaju;
+                return stavkaProdaje;
             }
             set
             {
-                namestajZaProdaju = value;
-                OnPropertyChanged("NamestajZaProdaju");
+                stavkaProdaje = value;
             }
         }
+
 
         private DateTime datumProdaje;
 
@@ -85,21 +103,19 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private List<DodatnaUsluga> dodatnaUsluga;
-
-        public List<DodatnaUsluga> DodatnaUsluga
+        private int dodatnaUslugaId;
+        public int DodatnaUslugaId
         {
             get
             {
-                return dodatnaUsluga;
+                return dodatnaUslugaId;
             }
             set
             {
-                dodatnaUsluga = value;
-                OnPropertyChanged("DodatnaUsluga");
+                dodatnaUslugaId = value;
+                OnPropertyChanged("DodatnaUslugaId");
             }
         }
-
         private const double pdv = 0.02;
 
         public  double PDV
@@ -130,12 +146,53 @@ namespace POP_SF32_2016.Model
             }
         }
 
+        //private Namestaj namestaj;
+
+        //[XmlIgnore]
+        //public Namestaj Namestaj
+        //{
+        //    get
+        //    {
+        //        if (namestaj == null)
+        //        {
+        //            namestaj = Namestaj.GetById(NamestajId);
+        //        }
+        //        return namestaj;
+        //    }
+        //    set
+        //    {
+        //        namestaj = value;
+        //        NamestajId = namestaj.Id;
+        //        OnPropertyChanged("Namestaj");
+        //    }
+        //}
+
+        //private DodatnaUsluga dodatnaUsluga;
+
+        //[XmlIgnore]
+        //public DodatnaUsluga DodatnaUsluga
+        //{
+        //    get
+        //    {
+        //        if (dodatnaUsluga == null)
+        //        {
+        //            dodatnaUsluga = DodatnaUsluga.GetById(DodatnaUslugaId);
+        //        }
+        //        return dodatnaUsluga;
+        //    }
+        //    set
+        //    {
+        //        dodatnaUsluga = value;
+        //        DodatnaUslugaId = dodatnaUsluga.Id;
+        //        OnPropertyChanged("DodatnaUsluga");
+        //    }
+        //}
 
 
         public event PropertyChangedEventHandler PropertyChanged;
         public override string ToString()
         {
-            return $"{Namestaj.GetById(System.Convert.ToInt16(namestajZaProdaju)).Id}, {DatumProdaje}, {BrojRacuna}, {Kupac}, {DodatnaUsluga}, {PDV}, {UkupanIznos}";
+            return $"{DatumProdaje}, {BrojRacuna}, {Kupac}, {DodatnaUsluga.GetById(DodatnaUslugaId).Naziv} , {PDV}, {UkupanIznos}";
         }
 
         public static ProdajaNamestaja GetById(int id)
@@ -160,11 +217,10 @@ namespace POP_SF32_2016.Model
             return new ProdajaNamestaja()
             {
                 Id = id,
-                NamestajZaProdaju = namestajZaProdaju,
+                StavkaProdaje = stavkaProdaje,
                 DatumProdaje = datumProdaje,
                 BrojRacuna = brojRacuna,
                 Kupac = kupac,
-                DodatnaUsluga = dodatnaUsluga,
                 PDV = pdv,
                 UkupanIznos = ukupanIznos
             };

@@ -40,9 +40,8 @@ namespace POP_SF_32_2016_GUI.UI
 
 
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource);
-            view.Filter = Pretraga;
             vieew.Filter = KorisnikFilter;
+           
         }
 
         private bool KorisnikFilter(object obj)
@@ -89,7 +88,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (korisnik.Id == izabraniKorisnik.Id)
                     {
                         korisnik.Obrisan = true;
-                        vieew.Refresh();
+                        vieew.Filter = KorisnikFilter;
                     }
                 }
 
@@ -121,6 +120,8 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource);
+            view.Filter = Pretraga;
             CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource).Refresh();
         }
 

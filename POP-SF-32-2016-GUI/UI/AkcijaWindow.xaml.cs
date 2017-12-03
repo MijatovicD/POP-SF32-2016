@@ -38,7 +38,7 @@ namespace POP_SF_32_2016_GUI.UI
             cbSortiraj.Items.Add("Popust");
             cbSortiraj.Items.Add("DatumZavrsetka");
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgAkcija.ItemsSource);
+            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgAkcija.ItemsSource);
             //view.Filter = Pretraga;
             vieew.Filter = AkcijaFilter;
         }
@@ -59,7 +59,8 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 DatumPocetka = DateTime.Today,
                 Popust = 0,
-                DatumZavrsetka = DateTime.Today
+                DatumZavrsetka = DateTime.Today,
+                NamestajId = 0
             };
 
             var akcijaProzor = new DodavanjeIzmenaAkcije(novaAkcija, DodavanjeIzmenaAkcije.Operacija.DODAVANJE);
@@ -87,7 +88,7 @@ namespace POP_SF_32_2016_GUI.UI
                     if (akcija.Id == izabranaAkcija.Id)
                     {
                         akcija.Obrisan = true;
-                        vieew.Refresh();
+                        vieew.Filter = AkcijaFilter;
                     }
                 }
 
@@ -144,6 +145,10 @@ namespace POP_SF_32_2016_GUI.UI
                 e.Cancel = true;
             }
             else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "NamestajId")
             {
                 e.Cancel = true;
             }

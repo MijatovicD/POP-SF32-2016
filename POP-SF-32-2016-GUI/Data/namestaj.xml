@@ -5,7 +5,7 @@
     <Naziv>Super sofa</Naziv>
     <Sifra>SF sifra za sofe</Sifra>
     <JedinicnaCena>28</JedinicnaCena>
-    <KolicinaUMagacinu>1</KolicinaUMagacinu>
+    <KolicinaUMagacinu>324</KolicinaUMagacinu>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>0</TipNamestajaId>
     <Obrisan>false</Obrisan>
@@ -14,19 +14,9 @@
     <Id>1</Id>
     <Naziv>Ekstra sofa</Naziv>
     <Sifra>874239</Sifra>
-    <JedinicnaCena>48329</JedinicnaCena>
+    <JedinicnaCena>3425</JedinicnaCena>
     <KolicinaUMagacinu>423</KolicinaUMagacinu>
-    <AkcijaId>1</AkcijaId>
-    <TipNamestajaId>0</TipNamestajaId>
-    <Obrisan>false</Obrisan>
-  </Namestaj>
-  <Namestaj>
-    <Id>2</Id>
-    <Naziv>Stolica</Naziv>
-    <Sifra>4532</Sifra>
-    <JedinicnaCena>5432</JedinicnaCena>
-    <KolicinaUMagacinu>545</KolicinaUMagacinu>
-    <AkcijaId>1</AkcijaId>
+    <AkcijaId>2</AkcijaId>
     <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>

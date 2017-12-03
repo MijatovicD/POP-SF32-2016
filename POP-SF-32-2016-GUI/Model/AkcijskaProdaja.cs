@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace POP_SF32_2016.Model
 {
@@ -69,18 +70,39 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private List<Namestaj> namestajNaPopustu;
+        private int namestajId;
 
-        public List<Namestaj> NamestajNaPopustu
+        public int NamestajId
         {
             get
             {
-                return namestajNaPopustu;
+                return namestajId;
             }
             set
             {
-                namestajNaPopustu = value;
-                OnPropertyChanged("NamestajNaPopustu");
+                namestajId = value;
+                OnPropertyChanged("NamestajId");
+            }
+        }
+
+        private Namestaj namestaj;
+
+        [XmlIgnore]
+        public Namestaj Namestaj
+        {
+            get
+            {
+                if (namestaj == null)
+                {
+                    namestaj = Namestaj.GetById(NamestajId);
+                }
+                return namestaj;
+            }
+            set
+            {
+                namestaj = value;
+                NamestajId = namestaj.Id;
+                OnPropertyChanged("Namestaj");
             }
         }
 
@@ -131,7 +153,7 @@ namespace POP_SF32_2016.Model
                 DatumPocetka = datumPocetka,
                 Popust = popust,
                 DatumZavrsetka = datumZavrsetka,
-                NamestajNaPopustu = namestajNaPopustu
+                NamestajId = namestajId
             };
         }
     }

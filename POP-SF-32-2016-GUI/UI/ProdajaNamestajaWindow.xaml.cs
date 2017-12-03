@@ -1,6 +1,8 @@
-﻿using POP_SF32_2016.Model;
+﻿using POP_SF_32_2016_GUI.Model;
+using POP_SF32_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -46,11 +48,12 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var novaProdaja = new ProdajaNamestaja()
             {
-                NamestajZaProdaju = new List<Namestaj>(),
+
                 DatumProdaje = DateTime.Today,
+                StavkaProdaje = new ObservableCollection<StavkaProdaje>(),
                 BrojRacuna = "",
                 Kupac = "",
-                DodatnaUsluga = new List<DodatnaUsluga>(),
+                DodatnaUslugaId = 0,
                 UkupanIznos = 0
             };
 
@@ -119,6 +122,18 @@ namespace POP_SF_32_2016_GUI.UI
         private void dgProdaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "NamestajId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "DodatnaUslugaId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "StavkaProdaje")
             {
                 e.Cancel = true;
             }

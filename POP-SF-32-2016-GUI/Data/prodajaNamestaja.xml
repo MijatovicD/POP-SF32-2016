@@ -2,21 +2,21 @@
 <ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProdajaNamestaja>
     <Id>1</Id>
-    <NamestajZaProdaju />
-    <DatumProdaje>2017-10-01T14:35:00</DatumProdaje>
-    <BrojRacuna>2</BrojRacuna>
-    <Kupac>Zika</Kupac>
-    <DodatnaUsluga />
+    <StavkaProdaje />
+    <DatumProdaje>2017-12-02T00:00:00</DatumProdaje>
+    <BrojRacuna>432</BrojRacuna>
+    <Kupac>421</Kupac>
+    <DodatnaUslugaId>1</DodatnaUslugaId>
     <PDV>0.02</PDV>
-    <UkupanIznos>4000</UkupanIznos>
+    <UkupanIznos>20.56</UkupanIznos>
   </ProdajaNamestaja>
   <ProdajaNamestaja>
     <Id>2</Id>
-    <NamestajZaProdaju />
-    <DatumProdaje>2017-11-26T00:00:00</DatumProdaje>
-    <BrojRacuna>543</BrojRacuna>
-    <Kupac>gf</Kupac>
-    <DodatnaUsluga />
+    <StavkaProdaje />
+    <DatumProdaje>2017-12-02T00:00:00</DatumProdaje>
+    <BrojRacuna>fsdasfd</BrojRacuna>
+    <Kupac>safd</Kupac>
+    <DodatnaUslugaId>1</DodatnaUslugaId>
     <PDV>0.02</PDV>
     <UkupanIznos>20.56</UkupanIznos>
   </ProdajaNamestaja>

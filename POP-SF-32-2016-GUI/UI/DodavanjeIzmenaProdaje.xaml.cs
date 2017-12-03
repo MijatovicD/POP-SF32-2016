@@ -1,7 +1,9 @@
-﻿using POP_SF32_2016.Model;
+﻿using POP_SF_32_2016_GUI.Model;
+using POP_SF32_2016.Model;
 using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,15 +37,12 @@ namespace POP_SF_32_2016_GUI.UI
             this.prodajaNamestaja = prodajaNamestaja;
             this.operacija = operacija;
 
-
-            cbNamestaj.ItemsSource = Projekat.Instance.Namestaj;
-            cbDodatna.ItemsSource = Projekat.Instance.DodatnaUsluga;
-
-            cbNamestaj.DataContext = prodajaNamestaja;
-            cbDodatna.DataContext = prodajaNamestaja;
             dDatumProdaje.DataContext = prodajaNamestaja;
             lbCena.DataContext = prodajaNamestaja;
             tbBrojRacuna.DataContext = prodajaNamestaja;
+            tbKupac.DataContext = prodajaNamestaja;
+            dgNamestajP.ItemsSource = prodajaNamestaja.StavkaProdaje;
+            dgUslugaP.ItemsSource = Projekat.Instance.DodatnaUsluga;
         }
         
         private ProdajaNamestaja prodajaNamestaja;
@@ -53,23 +52,35 @@ namespace POP_SF_32_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaProdaje = Projekat.Instance.ProdajaNamestaja;
-            var izabraniNamestaj = (Namestaj)cbNamestaj.SelectedItem;
-            var izabranaUsluga = (DodatnaUsluga)cbDodatna.SelectedItem;
+            var izabranaUsluga = (DodatnaUsluga)dgUslugaP.SelectedItem;
+            var izabraniNamestaj = (Namestaj)dgNamestajP.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
+                   
                     prodajaNamestaja.Id = listaProdaje.Count + 1;
-                    prodajaNamestaja.NamestajZaProdaju = new List<Namestaj>(izabraniNamestaj.Id);
+                    prodajaNamestaja.StavkaProdaje = new ObservableCollection<StavkaProdaje>();
                     prodajaNamestaja.DatumProdaje = dDatumProdaje.SelectedDate.Value;
                     prodajaNamestaja.BrojRacuna = tbBrojRacuna.Text;
                     prodajaNamestaja.Kupac = tbKupac.Text;
-                    prodajaNamestaja.DodatnaUsluga = new List<DodatnaUsluga>().ToList();
+                    prodajaNamestaja.DodatnaUslugaId = izabranaUsluga.Id;
                     prodajaNamestaja.UkupanIznos = prodajaNamestaja.PDV * (izabraniNamestaj.JedinicnaCena + izabranaUsluga.Cena);
 
                     listaProdaje.Add(prodajaNamestaja);
                     break;
                 case Operacija.IZMENA:
+                    foreach (var p in listaProdaje)
+                    {
+                        if (p.Id == prodajaNamestaja.Id)
+                        {
+                            p.StavkaProdaje = prodajaNamestaja.StavkaProdaje;
+                            p.BrojRacuna = prodajaNamestaja.BrojRacuna;
+                            p.Kupac = prodajaNamestaja.Kupac;
+                            p.DodatnaUslugaId = prodajaNamestaja.DodatnaUslugaId;
+                            break;
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -78,6 +89,15 @@ namespace POP_SF_32_2016_GUI.UI
             GenericSerializer.Serialize("prodajaNamestaja.xml", listaProdaje);
 
             Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NamestajZaProdaju n = new NamestajZaProdaju();
+            if (n.ShowDialog() == true)
+            {
+                prodajaNamestaja.StavkaProdaje.Add(n.StavkaProdaje);
+            }
         }
 
     }

@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijaWindow" Height="390" Width="720" WindowStartupLocation="CenterScreen">
+        Title="AkcijaWindow" Height="418.5" Width="814.5" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="406*"/>
-            <RowDefinition Height="127*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="264*"/>
+            <RowDefinition Height="67*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" CanUserAddRows="False"/>
-        <Button Grid.Row="1" Content="Dodaj" Height="40" Width="80" Margin="25,22,607,24" Click="DodajAkciju_Click"/>
-        <Button Grid.Row="1" Content="Izmeni" Height="40" Width="80" RenderTransformOrigin="-1.614,0.957" Margin="132,22,500,24" Click="IzmeniAkciju_Click"/>
-        <Button Grid.Row="1" Content="Izbrisi" Height="40" Width="80" RenderTransformOrigin="-1.371,0.41" Margin="237,22,395,24" Click="ObrsiAkciju_Click"/>
-        <Button Grid.Row="1" Content="Izadji" Height="40" Width="80" Margin="662,51,20,37" Click="Zatvori_Click"/>
-        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="322,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="tbPretraga_TextChanged" Grid.Row="1"/>
-        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="44" Margin="485,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="91" SelectionChanged="cbSortiraj_SelectionChanged"/>
+        <DataGrid Grid.Row="1" FontSize="20" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" CanUserAddRows="False"/>
+        <Button Grid.Row="2" Content="Dodaj" Margin="32,10,664,16" Click="DodajAkciju_Click"/>
+        <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="165,12,526,16" Click="IzmeniAkciju_Click">
+
+        </Button>
+        <Button Grid.Row="2" Content="Izbrisi" RenderTransformOrigin="-1.371,0.41" Margin="291,10,376,16" Click="ObrsiAkciju_Click"/>
+        <Button Grid.Row="2" Content="Izadji" Margin="613,10,58,16" Click="Zatvori_Click" RenderTransformOrigin="0.489,0.35"/>
+        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="37" Margin="596,10,0,0" VerticalAlignment="Top" Width="152" SelectionChanged="cbSortiraj_SelectionChanged"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="37" Margin="502,10,0,0" VerticalAlignment="Top" Width="76"/>
     </Grid>
 </Window>
