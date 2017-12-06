@@ -230,5 +230,8 @@
   <ItemGroup>
     <Resource Include="Data\prodajaNamestaja.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\stavkaProdaje.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

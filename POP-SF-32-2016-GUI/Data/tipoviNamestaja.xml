@@ -8,6 +8,6 @@
   <TipNamestaja>
     <Id>1</Id>
     <Naziv>Fotelja na razvlacenje</Naziv>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

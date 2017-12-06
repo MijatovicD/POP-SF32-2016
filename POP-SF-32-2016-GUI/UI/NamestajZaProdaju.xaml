@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="NamestajZaProdaju" Height="300" Width="300">
     <Grid>
-        <DataGrid x:Name="dgNamestajProdaja" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="292"/>
+        <DataGrid x:Name="dgNamestajProdaja" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="292" AutoGeneratingColumn="dgNamestajProdaja_AutoGeneratingColumn"/>
         <Button Content="Dodaj" HorizontalAlignment="Left" Height="42" Margin="10,217,0,0" VerticalAlignment="Top" Width="116" Click="Button_Click"/>
         <Button Content="Izadji" HorizontalAlignment="Left" Height="42" Margin="155,217,0,0" VerticalAlignment="Top" Width="116"/>
 

@@ -71,8 +71,9 @@ namespace POP_SF_32_2016_GUI.UI
                         {
 
                             a.DatumPocetka = this.dpDatumPocetka.SelectedDate.Value;
-                            a.Popust = decimal.Parse(this.tbPopust.Text);
+                            a.Popust = akcijskaProdaja.Popust;
                             a.DatumZavrsetka = this.dpDatumZavrsetka.SelectedDate.Value;
+                            a.Namestaj = akcijskaProdaja.Namestaj;
                             a.NamestajId = dgNamestaj.Id;
                             break;
                         }

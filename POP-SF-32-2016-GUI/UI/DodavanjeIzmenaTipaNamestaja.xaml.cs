@@ -53,6 +53,7 @@ namespace POP_SF_32_2016_GUI.UI
                     tipNamestaja.Id = listaTipa.Count + 1;
                     tipNamestaja.Naziv = tbNaziv.Text;
 
+
                     listaTipa.Add(tipNamestaja);
                     break;
 

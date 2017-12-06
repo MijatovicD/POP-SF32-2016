@@ -1,4 +1,5 @@
-﻿using POP_SF32_2016.Until;
+﻿using POP_SF_32_2016_GUI.Model;
+using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,6 +20,7 @@ namespace POP_SF32_2016.Model
         public ObservableCollection<Salon> Salon { get; set; }
         public ObservableCollection<AkcijskaProdaja> AkcijskaProdaja { get; set; }
         public ObservableCollection<ProdajaNamestaja> ProdajaNamestaja { get; set; }
+        public ObservableCollection<StavkaProdaje> StavkaProdaje { get; set; }
 
         private Projekat()
         {
@@ -29,6 +31,7 @@ namespace POP_SF32_2016.Model
             ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
             DodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatnaUsluga.xml");
             Salon = GenericSerializer.Deserialize<Salon>("salon.xml");
+            StavkaProdaje = GenericSerializer.Deserialize<StavkaProdaje>("stavkaProdaje.xml");
         }
     }
 }

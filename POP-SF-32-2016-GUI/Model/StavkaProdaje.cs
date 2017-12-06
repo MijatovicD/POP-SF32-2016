@@ -80,6 +80,19 @@ namespace POP_SF_32_2016_GUI.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        public static StavkaProdaje GetById(int id)
+        {
+            foreach (var stavka in Projekat.Instance.StavkaProdaje)
+            {
+                if (stavka.Id == id)
+                {
+                    return stavka;
+                }
+            }
+            return null;
+        }
+
         public override string ToString()
         {
             return $"{Namestaj.GetById(NamestajId).Naziv}";

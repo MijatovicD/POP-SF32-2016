@@ -2,6 +2,7 @@
 using POP_SF32_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace POP_SF_32_2016_GUI.UI
     public partial class NamestajZaProdaju : Window
     {
         ICollectionView vieew;
+        //public ObservableCollection<StavkaProdaje>;
         public StavkaProdaje StavkaProdaje { get; set; }
         public NamestajZaProdaju()
         {
@@ -32,7 +34,7 @@ namespace POP_SF_32_2016_GUI.UI
             //vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
             //dgNamestajProdaja.IsSynchronizedWithCurrentItem = true;
             //dgNamestajProdaja.DataContext = this;
-            //dgNamestajProdaja.ItemsSource = vieew;
+            dgNamestajProdaja.ItemsSource = Projekat.Instance.StavkaProdaje;
             this.DataContext = StavkaProdaje;
 
         }
@@ -41,6 +43,18 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.DialogResult = true;
             this.Close();
+        }
+
+        private void dgNamestajProdaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            if ((string)e.Column.Header == "NamestajId")
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

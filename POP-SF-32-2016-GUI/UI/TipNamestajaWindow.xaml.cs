@@ -71,11 +71,13 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.Close();
         }
+        public TipNamestaja tipNamestaja;
 
         private void Izbrisi_Clik(object sender, RoutedEventArgs e)
         {
             var izabraniTip = (TipNamestaja)dgTipNamestaja.SelectedItem;
             var listaTipa = Projekat.Instance.TipNamestaja;
+            var listaNamestaja = Projekat.Instance.Namestaj;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabraniTip.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var tip in listaTipa)
@@ -83,11 +85,29 @@ namespace POP_SF_32_2016_GUI.UI
                     if (tip.Id == izabraniTip.Id)
                     {
                         tip.Obrisan = true;
-                        vieew.Refresh();
+                        vieew.Filter = FilterTipNamestaja;
+
+                        foreach (var tipa in listaTipa)
+                        {
+                            if (tipa.Obrisan == true)
+                            {
+                                foreach (var namestaj in listaNamestaja)
+                                {
+                                    if (namestaj.TipNamestajaId == tipa.Id)
+                                    {
+                                        namestaj.Obrisan = true;
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        }
                     }
+
                 }
 
                 GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipa);
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
             }
         }
 

@@ -81,7 +81,9 @@ namespace POP_SF_32_2016_GUI.UI
                             n.Sifra = namestaj.Sifra;
                             n.JedinicnaCena = namestaj.JedinicnaCena;
                             n.KolicinaUMagacinu = namestaj.KolicinaUMagacinu;
+                            n.AkcijskaProdaja = namestaj.AkcijskaProdaja;
                             n.AkcijaId = namestaj.AkcijaId;
+                            n.TipNamestaja = namestaj.TipNamestaja;
                             n.TipNamestajaId = namestaj.TipNamestajaId;
                             break;
                         }

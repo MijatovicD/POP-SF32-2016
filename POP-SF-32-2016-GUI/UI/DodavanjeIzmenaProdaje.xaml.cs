@@ -53,7 +53,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var listaProdaje = Projekat.Instance.ProdajaNamestaja;
             var izabranaUsluga = (DodatnaUsluga)dgUslugaP.SelectedItem;
-            var izabraniNamestaj = (Namestaj)dgNamestajP.SelectedItem;
+            var izabraniNamestaj = (StavkaProdaje)dgNamestajP.SelectedItem;
 
             switch (operacija)
             {
@@ -65,7 +65,7 @@ namespace POP_SF_32_2016_GUI.UI
                     prodajaNamestaja.BrojRacuna = tbBrojRacuna.Text;
                     prodajaNamestaja.Kupac = tbKupac.Text;
                     prodajaNamestaja.DodatnaUslugaId = izabranaUsluga.Id;
-                    prodajaNamestaja.UkupanIznos = prodajaNamestaja.PDV * (izabraniNamestaj.JedinicnaCena + izabranaUsluga.Cena);
+                    prodajaNamestaja.UkupanIznos = prodajaNamestaja.PDV * izabranaUsluga.Cena;
 
                     listaProdaje.Add(prodajaNamestaja);
                     break;
@@ -100,5 +100,28 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
+        private void dgNamestajP_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "NamestajId")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void dgUslugaP_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Id")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

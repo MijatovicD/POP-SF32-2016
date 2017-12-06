@@ -43,8 +43,17 @@ namespace POP_SF_32_2016_GUI.UI
             vieew.Filter = AkcijaFilter;
         }
 
+        
         private bool AkcijaFilter(object obj)
         {
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            foreach (var akcija in listaAkcija)
+            {
+                if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
+                {
+                    akcija.Obrisan = true;
+                }
+            }
             return ((AkcijskaProdaja)obj).Obrisan == false;
         }
 

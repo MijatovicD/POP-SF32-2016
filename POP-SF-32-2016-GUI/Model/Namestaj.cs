@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_SF_32_2016_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -175,6 +176,39 @@ namespace POP_SF32_2016.Model
             }
         }
 
+        private StavkaProdaje stavkaProdaje;
+        private int stavkaProdajeId;
+        public int StavkaProdajeId
+        {
+            get
+            {
+                return stavkaProdajeId;
+            }
+            set
+            {
+                StavkaProdajeId = value;
+                OnPropertyChanged("StavkaProdajeId");
+            }
+        }
+
+        [XmlIgnore]
+        public StavkaProdaje StavkaProdaje
+        {
+            get
+            {
+                if (stavkaProdaje == null)
+                {
+                    stavkaProdaje = StavkaProdaje.GetById(StavkaProdajeId);
+                }
+                return stavkaProdaje;
+            }
+            set
+            {
+                stavkaProdaje = value;
+                StavkaProdajeId = stavkaProdaje.Id;
+                OnPropertyChanged("StavkaProdaje");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -72,10 +72,10 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         if (k.Id == korisnik.Id)
                         {
-                            k.Ime = this.tbIme.Text;
-                            k.Prezime = this.tbPrezime.Text;
-                            k.KorisnickoIme = this.tbKoriIme.Text;
-                            k.Lozinka = this.tbLozinka.Password;
+                            k.Ime = korisnik.Ime;
+                            k.Prezime = korisnik.Prezime;
+                            k.KorisnickoIme = korisnik.KorisnickoIme;
+                            k.Lozinka = korisnik.Lozinka;
                             k.TipKorisnika = korisnik.TipKorisnika;
                             break;
                         }

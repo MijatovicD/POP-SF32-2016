@@ -18,6 +18,6 @@
     <KolicinaUMagacinu>423</KolicinaUMagacinu>
     <AkcijaId>2</AkcijaId>
     <TipNamestajaId>1</TipNamestajaId>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>
