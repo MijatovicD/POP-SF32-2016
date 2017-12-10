@@ -34,14 +34,19 @@ namespace POP_SF_32_2016_GUI.UI
         {
             InitializeComponent();
 
+            WindowState = WindowState.Maximized;
+
             this.prodajaNamestaja = prodajaNamestaja;
             this.operacija = operacija;
+
+            //dgNamestajP.ItemsSource = Projekat.Instance.StavkaProdaje;
 
             dDatumProdaje.DataContext = prodajaNamestaja;
             lbCena.DataContext = prodajaNamestaja;
             tbBrojRacuna.DataContext = prodajaNamestaja;
             tbKupac.DataContext = prodajaNamestaja;
             dgNamestajP.ItemsSource = prodajaNamestaja.StavkaProdaje;
+            dgNamestajP.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
             dgUslugaP.ItemsSource = Projekat.Instance.DodatnaUsluga;
         }
         
@@ -88,16 +93,21 @@ namespace POP_SF_32_2016_GUI.UI
 
             GenericSerializer.Serialize("prodajaNamestaja.xml", listaProdaje);
 
+
             Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NamestajZaProdaju n = new NamestajZaProdaju();
-            if (n.ShowDialog() == true)
+            var novaProdaje = new StavkaProdaje()
             {
-                prodajaNamestaja.StavkaProdaje.Add(n.StavkaProdaje);
-            }
+                NamestajId = 0,
+                KolicinaNamestaja = 0
+            };
+
+            var prozor = new NamestajZaProdaju(novaProdaje, NamestajZaProdaju.Operacija.DODAVANJE);
+            prozor.ShowDialog();
+            
         }
 
         private void dgNamestajP_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

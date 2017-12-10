@@ -54,6 +54,7 @@ namespace POP_SF_32_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
             var izabraniTipNamestaja = (TipNamestaja)cbTip.SelectedItem;
             var izabranaAkcija = (AkcijskaProdaja)cbAkcija.SelectedItem;
 
@@ -61,6 +62,7 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
+                        namestaj.RedniBroj = listaNamestaja.Count + 1;
                         namestaj.Id = listaNamestaja.Count + 1;
                         namestaj.Naziv = tbNaziv.Text;
                         namestaj.Sifra = tbSifra.Text;
@@ -82,6 +84,16 @@ namespace POP_SF_32_2016_GUI.UI
                             n.JedinicnaCena = namestaj.JedinicnaCena;
                             n.KolicinaUMagacinu = namestaj.KolicinaUMagacinu;
                             n.AkcijskaProdaja = namestaj.AkcijskaProdaja;
+                           
+                                foreach (var akcija in listaAkcija)
+                                {
+
+                                    if (n.AkcijaId == akcija.Id)
+                                    {
+                                        n.JedinicnaCena = (n.JedinicnaCena * (Double)akcija.Popust) / 100;
+                                    }
+
+                                }
                             n.AkcijaId = namestaj.AkcijaId;
                             n.TipNamestaja = namestaj.TipNamestaja;
                             n.TipNamestajaId = namestaj.TipNamestajaId;

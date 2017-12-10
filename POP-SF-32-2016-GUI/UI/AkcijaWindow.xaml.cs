@@ -90,6 +90,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var izabranaAkcija = (AkcijskaProdaja)dgAkcija.SelectedItem;
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaNamestaja = Projekat.Instance.Namestaj;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranaAkcija.Id}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var akcija in listaAkcija)
@@ -98,10 +99,19 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         akcija.Obrisan = true;
                         vieew.Filter = AkcijaFilter;
+
+                        foreach (var namestaj in listaNamestaja)
+                        {
+                            if (namestaj.AkcijaId == izabranaAkcija.Id)
+                            {
+                                namestaj.AkcijaId = 0;
+                            }
+                        }
                     }
                 }
 
                 GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
           
             }
         }

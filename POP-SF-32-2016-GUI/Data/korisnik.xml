@@ -18,4 +18,13 @@
     <TipKorisnika>Prodavac</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
+  <Korisnik>
+    <Id>3</Id>
+    <Ime>fgs</Ime>
+    <Prezime>ffdsf</Prezime>
+    <KorisnickoIme>dfsff</KorisnickoIme>
+    <Lozinka>sfsdfsa</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>true</Obrisan>
+  </Korisnik>
 </ArrayOfKorisnik>

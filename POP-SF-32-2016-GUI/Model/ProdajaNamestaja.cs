@@ -43,20 +43,53 @@ namespace POP_SF32_2016.Model
         //    }
         //}
 
-        private ObservableCollection<StavkaProdaje> stavkaProdaje;
+        private ObservableCollection<StavkaProdaje> Stavkaprodaje;
 
         public ObservableCollection<StavkaProdaje> StavkaProdaje
         {
             get
             {
-                return stavkaProdaje;
+                return Stavkaprodaje;
             }
             set
             {
-                stavkaProdaje = value;
+                Stavkaprodaje = value;
             }
         }
 
+        //private StavkaProdaje stavkaProdaje;
+        //private int stavkaProdajeId;
+        //public int StavkaProdajeId
+        //{
+        //    get
+        //    {
+        //        return stavkaProdajeId;
+        //    }
+        //    set
+        //    {
+        //        StavkaProdajeId = value;
+        //        OnPropertyChanged("StavkaProdajeId");
+        //    }
+        //}
+
+        //[XmlIgnore]
+        //public StavkaProdaje stavka
+        //{
+        //    get
+        //    {
+        //        if (stavkaProdaje == null)
+        //        {
+        //            stavkaProdaje = stavka.GetById(StavkaProdajeId);
+        //        }
+        //        return stavkaProdaje;
+        //    }
+        //    set
+        //    {
+        //        stavkaProdaje = value;
+        //        StavkaProdajeId = stavkaProdaje.Id;
+        //        OnPropertyChanged("StavkaProdaje");
+        //    }
+        //}
 
         private DateTime datumProdaje;
 
@@ -217,7 +250,7 @@ namespace POP_SF32_2016.Model
             return new ProdajaNamestaja()
             {
                 Id = id,
-                StavkaProdaje = stavkaProdaje,
+                //StavkaProdaje = stavkaProdaje,
                 DatumProdaje = datumProdaje,
                 BrojRacuna = brojRacuna,
                 Kupac = kupac,

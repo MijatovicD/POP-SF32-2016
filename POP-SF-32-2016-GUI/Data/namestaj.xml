@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
-    <Id>0</Id>
+    <RedniBroj>1</RedniBroj>
+    <Id>1</Id>
     <Naziv>Super sofa</Naziv>
     <Sifra>SF sifra za sofe</Sifra>
-    <JedinicnaCena>28</JedinicnaCena>
-    <KolicinaUMagacinu>324</KolicinaUMagacinu>
+    <JedinicnaCena>700</JedinicnaCena>
+    <KolicinaUMagacinu>347</KolicinaUMagacinu>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>0</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Id>1</Id>
+    <RedniBroj>2</RedniBroj>
+    <Id>2</Id>
     <Naziv>Ekstra sofa</Naziv>
     <Sifra>874239</Sifra>
-    <JedinicnaCena>3425</JedinicnaCena>
-    <KolicinaUMagacinu>423</KolicinaUMagacinu>
+    <JedinicnaCena>512</JedinicnaCena>
+    <KolicinaUMagacinu>244</KolicinaUMagacinu>
     <AkcijaId>2</AkcijaId>
     <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <RedniBroj>3</RedniBroj>
+    <Id>3</Id>
+    <Naziv>fadf</Naziv>
+    <Sifra>afad</Sifra>
+    <JedinicnaCena>543</JedinicnaCena>
+    <KolicinaUMagacinu>342</KolicinaUMagacinu>
+    <AkcijaId>0</AkcijaId>
+    <TipNamestajaId>0</TipNamestajaId>
     <Obrisan>true</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

@@ -37,10 +37,31 @@ namespace POP_SF_32_2016_GUI.UI
             this.akcijskaProdaja = akcijskaProdaja;
             this.operacija = operacija;
 
+
+            //dgNametajLista.ItemsSource = Projekat.Instance.Namestaj;
             dpDatumPocetka.DataContext = akcijskaProdaja;
             tbPopust.DataContext = akcijskaProdaja;
+            dgNametajLista.DataContext = akcijskaProdaja;
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
-            dgNametajLista.ItemsSource = Projekat.Instance.Namestaj;
+
+            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+
+            foreach (var akcija in listaAkcija)
+            {
+                    foreach (var namestaj in listaNamestaja)
+                    {
+                        if (akcija.Id != namestaj.AkcijaId)
+                        {
+                            if (namestaj.Obrisan == false)
+                            {
+                                dgNametajLista.ItemsSource = listaNamestaja;
+                            }
+                        }
+                    
+                    }
+            }
+
         }
 
         AkcijskaProdaja akcijskaProdaja;

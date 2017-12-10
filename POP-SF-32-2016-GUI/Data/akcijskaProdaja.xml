@@ -3,7 +3,7 @@
   <AkcijskaProdaja>
     <Id>1</Id>
     <DatumPocetka>2017-08-11T00:00:00</DatumPocetka>
-    <Popust>200</Popust>
+    <Popust>50</Popust>
     <DatumZavrsetka>2017-12-17T00:00:00</DatumZavrsetka>
     <NamestajId>1</NamestajId>
     <Obrisan>false</Obrisan>
@@ -11,17 +11,9 @@
   <AkcijskaProdaja>
     <Id>2</Id>
     <DatumPocetka>2017-04-05T09:35:00</DatumPocetka>
-    <Popust>800</Popust>
-    <DatumZavrsetka>2017-07-15T18:45:00</DatumZavrsetka>
-    <NamestajId>1</NamestajId>
-    <Obrisan>true</Obrisan>
-  </AkcijskaProdaja>
-  <AkcijskaProdaja>
-    <Id>3</Id>
-    <DatumPocetka>2017-12-07T00:00:00</DatumPocetka>
-    <Popust>5345</Popust>
-    <DatumZavrsetka>2017-12-07T00:00:00</DatumZavrsetka>
-    <NamestajId>0</NamestajId>
+    <Popust>80</Popust>
+    <DatumZavrsetka>2017-12-15T18:45:00</DatumZavrsetka>
+    <NamestajId>2</NamestajId>
     <Obrisan>false</Obrisan>
   </AkcijskaProdaja>
 </ArrayOfAkcijskaProdaja>

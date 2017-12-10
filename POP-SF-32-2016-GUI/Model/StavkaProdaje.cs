@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace POP_SF_32_2016_GUI.Model
 {
-    public class StavkaProdaje : INotifyPropertyChanged
+    public class StavkaProdaje : INotifyPropertyChanged, ICloneable
 
     {
         private int id;
@@ -23,6 +23,7 @@ namespace POP_SF_32_2016_GUI.Model
             set
             {
                 id = value;
+                OnPropertyChanged("Id");
             }
         }
 
@@ -75,8 +76,10 @@ namespace POP_SF_32_2016_GUI.Model
             set
             {
                 kolicinaNamestaja = value;
+                OnPropertyChanged("KolicinaNamestaja");
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -101,6 +104,15 @@ namespace POP_SF_32_2016_GUI.Model
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            return new StavkaProdaje()
+            {
+                NamestajId = namestajId,
+                KolicinaNamestaja = kolicinaNamestaja
+            };
         }
     }
 }

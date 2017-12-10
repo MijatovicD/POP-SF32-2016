@@ -23,7 +23,7 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-        ICollectionView vieew;
+       ICollectionView vieew;
        public TipNamestaja tipNamestaja;
        
         public Namestaj IzabraniNamestaj { get; set; }
@@ -53,6 +53,25 @@ namespace POP_SF_32_2016_GUI.UI
 
         private bool NamestajFilter(object obj)
         {
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaNamestaja = Projekat.Instance.Namestaj;
+            foreach (var akcija in listaAkcija)
+            {
+                if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
+                {
+                    foreach (var namestaj in listaNamestaja)
+                    {
+                        if (namestaj.AkcijaId == akcija.Id)
+                        {
+                            if (akcija.Obrisan == true)
+                            {
+                                namestaj.AkcijaId = 0;
+                            }
+                        }
+                       
+                    }
+                }
+            }
             return ((Namestaj)obj).Obrisan == false;
         }
 
@@ -89,6 +108,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var izabranNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             var listaNamestaj = Projekat.Instance.Namestaj;
+            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var n in listaNamestaj)
@@ -97,12 +117,25 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         n.Obrisan = true;
                         vieew.Filter = NamestajFilter;
-                        break;
+
+                        foreach (var namestaj in listaNamestaj)
+                        {
+                            if (namestaj.Obrisan == true)
+                            {
+                                foreach (var akcija in listaAkcija)
+                                {
+                                    if (namestaj.AkcijaId == akcija.Id)
+                                    {
+                                        akcija.Obrisan = true;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
                 GenericSerializer.Serialize("namestaj.xml", listaNamestaj);
-
+                GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
             }
         }
 
