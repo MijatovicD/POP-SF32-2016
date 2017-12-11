@@ -44,7 +44,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaTipa = Projekat.Instance.TipNamestaja;
+            var listaTipa = Projekat.Instance.TipoviNamestaja;
 
             switch (operacija)
             {

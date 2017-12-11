@@ -90,7 +90,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var izabranaAkcija = (AkcijskaProdaja)dgAkcija.SelectedItem;
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranaAkcija.Id}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var akcija in listaAkcija)

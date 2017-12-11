@@ -27,7 +27,7 @@ namespace POP_SF_32_2016_GUI.UI
         public TipNamestajaWindow()
         {
             InitializeComponent();
-            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.TipNamestaja);
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.TipoviNamestaja);
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipNamestaja.DataContext = this;
             dgTipNamestaja.ItemsSource = vieew;
@@ -76,8 +76,8 @@ namespace POP_SF_32_2016_GUI.UI
         private void Izbrisi_Clik(object sender, RoutedEventArgs e)
         {
             var izabraniTip = (TipNamestaja)dgTipNamestaja.SelectedItem;
-            var listaTipa = Projekat.Instance.TipNamestaja;
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaTipa = Projekat.Instance.TipoviNamestaja;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabraniTip.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var tip in listaTipa)

@@ -13,8 +13,8 @@ namespace POP_SF32_2016.Model
     {
         public static Projekat Instance { get; private set; } = new Projekat();
 
-        public ObservableCollection<Namestaj> Namestaj { get; set; }
-        public ObservableCollection<TipNamestaja> TipNamestaja { get; set; }
+        public ObservableCollection<Namestaj> Namestaji { get; set; }
+        public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
         public ObservableCollection<Korisnik> Korisnik { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
         public ObservableCollection<Salon> Salon { get; set; }
@@ -24,8 +24,8 @@ namespace POP_SF32_2016.Model
 
         private Projekat()
         {
-            TipNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipoviNamestaja.xml");
-            Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+            TipoviNamestaja = TipNamestaja.GetAll();
+            Namestaji = Namestaj.GetAll();
             AkcijskaProdaja = GenericSerializer.Deserialize<AkcijskaProdaja>("akcijskaProdaja.xml");
             Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
             ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");

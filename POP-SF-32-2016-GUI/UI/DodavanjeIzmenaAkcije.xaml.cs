@@ -44,7 +44,7 @@ namespace POP_SF_32_2016_GUI.UI
             dgNametajLista.DataContext = akcijskaProdaja;
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
 
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
 
             foreach (var akcija in listaAkcija)
@@ -70,7 +70,7 @@ namespace POP_SF_32_2016_GUI.UI
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             var dgNamestaj = (Namestaj)dgNametajLista.SelectedItem;
 
             switch (operacija)

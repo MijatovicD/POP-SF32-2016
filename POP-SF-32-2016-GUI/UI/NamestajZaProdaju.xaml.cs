@@ -40,7 +40,7 @@ namespace POP_SF_32_2016_GUI.UI
             this.stavkaProdaje = stavkaProdaje;
             this.operacija = operacija;
 
-            dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaji;
             tbKolicina.DataContext = stavkaProdaje;
             dgNamestajProdaja.DataContext = stavkaProdaje;
 
@@ -114,7 +114,7 @@ namespace POP_SF_32_2016_GUI.UI
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var listaStavke = Projekat.Instance.StavkaProdaje;
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
 
             

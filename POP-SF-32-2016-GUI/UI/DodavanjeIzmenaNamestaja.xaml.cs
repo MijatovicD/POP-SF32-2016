@@ -37,7 +37,7 @@ namespace POP_SF_32_2016_GUI.UI
             this.namestaj = namestaj;
             this.operacija = operacija;
 
-            cbTip.ItemsSource = Projekat.Instance.TipNamestaja;
+            cbTip.ItemsSource = Projekat.Instance.TipoviNamestaja;
             cbAkcija.ItemsSource = Projekat.Instance.AkcijskaProdaja;
 
             tbNaziv.DataContext = namestaj;
@@ -53,7 +53,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
             var izabraniTipNamestaja = (TipNamestaja)cbTip.SelectedItem;
             var izabranaAkcija = (AkcijskaProdaja)cbAkcija.SelectedItem;

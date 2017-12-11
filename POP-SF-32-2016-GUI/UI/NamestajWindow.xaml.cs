@@ -31,7 +31,7 @@ namespace POP_SF_32_2016_GUI.UI
         public NamestajWindow()
         {
             InitializeComponent();
-            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaji);
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = vieew;
@@ -54,7 +54,7 @@ namespace POP_SF_32_2016_GUI.UI
         private bool NamestajFilter(object obj)
         {
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             foreach (var akcija in listaAkcija)
             {
                 if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
@@ -107,7 +107,7 @@ namespace POP_SF_32_2016_GUI.UI
         private void ObrsiNamestaj_Click(object sender, RoutedEventArgs e)
         {
             var izabranNamestaj = (Namestaj)dgNamestaj.SelectedItem;
-            var listaNamestaj = Projekat.Instance.Namestaj;
+            var listaNamestaj = Projekat.Instance.Namestaji;
             var listaAkcija = Projekat.Instance.AkcijskaProdaja;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
