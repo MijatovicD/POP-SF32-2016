@@ -2,14 +2,26 @@
 <ArrayOfDodatnaUsluga xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DodatnaUsluga>
     <Id>1</Id>
-    <Naziv>lkdsjkl</Naziv>
-    <Cena>1000</Cena>
+    <Naziv>Montiranje</Naziv>
+    <Cena>785.4</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
   <DodatnaUsluga>
     <Id>2</Id>
     <Naziv>Sklapanje</Naziv>
-    <Cena>2000</Cena>
+    <Cena>800</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>3</Id>
+    <Naziv>Tapaciranje</Naziv>
+    <Cena>937</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>4</Id>
+    <Naziv>fdsafsa</Naziv>
+    <Cena>23123</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>

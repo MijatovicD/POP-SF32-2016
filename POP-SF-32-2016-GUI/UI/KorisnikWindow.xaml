@@ -12,7 +12,7 @@
             <RowDefinition Height="67*"/>
             <RowDefinition Height="18*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" FontSize="20" Name="dgKorisnik" SelectedItem="{Binding Path=IzabraniKorisnik}" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" CanUserAddRows="False" Margin="0,0,-10,0"/>
+        <DataGrid Grid.Row="1" FontSize="20" Name="dgKorisnik" SelectedItem="{Binding Path=IzabraniKorisnik}" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" CanUserAddRows="False" Margin="0,0,-10,0" LoadingRow="Korisnik_broj"/>
         <Button Grid.Row="2" Content="Dodaj" Margin="10,21,722,22" Click="DodajKorisnika"/>
         <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="138,21,597,22" Click="IzmeniKorisnika"/>
         <Button Grid.Row="2" Content="Izbrisi" RenderTransformOrigin="-1.371,0.41" Margin="267,21,469,22" Click="Izbrisi"/>

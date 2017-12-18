@@ -35,7 +35,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void btPrijava_Click(object sender, RoutedEventArgs e)
         {
-            var listaKorisnika = Projekat.Instance.Korisnik;
+            var listaKorisnika = Projekat.Instance.Korisnici;
                     
             foreach (var korisnik in listaKorisnika)
             {

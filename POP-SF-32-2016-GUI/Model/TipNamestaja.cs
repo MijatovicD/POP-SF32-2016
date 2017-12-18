@@ -142,7 +142,7 @@ namespace POP_SF32_2016.Model
 
 
                 cmd.CommandText = "INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES (@Naziv, @Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_INDENTITY();";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
 
@@ -166,8 +166,8 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "UPDATE INTO TipNamestaja SET Naziv=@Naziv, Obrisan=@Obrisan WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_INDENTITY();";
+                cmd.CommandText = "UPDATE TipNamestaja SET Naziv=@Naziv, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", tn.Id);
                 cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);

@@ -50,42 +50,26 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaKorisnika = Projekat.Instance.Korisnik;
+            var listaKorisnika = Projekat.Instance.Korisnici;
             var izabraniTip = (TipKorisnika)cbTipKorisnika.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
 
-                    korisnik.Id = listaKorisnika.Count + 1;
-                    korisnik.Ime = tbIme.Text;
-                    korisnik.Prezime = tbPrezime.Text;
-                    korisnik.KorisnickoIme = tbKoriIme.Text;
-                    korisnik.Lozinka = tbLozinka.Password;
-                    korisnik.TipKorisnika = izabraniTip;
-                    
-                    listaKorisnika.Add(korisnik);
+                    Korisnik.Create(korisnik);
                     break;
 
                 case Operacija.IZMENA:
-                    foreach (var k in listaKorisnika)
-                    {
-                        if (k.Id == korisnik.Id)
-                        {
-                            k.Ime = korisnik.Ime;
-                            k.Prezime = korisnik.Prezime;
-                            k.KorisnickoIme = korisnik.KorisnickoIme;
-                            k.Lozinka = korisnik.Lozinka;
-                            k.TipKorisnika = korisnik.TipKorisnika;
-                            break;
-                        }
-                    }
-                    break;
+             
+                     Korisnik.Update(korisnik);
+                     break;
+
                 default:
                     break;
             }
 
-            GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
+            //GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
 
             Close();
         }

@@ -10,9 +10,4 @@
     <NamestajId>2</NamestajId>
     <KolicinaNamestaja>54</KolicinaNamestaja>
   </StavkaProdaje>
-  <StavkaProdaje>
-    <Id>3</Id>
-    <NamestajId>1</NamestajId>
-    <KolicinaNamestaja>5</KolicinaNamestaja>
-  </StavkaProdaje>
 </ArrayOfStavkaProdaje>

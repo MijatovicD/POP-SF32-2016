@@ -12,7 +12,7 @@
             <RowDefinition Height="264*"/>
             <RowDefinition Height="67*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" FontSize="20" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" CanUserAddRows="False"/>
+        <DataGrid Grid.Row="1" FontSize="20" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="Akcija_broj"/>
         <Button Grid.Row="2" Content="Dodaj" Margin="32,10,664,16" Click="DodajAkciju_Click"/>
         <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="165,12,526,16" Click="IzmeniAkciju_Click">
 

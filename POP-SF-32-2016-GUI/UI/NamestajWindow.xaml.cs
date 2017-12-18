@@ -53,7 +53,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private bool NamestajFilter(object obj)
         {
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             var listaNamestaja = Projekat.Instance.Namestaji;
             foreach (var akcija in listaAkcija)
             {
@@ -108,14 +108,14 @@ namespace POP_SF_32_2016_GUI.UI
         {
             var izabranNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             var listaNamestaj = Projekat.Instance.Namestaji;
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var n in listaNamestaj)
                 {
                     if (n.Id == izabranNamestaj.Id)
                     {
-                        n.Obrisan = true;
+                        Namestaj.Delete(izabranNamestaj);
                         vieew.Filter = NamestajFilter;
 
                         foreach (var namestaj in listaNamestaj)
@@ -134,8 +134,8 @@ namespace POP_SF_32_2016_GUI.UI
                     }
                 }
 
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaj);
-                GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
+                //GenericSerializer.Serialize("namestaj.xml", listaNamestaj);
+                //GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
             }
         }
 
@@ -225,6 +225,11 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+        }
+
+        private void dgNamestaj_broj(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

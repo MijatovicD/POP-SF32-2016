@@ -27,7 +27,7 @@ namespace POP_SF_32_2016_GUI.UI
         public KorisnikWindow()
         {
             InitializeComponent();
-            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnici);
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.DataContext = this;
             dgKorisnik.ItemsSource = vieew;
@@ -80,19 +80,19 @@ namespace POP_SF_32_2016_GUI.UI
         private void Izbrisi(object sender, RoutedEventArgs e)
         {
             var izabraniKorisnik = (Korisnik)dgKorisnik.SelectedItem;
-            var listaKorisnika = Projekat.Instance.Korisnik;
+            var listaKorisnika = Projekat.Instance.Korisnici;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabraniKorisnik.KorisnickoIme}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var korisnik in listaKorisnika)
                 {
                     if (korisnik.Id == izabraniKorisnik.Id)
                     {
-                        korisnik.Obrisan = true;
+                        Korisnik.Delete(izabraniKorisnik);
                         vieew.Filter = KorisnikFilter;
                     }
                 }
 
-                GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
+                //GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
 
             }
         }
@@ -157,6 +157,11 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+        }
+
+        private void Korisnik_broj(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

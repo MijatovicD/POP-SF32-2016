@@ -71,7 +71,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.Close();
         }
-        public TipNamestaja tipNamestaja;
+        private TipNamestaja tipNamestaja;
 
         private void Izbrisi_Clik(object sender, RoutedEventArgs e)
         {
@@ -84,30 +84,30 @@ namespace POP_SF_32_2016_GUI.UI
                 {
                     if (tip.Id == izabraniTip.Id)
                     {
-                        tip.Obrisan = true;
-                        vieew.Filter = FilterTipNamestaja;
-
-                        foreach (var tipa in listaTipa)
-                        {
-                            if (tipa.Obrisan == true)
-                            {
-                                foreach (var namestaj in listaNamestaja)
-                                {
-                                    if (namestaj.TipNamestajaId == tipa.Id)
-                                    {
-                                        namestaj.Obrisan = true;
-                                    }
+                        //        tip.Obrisan = true;
+                        //        vieew.Filter = FilterTipNamestaja;
+                        TipNamestaja.Delete(izabraniTip);
+                //        foreach (var tipa in listaTipa)
+                //        {
+                //            if (tipa.Obrisan == true)
+                //            {
+                //                foreach (var namestaj in listaNamestaja)
+                //                {
+                //                    if (namestaj.TipNamestajaId == tipa.Id)
+                //                    {
+                //                        namestaj.Obrisan = true;
+                //                    }
                                     
                                     
-                                }
-                            }
-                        }
+                //                }
+                //            }
+                //        }
                     }
 
                 }
 
-                GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipa);
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
+                //GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipa);
+                //GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
             }
         }
 
@@ -132,6 +132,11 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+        }
+
+        private void TipNamestja_broj(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

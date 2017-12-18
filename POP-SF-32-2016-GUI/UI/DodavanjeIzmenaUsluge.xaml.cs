@@ -45,35 +45,24 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listausluge = Projekat.Instance.DodatnaUsluga;
+            var listausluge = Projekat.Instance.DodatnaUsluge;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
 
-                    dodatnaUsluga.Id = listausluge.Count + 1;
-                    dodatnaUsluga.Naziv = tbNaziv.Text;
-                    dodatnaUsluga.Cena = double.Parse(tbCena.Text);
-
-                    listausluge.Add(dodatnaUsluga);
+                    DodatnaUsluga.Create(dodatnaUsluga);
                     break;
 
                 case Operacija.IZMENA:
-                    foreach (var usluga in listausluge)
-                    {
-                        if (usluga.Id == dodatnaUsluga.Id)
-                        {
-                            usluga.Naziv = this.tbNaziv.Text;
-                            usluga.Cena = double.Parse(tbCena.Text);
-                            break;
-                        }
-                    }
+
+                    DodatnaUsluga.Update(dodatnaUsluga);
                     break;
                 default:
                     break;
             }
 
-            GenericSerializer.Serialize("dodatnaUslga.xml", listausluge);
+            //GenericSerializer.Serialize("dodatnaUslga.xml", listausluge);
             Close();
         }
 

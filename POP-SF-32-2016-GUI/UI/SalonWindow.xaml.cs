@@ -27,7 +27,7 @@ namespace POP_SF_32_2016_GUI.UI
             InitializeComponent();
             dgSalon.IsSynchronizedWithCurrentItem = true;
             dgSalon.DataContext = this;
-            dgSalon.ItemsSource = Projekat.Instance.Salon;
+            dgSalon.ItemsSource = Projekat.Instance.Saloni;
 
         }
 

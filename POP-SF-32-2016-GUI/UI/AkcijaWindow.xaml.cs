@@ -27,7 +27,7 @@ namespace POP_SF_32_2016_GUI.UI
         public AkcijaWindow()
         {
             InitializeComponent();
-            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijskaProdaja);
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijskeProdaje);
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
             dgAkcija.ItemsSource = vieew;
@@ -46,7 +46,7 @@ namespace POP_SF_32_2016_GUI.UI
         
         private bool AkcijaFilter(object obj)
         {
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             foreach (var akcija in listaAkcija)
             {
                 if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
@@ -89,7 +89,7 @@ namespace POP_SF_32_2016_GUI.UI
         private void ObrsiAkciju_Click(object sender, RoutedEventArgs e)
         {
             var izabranaAkcija = (AkcijskaProdaja)dgAkcija.SelectedItem;
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             var listaNamestaja = Projekat.Instance.Namestaji;
             if (MessageBox.Show($"Da li zelite da obrisete: {izabranaAkcija.Id}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -97,7 +97,7 @@ namespace POP_SF_32_2016_GUI.UI
                 {
                     if (akcija.Id == izabranaAkcija.Id)
                     {
-                        akcija.Obrisan = true;
+                        AkcijskaProdaja.Delete(izabranaAkcija);
                         vieew.Filter = AkcijaFilter;
 
                         foreach (var namestaj in listaNamestaja)
@@ -110,8 +110,8 @@ namespace POP_SF_32_2016_GUI.UI
                     }
                 }
 
-                GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
+                //GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
+                //GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
           
             }
         }
@@ -171,6 +171,11 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+        }
+
+        private void Akcija_broj(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

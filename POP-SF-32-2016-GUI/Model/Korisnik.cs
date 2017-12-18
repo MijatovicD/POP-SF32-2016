@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,7 +137,7 @@ namespace POP_SF32_2016.Model
 
         public static Korisnik GetById(int id)
         {
-            foreach (var korisnik in Projekat.Instance.Korisnik)
+            foreach (var korisnik in Projekat.Instance.Korisnici)
             {
                 if (korisnik.Id == id)
                 {
@@ -160,5 +164,115 @@ namespace POP_SF32_2016.Model
                 TipKorisnika = tipKorisnika
             };
         }
+
+        #region CRUD
+        public static ObservableCollection<Korisnik> GetAll()
+        {
+            var korisnik = new ObservableCollection<Korisnik>();
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Korisnik");
+
+                foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                {
+                    var ko = new Korisnik();
+                    ko.Id = int.Parse(row["Id"].ToString());
+                    ko.Ime = row["Ime"].ToString();
+                    ko.Prezime = row["Prezime"].ToString();
+                    ko.KorisnickoIme = row["KorisnickoIme"].ToString();
+                    ko.Lozinka = row["Lozinka"].ToString();
+                    ko.TipKorisnika = (TipKorisnika)Enum.Parse(typeof(TipKorisnika), (row["TipKorisnika"].ToString()));
+                    ko.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    korisnik.Add(ko);
+                }
+
+            }
+
+
+            return korisnik;
+        }
+        #endregion
+
+        #region CRUD
+        public static Korisnik Create(Korisnik ko)
+        {
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+
+                cmd.CommandText = "INSERT INTO Korisnik (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisan) VALUES (@Ime, @Prezime, @KorisnickoIme, @Lozinka, @TipKorisnika, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Ime", ko.Ime);
+                cmd.Parameters.AddWithValue("Prezime", ko.Prezime);
+                cmd.Parameters.AddWithValue("KorisnickoIme", ko.KorisnickoIme);
+                cmd.Parameters.AddWithValue("Lozinka", ko.Lozinka);
+                cmd.Parameters.AddWithValue("TipKorisnika", ko.TipKorisnika);
+                cmd.Parameters.AddWithValue("Obrisan", ko.Obrisan);
+
+                ko.Id = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            Projekat.Instance.Korisnici.Add(ko);
+
+            return ko;
+        }
+        #endregion
+
+        #region CRUD
+        public static void Update(Korisnik ko)
+        {
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+
+                cmd.CommandText = "UPDATE Korisnik SET Ime=@Ime, Prezime=@Prezime, KorisnickoIme=@KorisnickoIme, Lozinka=@Lozinka, TipKorisnika=@TipKorisnika, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Id", ko.Id);
+                cmd.Parameters.AddWithValue("Ime", ko.Ime);
+                cmd.Parameters.AddWithValue("Prezime", ko.Prezime);
+                cmd.Parameters.AddWithValue("KorisnickoIme", ko.KorisnickoIme);
+                cmd.Parameters.AddWithValue("Lozinka", ko.Lozinka);
+                cmd.Parameters.AddWithValue("TipKorisnika", ko.TipKorisnika);
+                cmd.Parameters.AddWithValue("Obrisan", ko.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            foreach (var korisnik in Projekat.Instance.Korisnici)
+            {
+                if (ko.Id == korisnik.Id)
+                {
+                    korisnik.Ime = ko.Ime;
+                    korisnik.Prezime = ko.Prezime;
+                    korisnik.KorisnickoIme = ko.KorisnickoIme;
+                    korisnik.Lozinka = ko.Lozinka;
+                    korisnik.TipKorisnika = ko.TipKorisnika;
+                    korisnik.Obrisan = ko.Obrisan;
+                }
+            }
+        }
+
+        public static void Delete(Korisnik ko)
+        {
+            ko.Obrisan = true;
+            Update(ko);
+        }
+        #endregion
     }
 }

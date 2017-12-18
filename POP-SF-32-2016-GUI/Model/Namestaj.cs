@@ -16,22 +16,6 @@ namespace POP_SF32_2016.Model
     public class Namestaj : INotifyPropertyChanged, ICloneable
     {
 
-
-        private int redniBroj;
-
-        public int RedniBroj
-        {
-            get
-            {
-                return redniBroj;
-            }
-            set
-            {
-                redniBroj = value;
-                OnPropertyChanged("RedniBroj");
-            }
-        }
-
         private int id;
 
         public int Id
@@ -311,6 +295,7 @@ namespace POP_SF32_2016.Model
         #region CRUD
         public static Namestaj Create(Namestaj n)
         {
+            Random random = new Random();
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
@@ -319,13 +304,14 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Sifra, Cena, Kolicina, AkcijaId, TipNamestajaId, Obrisan) VALUES (@Naziv, @Sifra, @JedinicnaCena, @KolicinaUMagacinu, @AkcijaId, @TipNamestajaId, @Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_INDENTITY();";
+                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Sifra, Cena, Kolicina, TipNamestajaId, Obrisan) VALUES (@Naziv, @Sifra, @Cena, @Kolicina, @TipNamestajaId, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 50);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
                 cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
+                //cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
@@ -349,8 +335,8 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "UPDATE INTO Namestaj SET Naziv=@Naziv, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina, AkcijaId=@AkcijaId, TipNamestajaId=@TipNamestajaId, Obrisan=@Obrisan WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_INDENTITY();";
+                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina, TipNamestajaId=@TipNamestajaId, AkcijaId=@AkcijaId, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
@@ -371,7 +357,9 @@ namespace POP_SF32_2016.Model
                     namestaj.Sifra = n.Sifra;
                     namestaj.JedinicnaCena = n.JedinicnaCena;
                     namestaj.KolicinaUMagacinu = n.KolicinaUMagacinu;
+                    namestaj.AkcijskaProdaja = n.AkcijskaProdaja;
                     namestaj.AkcijaId = n.AkcijaId;
+                    namestaj.TipNamestaja = n.TipNamestaja;
                     namestaj.TipNamestajaId = n.TipNamestajaId;
                     namestaj.Obrisan = n.Obrisan;
                 }

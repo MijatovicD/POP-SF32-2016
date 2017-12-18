@@ -16,3 +16,44 @@ CREATE TABLE Namestaj(
 	Obrisan BIT,
 	FOREIGN KEY (TipNamestajaId) REFERENCES TipNamestaja(Id)
 );
+GO
+CREATE TABLE DodatnaUsluga(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Naziv VARCHAR(80),
+	Cena NUMERIC(9,2),
+	Obrisan BIT
+);
+GO
+CREATE TABLE Korisnik(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Ime VARCHAR(30) NOT NULL,
+	Prezime VARCHAR(30) NOT NULL,
+	KorisnickoIme VARCHAR(30) NOT NULL,
+	Lozinka VARCHAR(30) NOT NULL,
+	TipKorisnika VARCHAR(30) NOT NULL,
+	Obrisan BIT
+);
+GO
+CREATE TABLE Salon(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Naziv VARCHAR(30) NOT NULL,
+	Adresa VARCHAR(30) NOT NULL,
+	Telefon VARCHAR(20) NOT NULL,
+	Email VARCHAR(30) NOT NULL,
+	InternetAdresa VARCHAR(20) NOT NULL,
+	Pib INT NOT NULL,
+	MaticniBroj INT NOT NULL,
+	ZiroRacun VARCHAR(20) NOT NULL
+);
+GO
+CREATE TABLE AkcijskaProdaja(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	DatumPocetka DATETIME NOT NULL,
+	Popust DECIMAL NOT NULL,
+	DatumZavrsetka DATETIME NOT NULL,
+	NamestajId INT NOT NULL,
+	Obrisan BIT,
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id) 
+);
+
+ALTER TABLE dbo.Namestaj ADD AkcijaId INT NOT NULL FOREIGN KEY (AkcijaId) REFERENCES AkcijskaProdaja(Id) DEFAULT 1

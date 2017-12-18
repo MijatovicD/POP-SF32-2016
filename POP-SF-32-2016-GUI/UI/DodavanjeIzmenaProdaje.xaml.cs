@@ -47,7 +47,7 @@ namespace POP_SF_32_2016_GUI.UI
             tbKupac.DataContext = prodajaNamestaja;
             dgNamestajP.ItemsSource = prodajaNamestaja.StavkaProdaje;
             dgNamestajP.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-            dgUslugaP.ItemsSource = Projekat.Instance.DodatnaUsluga;
+            dgUslugaP.ItemsSource = Projekat.Instance.DodatnaUsluge;
         }
         
         private ProdajaNamestaja prodajaNamestaja;

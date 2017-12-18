@@ -49,7 +49,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaSalon = Projekat.Instance.Salon;
+            var listaSalon = Projekat.Instance.Saloni;
 
             switch (operacija)
             {

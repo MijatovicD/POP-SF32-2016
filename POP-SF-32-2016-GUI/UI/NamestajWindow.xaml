@@ -13,7 +13,7 @@
                 <RowDefinition Height="369*"/>
                 <RowDefinition Height="106*"/>
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False"/>
+            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj"/>
             <Button Grid.Row="2" Content="Dodaj" Margin="12,35,656,33" Click="DodajNamestaj_Click"/>
             <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="149,35,524,33" Click="IzmeniNamestaj_Click"/>
             <Button Grid.Row="2" Content="Izbrisi" RenderTransformOrigin="-1.371,0.41" Margin="275,35,387,33" Click="ObrsiNamestaj_Click"/>

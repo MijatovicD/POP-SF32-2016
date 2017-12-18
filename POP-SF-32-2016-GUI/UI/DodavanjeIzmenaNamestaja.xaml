@@ -23,8 +23,6 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" FontSize="15"/>
         <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbNaziv" Text="{Binding Path=Naziv}"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Sifra:" FontSize="15"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbSifra" Text="{Binding Path=Sifra}"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Cena:" FontSize="15"/>
         <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbCena" Text="{Binding Path=JedinicnaCena}"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Kolicina:" FontSize="15"/>

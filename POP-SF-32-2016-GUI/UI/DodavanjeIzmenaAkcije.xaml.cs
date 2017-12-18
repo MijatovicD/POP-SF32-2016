@@ -45,7 +45,7 @@ namespace POP_SF_32_2016_GUI.UI
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
 
             var listaNamestaja = Projekat.Instance.Namestaji;
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
 
             foreach (var akcija in listaAkcija)
             {
@@ -69,42 +69,26 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaAkcija = Projekat.Instance.AkcijskaProdaja;
+            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             var listaNamestaja = Projekat.Instance.Namestaji;
             var dgNamestaj = (Namestaj)dgNametajLista.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-
-                    akcijskaProdaja.Id = listaAkcija.Count + 1;
-                    akcijskaProdaja.DatumPocetka = dpDatumPocetka.SelectedDate.Value;
-                    akcijskaProdaja.Popust = decimal.Parse(tbPopust.Text);
-                    akcijskaProdaja.DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value;
-                    akcijskaProdaja.NamestajId = dgNamestaj.Id;
-                    listaAkcija.Add(akcijskaProdaja);
+                    
+                    AkcijskaProdaja.Create(akcijskaProdaja);
                     break;
 
                 case Operacija.IZMENA:
-                    foreach (var a in listaAkcija)
-                    {
-                        if (a.Id == akcijskaProdaja.Id)
-                        {
 
-                            a.DatumPocetka = this.dpDatumPocetka.SelectedDate.Value;
-                            a.Popust = akcijskaProdaja.Popust;
-                            a.DatumZavrsetka = this.dpDatumZavrsetka.SelectedDate.Value;
-                            a.Namestaj = akcijskaProdaja.Namestaj;
-                            a.NamestajId = dgNamestaj.Id;
-                            break;
-                        }
-                    }
+                    AkcijskaProdaja.Update(akcijskaProdaja);
                     break;
                 default:
                     break;
             }
 
-            GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
+            //GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
 
             Close();
         }

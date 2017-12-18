@@ -3,13 +3,19 @@
   <DodatnaUsluga>
     <Id>1</Id>
     <Naziv>Montiranje</Naziv>
-    <Cena>1000</Cena>
+    <Cena>785.4</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
   <DodatnaUsluga>
     <Id>2</Id>
     <Naziv>Sklapanje</Naziv>
-    <Cena>2000</Cena>
+    <Cena>800</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>3</Id>
+    <Naziv>Tapaciranje</Naziv>
+    <Cena>937</Cena>
     <Obrisan>false</Obrisan>
   </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>
