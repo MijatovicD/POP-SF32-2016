@@ -23,8 +23,7 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-       ICollectionView vieew;
-       public TipNamestaja tipNamestaja;
+        ICollectionView vieew;
        
         public Namestaj IzabraniNamestaj { get; set; }
 
@@ -35,8 +34,8 @@ namespace POP_SF_32_2016_GUI.UI
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = vieew;
-       
-
+           
+        
             cbSortiraj.Items.Add("");
             cbSortiraj.Items.Add("Naziv");
             cbSortiraj.Items.Add("Sifra");

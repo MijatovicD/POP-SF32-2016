@@ -55,5 +55,48 @@ CREATE TABLE AkcijskaProdaja(
 	Obrisan BIT,
 	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id) 
 );
-
+GO
+CREATE TABLE StavkaProdaje(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Kolicina INT NOT NULL,
+	NamestajId INT NOT NULL,
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id) 
+);
+GO
+CREATE TABLE NaAkciji(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	NamestajId INT,
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id)
+);
+GO
+CREATE TABLE ProdajaNamestaja(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	DatumProdaje DATETIME,
+	BrojRacuna INT,
+	Kupac VARCHAR(30),
+	StavkeNamestajaId INT,
+	StavkeUslugaId INT
+);
+GO
+CREATE TABLE StavkeNamestaja(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	IdProdaje INT,
+	NamestajId INT,
+	Kolicina INT,
+	FOREIGN KEY (NamestajId) REFERENCES dbo.Namestaj(Id),
+	FOREIGN KEY (IdProdaje) REFERENCES dbo.ProdajaNamestaja(Id)
+);
+GO
+CREATE TABLE StavkeUsluge(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	IdProdaje INT,
+	UslugaId INT,
+	FOREIGN KEY (UslugaId) REFERENCES dbo.DodatnaUsluga(Id),
+	FOREIGN KEY (IdProdaje) REFERENCES dbo.ProdajaNamestaja(Id)
+);
 ALTER TABLE dbo.Namestaj ADD AkcijaId INT NOT NULL FOREIGN KEY (AkcijaId) REFERENCES AkcijskaProdaja(Id) DEFAULT 1
+
+DROP TABLE dbo.StavkaProdaje
+
+ALTER TABLE dbo.ProdajaNamestaja ADD StavkeNamestajaId INT FOREIGN KEY (StavkeNamestajaId) REFERENCES dbo.StavkeNamestaja(Id) DEFAULT 1
+ALTER TABLE dbo.ProdajaNamestaja ADD StavkeUslugaId INT FOREIGN KEY (StavkeUslugaId) REFERENCES dbo.StavkeUsluge(Id) DEFAULT 1

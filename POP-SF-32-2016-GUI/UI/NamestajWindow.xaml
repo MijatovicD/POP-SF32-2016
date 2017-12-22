@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
+        xmlns:local1="clr-namespace:POP_SF_32_2016_GUI.Utils"
         mc:Ignorable="d"
         Title="NamestajWindow" Height="570" Width="770" WindowStartupLocation="CenterScreen">
     <Border Background="AliceBlue">

@@ -56,16 +56,16 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaProdaje = Projekat.Instance.ProdajaNamestaja;
+            var listaProdaje = Projekat.Instance.ProdajeNamestaja;
             var izabranaUsluga = (DodatnaUsluga)dgUslugaP.SelectedItem;
-            var izabraniNamestaj = (StavkaProdaje)dgNamestajP.SelectedItem;
+            var izabraniNamestaj = (StavkaNamestaja)dgNamestajP.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
                    
                     prodajaNamestaja.Id = listaProdaje.Count + 1;
-                    prodajaNamestaja.StavkaProdaje = new ObservableCollection<StavkaProdaje>();
+                    prodajaNamestaja.StavkaProdaje = new ObservableCollection<StavkaNamestaja>();
                     prodajaNamestaja.DatumProdaje = dDatumProdaje.SelectedDate.Value;
                     prodajaNamestaja.BrojRacuna = tbBrojRacuna.Text;
                     prodajaNamestaja.Kupac = tbKupac.Text;
@@ -99,15 +99,28 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var novaProdaje = new StavkaProdaje()
+            //var novaProdaje = new StavkaProdaje()
+            //{
+            //    NamestajId = 0,
+            //    KolicinaNamestaja = 0
+            //};
+
+            //var prozor = new NamestajZaProdaju(novaProdaje, NamestajZaProdaju.Operacija.DODAVANJE);
+            //prozor.ShowDialog();
+            //prodajaNamestaja.StavkaProdaje.Add(prozor.StavkaProdaje);
+
+            var novaProdaje = new StavkaNamestaja()
             {
                 NamestajId = 0,
                 KolicinaNamestaja = 0
             };
 
-            var prozor = new NamestajZaProdaju(novaProdaje, NamestajZaProdaju.Operacija.DODAVANJE);
-            prozor.ShowDialog();
-            
+            NamestajZaProdaju prodaja = new NamestajZaProdaju(novaProdaje, NamestajZaProdaju.Operacija.DODAVANJE);
+            if (prodaja.ShowDialog() == true)
+            {
+                prodajaNamestaja.StavkaProdaje.Add(prodaja.StavkaProdaje);
+            }
+
         }
 
         private void dgNamestajP_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

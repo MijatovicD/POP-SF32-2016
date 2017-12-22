@@ -46,3 +46,4 @@ C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Namesta
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\IzmenaSalona.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\IzmenaSalona.baml
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\POP-SF-32-2016-GUI_Content.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs

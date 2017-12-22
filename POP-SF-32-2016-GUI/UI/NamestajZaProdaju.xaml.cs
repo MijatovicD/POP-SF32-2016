@@ -25,14 +25,14 @@ namespace POP_SF_32_2016_GUI.UI
     public partial class NamestajZaProdaju : Window
     {
 
-        public ObservableCollection<StavkaProdaje> IzabranaStavka { get; set; }
-        public StavkaProdaje StavkaProdaje { get; set; }
+        public ObservableCollection<Namestaj> IzabraniNamestaj { get; set; }
+        public StavkaNamestaja StavkaProdaje { get; set; }
         public enum Operacija
         {
             DODAVANJE,
             IZMENA
         };
-        public NamestajZaProdaju(StavkaProdaje stavkaProdaje, Operacija operacija)
+        public NamestajZaProdaju(StavkaNamestaja stavkaProdaje, Operacija operacija)
         {
 
             InitializeComponent();
@@ -43,27 +43,23 @@ namespace POP_SF_32_2016_GUI.UI
             dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaji;
             tbKolicina.DataContext = stavkaProdaje;
             dgNamestajProdaja.DataContext = stavkaProdaje;
-
+            
             
         }
-    
-        private StavkaProdaje stavkaProdaje;
+        
+        private StavkaNamestaja stavkaProdaje;
         private Operacija operacija;
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listastavki = Projekat.Instance.StavkaProdaje;
+            var listastavki = Projekat.Instance.StavkeNamestaja;
             var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
+
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-
-                    stavkaProdaje.Id = listastavki.Count + 1;
-                    stavkaProdaje.NamestajId = izabraniNamestaj.Id;
-                    stavkaProdaje.KolicinaNamestaja = int.Parse(tbKolicina.Text);
-
-
-                    listastavki.Add(stavkaProdaje);
+                   
+                    StavkaNamestaja.Create(stavkaProdaje);
                     break;
 
                 case Operacija.IZMENA:
@@ -81,7 +77,7 @@ namespace POP_SF_32_2016_GUI.UI
                     break;
             }
 
-            GenericSerializer.Serialize("stavkaProdaje.xml", listastavki);
+            //GenericSerializer.Serialize("stavkaProdaje.xml", listastavki);
 
             Close();
         }
@@ -113,7 +109,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var listaStavke = Projekat.Instance.StavkaProdaje;
+            var listaStavke = Projekat.Instance.StavkeNamestaja;
             var listaNamestaja = Projekat.Instance.Namestaji;
             var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
 

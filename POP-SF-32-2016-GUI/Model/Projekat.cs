@@ -19,8 +19,8 @@ namespace POP_SF32_2016.Model
         public ObservableCollection<DodatnaUsluga> DodatnaUsluge { get; set; }
         public ObservableCollection<Salon> Saloni { get; set; }
         public ObservableCollection<AkcijskaProdaja> AkcijskeProdaje { get; set; }
-        public ObservableCollection<ProdajaNamestaja> ProdajaNamestaja { get; set; }
-        public ObservableCollection<StavkaProdaje> StavkaProdaje { get; set; }
+        public ObservableCollection<ProdajaNamestaja> ProdajeNamestaja { get; set; }
+        public ObservableCollection<StavkaNamestaja> StavkeNamestaja { get; set; }
 
         private Projekat()
         {
@@ -28,10 +28,11 @@ namespace POP_SF32_2016.Model
             Namestaji = Namestaj.GetAll();
             AkcijskeProdaje = AkcijskaProdaja.GetAll();
             Korisnici = Korisnik.GetAll();
-            ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+            ProdajeNamestaja = ProdajaNamestaja.GetAll();
             DodatnaUsluge = DodatnaUsluga.GetAll();
             Saloni = Salon.GetAll();
-            StavkaProdaje = GenericSerializer.Deserialize<StavkaProdaje>("stavkaProdaje.xml");
+            StavkeNamestaja = StavkaNamestaja.GetAll();
+            //StavkeProdaje = StavkaProdaje.GetAll();
         }
     }
 }

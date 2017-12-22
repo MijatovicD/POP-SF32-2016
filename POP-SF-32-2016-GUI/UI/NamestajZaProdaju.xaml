@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="NamestajZaProdaju" Height="431" Width="730">
     <Grid>
-        <DataGrid x:Name="dgNamestajProdaja" HorizontalAlignment="Left" Height="318" VerticalAlignment="Top" Width="495" AutoGeneratingColumn="dgNamestajProdaja_AutoGeneratingColumn" Margin="227,0,0,0" SelectedItem="{Binding Path=IzabranaStavka}"/>
+        <DataGrid x:Name="dgNamestajProdaja" HorizontalAlignment="Left" Height="318" VerticalAlignment="Top" Width="495" AutoGeneratingColumn="dgNamestajProdaja_AutoGeneratingColumn" Margin="227,0,0,0" SelectedItem="{Binding Path=Namestaj}"/>
         <Button Content="Dodaj" HorizontalAlignment="Left" Height="42" Margin="0,348,0,0" VerticalAlignment="Top" Width="116" Click="SacuvajIzmene"/>
         <Button Content="Izadji" HorizontalAlignment="Left" Height="42" Margin="596,348,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="2.534,2.667"/>
-        <TextBox HorizontalAlignment="Left" Height="39" Margin="94,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" TextChanged="TextBox_TextChanged" x:Name="tbKolicina"/>
+        <TextBox HorizontalAlignment="Left" Height="39" Margin="94,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" TextChanged="TextBox_TextChanged" x:Name="tbKolicina" Text="{Binding Path=KolicinaNamestaja}"/>
 
     </Grid>
 </Window>

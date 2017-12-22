@@ -28,7 +28,7 @@ namespace POP_SF_32_2016_GUI.UI
         public ProdajaNamestajaWindow()
         {
             InitializeComponent();
-            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.ProdajaNamestaja);
+            vieew = CollectionViewSource.GetDefaultView(Projekat.Instance.ProdajeNamestaja);
             dgProdaja.IsSynchronizedWithCurrentItem = true;
             dgProdaja.DataContext = this;
             dgProdaja.ItemsSource = vieew;
@@ -50,7 +50,7 @@ namespace POP_SF_32_2016_GUI.UI
             {
 
                 DatumProdaje = DateTime.Today,
-                StavkaProdaje = new ObservableCollection<StavkaProdaje>(),
+                StavkaProdaje = new ObservableCollection<StavkaNamestaja>(),
                 BrojRacuna = "",
                 Kupac = "",
                 DodatnaUslugaId = 0,

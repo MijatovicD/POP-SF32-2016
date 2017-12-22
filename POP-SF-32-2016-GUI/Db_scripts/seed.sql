@@ -20,3 +20,17 @@ INSERT INTO Korisnik (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisa
 
 INSERT INTO AkcijskaProdaja (DatumPocetka, Popust, DatumZavrsetka, NamestajId, Obrisan) VALUES('2017-08-11T00:00:00', 50, '2017-12-17T00:00:00', 1, 0);
 INSERT INTO AkcijskaProdaja (DatumPocetka, Popust, DatumZavrsetka, NamestajId, Obrisan) VALUES('2017-04-05T09:35:00', 80, '2017-12-15T18:45:00', 2, 0);
+
+INSERT INTO StavkaProdaje (NamestajId, Kolicina) VALUES(1, 1);
+INSERT INTO StavkaProdaje (NamestajId, Kolicina, DodatnaUslugaId) VALUES(2, 2, 2);
+
+INSERT INTO NaAkciji (NamestajId) VALUES (1)
+
+INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, StavkeNamestajaId, StavkeUslugaId) VALUES ('12-15-2017', 4, 'Darko', 1, 1)
+INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, StavkeNamestajaId, StavkeUslugaId) VALUES ('12-17-2017', 4, 'Miki', 2, 2)
+
+INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (1,1,5)
+INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (2,2,3)
+
+INSERT INTO StavkeUsluge (IdProdaje, UslugaId) VALUES (1,1)
+INSERT INTO StavkeUsluge (IdProdaje, UslugaId) VALUES (2,2)
