@@ -196,6 +196,44 @@ namespace POP_SF32_2016.Model
         }
         #endregion
 
+
+        #region CRUD
+        public static ObservableCollection<Namestaj> NaAkciji()
+        {
+            var namestaj = new ObservableCollection<Namestaj>();
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Namestaj WHERE Id NOT IN (SELECT NamestajId FROM NaAkciji) AND Obrisan=0;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Namestaj");
+
+                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                {
+                    var n = new Namestaj();
+                    n.Id = int.Parse(row["Id"].ToString());
+                    n.Naziv = row["Naziv"].ToString();
+                    n.Sifra = row["Sifra"].ToString();
+                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                    n.KolicinaUMagacinu = int.Parse(row["Kolicina"].ToString());
+                    n.AkcijaId = int.Parse(row["AkcijaId"].ToString());
+                    n.TipNamestajaId = int.Parse(row["TipNamestajaId"].ToString());
+                    n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                    namestaj.Add(n);
+                }
+
+            }
+
+
+            return namestaj;
+        }
+        #endregion
+
         #region CRUD
         public static AkcijskaProdaja Create(AkcijskaProdaja a)
         {

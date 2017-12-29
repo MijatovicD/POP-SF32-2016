@@ -32,6 +32,7 @@ namespace POP_SF_32_2016_GUI.UI
             dgProdaja.IsSynchronizedWithCurrentItem = true;
             dgProdaja.DataContext = this;
             dgProdaja.ItemsSource = vieew;
+           
 
             dgProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
@@ -43,22 +44,20 @@ namespace POP_SF_32_2016_GUI.UI
             view.Filter = Pretraga;
         }
 
-
         private void DodajProdaju_Click(object sender, RoutedEventArgs e)
         {
             var novaProdaja = new ProdajaNamestaja()
             {
 
                 DatumProdaje = DateTime.Today,
-                StavkaProdaje = new ObservableCollection<StavkaNamestaja>(),
                 BrojRacuna = "",
                 Kupac = "",
-                DodatnaUslugaId = 0,
                 UkupanIznos = 0
             };
 
             var prodajaNamestajaProzor = new DodavanjeIzmenaProdaje(novaProdaja, DodavanjeIzmenaProdaje.Operacija.DODAVANJE);
             prodajaNamestajaProzor.ShowDialog();
+            
 
         }
 

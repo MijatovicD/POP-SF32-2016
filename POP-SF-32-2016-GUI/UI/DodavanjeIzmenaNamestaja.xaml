@@ -10,7 +10,7 @@
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxErrorTemplate">
             <DockPanel LastChildFill="True">
-                <TextBlock DockPanel.Dock="Right" Foreground="Orange" FontSize="12pt">!!!</TextBlock>
+                <TextBlock  DockPanel.Dock="Right" Foreground="Orange" FontSize="12pt" >!!!</TextBlock>
                 <Border BorderBrush="Green" BorderThickness="1">
                     <AdornedElementPlaceholder />
                 </Border>

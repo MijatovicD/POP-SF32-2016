@@ -85,23 +85,23 @@ namespace POP_SF_32_2016_GUI.UI
                     if (tip.Id == izabraniTip.Id)
                     {
                         //        tip.Obrisan = true;
-                        //        vieew.Filter = FilterTipNamestaja;
                         TipNamestaja.Delete(izabraniTip);
-                //        foreach (var tipa in listaTipa)
-                //        {
-                //            if (tipa.Obrisan == true)
-                //            {
-                //                foreach (var namestaj in listaNamestaja)
-                //                {
-                //                    if (namestaj.TipNamestajaId == tipa.Id)
-                //                    {
-                //                        namestaj.Obrisan = true;
-                //                    }
-                                    
-                                    
-                //                }
-                //            }
-                //        }
+                        vieew.Filter = FilterTipNamestaja;
+                        foreach (var tipa in listaTipa)
+                        {
+                            if (tipa.Obrisan == true)
+                            {
+                                foreach (var namestaj in listaNamestaja)
+                                {
+                                    if (namestaj.TipNamestajaId == tipa.Id)
+                                    {
+                                        Namestaj.Delete(namestaj);
+                                    }
+
+
+                                }
+                            }
+                        }
                     }
 
                 }

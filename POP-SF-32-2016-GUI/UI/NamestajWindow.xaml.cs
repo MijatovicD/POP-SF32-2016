@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,19 +59,15 @@ namespace POP_SF_32_2016_GUI.UI
             var listaNamestaja = Projekat.Instance.Namestaji;
             foreach (var akcija in listaAkcija)
             {
-                if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
-                {
                     foreach (var namestaj in listaNamestaja)
                     {
                         if (namestaj.AkcijaId == akcija.Id)
                         {
-                            if (akcija.Obrisan == true)
+                            if (akcija.Obrisan == true || akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
                             {
                                 namestaj.AkcijaId = 0;
                             }
                         }
-                       
-                    }
                 }
             }
             return ((Namestaj)obj).Obrisan == false;
@@ -136,28 +135,6 @@ namespace POP_SF_32_2016_GUI.UI
                 //GenericSerializer.Serialize("namestaj.xml", listaNamestaj);
                 //GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
             }
-        }
-
-        private bool Pretraga(object item)
-        {
-
-            if (String.IsNullOrEmpty(tbPretraga.Text))
-            {
-                return true;
-            }
-
-            else
-            {
-                return ((item as Namestaj).Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || (item as Namestaj).Sifra.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) || (item as Namestaj).TipNamestaja.Naziv.StartsWith(tbPretraga.Text, StringComparison.OrdinalIgnoreCase));
-            }
-
-        }
-
-        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource);
-            view.Filter = Pretraga;
-            CollectionViewSource.GetDefaultView(dgNamestaj.ItemsSource).Refresh();
         }
 
         private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -229,6 +206,30 @@ namespace POP_SF_32_2016_GUI.UI
         private void dgNamestaj_broj(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
+
+        //DataTable table = new DataTable("Namestaj");
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //    var namestaj = new ObservableCollection<Namestaj>();
+
+            //    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            //    {
+            //        con.Open();
+
+            //        using(SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Namestaj", con))
+            //        {
+            //            da.Fill(table);
+            //            dgNamestaj.DataContext = table;
+            //        }
+
+            //        DataView dv = table.DefaultView;
+            //        dv.RowFilter = string.Format("Naziv LIKE '%{0}%'", tbPretraga.Text);
+            //        dgNamestaj.DataContext = dv.ToTable();
+
+
+
+            //    }
         }
     }
 }

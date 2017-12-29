@@ -19,10 +19,11 @@
             <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="149,35,524,33" Click="IzmeniNamestaj_Click"/>
             <Button Grid.Row="2" Content="Izbrisi" RenderTransformOrigin="-1.371,0.41" Margin="275,35,387,33" Click="ObrsiNamestaj_Click"/>
             <Button Grid.Row="2" Content="Izadji" Margin="662,35,10,31" Click="Zatvori_Click"/>
-            <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="tbPretraga_TextChanged"/>
+            <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
             <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="42" Margin="587,10,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="0.333,0.548"/>
             <Label Content="Pretraga namestaja:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>
             <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="42" Margin="496,10,0,0" VerticalAlignment="Top" Width="86"/>
+            <Button Content="Pretrazi" HorizontalAlignment="Left" Height="42" Margin="320,10,0,0" VerticalAlignment="Top" Width="115" Click="Button_Click"/>
         </Grid>
     </Border>
 </Window>

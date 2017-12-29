@@ -5,7 +5,7 @@
     <Naziv>Ultra polica</Naziv>
     <Sifra>UL1PO</Sifra>
     <JedinicnaCena>123.5</JedinicnaCena>
-    <KolicinaUMagacinu>1</KolicinaUMagacinu>
+    <KolicinaUMagacinu>2</KolicinaUMagacinu>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
@@ -25,7 +25,7 @@
     <Naziv>Bracni krevet</Naziv>
     <Sifra>BR3UG</Sifra>
     <JedinicnaCena>245.76</JedinicnaCena>
-    <KolicinaUMagacinu>6</KolicinaUMagacinu>
+    <KolicinaUMagacinu>4</KolicinaUMagacinu>
     <AkcijaId>1</AkcijaId>
     <TipNamestajaId>3</TipNamestajaId>
     <Obrisan>false</Obrisan>

@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\NaAkciji.cs" />
     <Compile Include="Model\StavkaNamestaja.cs" />
+    <Compile Include="Model\StavkaUsluge.cs" />
     <Compile Include="UI\AkcijaWindow.xaml.cs">
       <DependentUpon>AkcijaWindow.xaml</DependentUpon>
     </Compile>
@@ -103,6 +105,9 @@
     </Compile>
     <Compile Include="UI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UslugaZaProdaju.xaml.cs">
+      <DependentUpon>UslugaZaProdaju.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\GenericSerializer.cs" />
     <Compile Include="Utils\ValidatorConverter.cs" />
@@ -179,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\TipNamestajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\UslugaZaProdaju.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

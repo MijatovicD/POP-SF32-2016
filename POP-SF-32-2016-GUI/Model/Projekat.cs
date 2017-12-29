@@ -21,6 +21,8 @@ namespace POP_SF32_2016.Model
         public ObservableCollection<AkcijskaProdaja> AkcijskeProdaje { get; set; }
         public ObservableCollection<ProdajaNamestaja> ProdajeNamestaja { get; set; }
         public ObservableCollection<StavkaNamestaja> StavkeNamestaja { get; set; }
+        public ObservableCollection<StavkaUsluge> StavkeUsluge { get; set; }
+        public ObservableCollection<NaAkciji> Akcija { get; set; }
 
         private Projekat()
         {
@@ -32,6 +34,8 @@ namespace POP_SF32_2016.Model
             DodatnaUsluge = DodatnaUsluga.GetAll();
             Saloni = Salon.GetAll();
             StavkeNamestaja = StavkaNamestaja.GetAll();
+            StavkeUsluge = StavkaUsluge.GetAll();
+            Akcija = NaAkciji.GetAll();
             //StavkeProdaje = StavkaProdaje.GetAll();
         }
     }

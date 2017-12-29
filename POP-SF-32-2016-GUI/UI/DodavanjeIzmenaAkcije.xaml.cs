@@ -1,4 +1,5 @@
-﻿using POP_SF32_2016.Model;
+﻿using POP_SF_32_2016_GUI.Model;
+using POP_SF32_2016.Model;
 using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
@@ -44,23 +45,7 @@ namespace POP_SF_32_2016_GUI.UI
             dgNametajLista.DataContext = akcijskaProdaja;
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
 
-            var listaNamestaja = Projekat.Instance.Namestaji;
-            var listaAkcija = Projekat.Instance.AkcijskeProdaje;
-
-            foreach (var akcija in listaAkcija)
-            {
-                    foreach (var namestaj in listaNamestaja)
-                    {
-                        if (akcija.Id != namestaj.AkcijaId)
-                        {
-                            if (namestaj.Obrisan == false)
-                            {
-                                dgNametajLista.ItemsSource = listaNamestaja;
-                            }
-                        }
-                    
-                    }
-            }
+            dgNametajLista.ItemsSource = AkcijskaProdaja.NaAkciji();
 
         }
 
@@ -78,6 +63,7 @@ namespace POP_SF_32_2016_GUI.UI
                 case Operacija.DODAVANJE:
                     
                     AkcijskaProdaja.Create(akcijskaProdaja);
+
                     break;
 
                 case Operacija.IZMENA:

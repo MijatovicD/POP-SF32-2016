@@ -75,7 +75,9 @@ CREATE TABLE ProdajaNamestaja(
 	BrojRacuna INT,
 	Kupac VARCHAR(30),
 	StavkeNamestajaId INT,
-	StavkeUslugaId INT
+	StavkeUslugaId INT,
+	FOREIGN KEY (StavkeNamestajaId) REFERENCES dbo.StavkeNamestaja(Id),
+	FOREIGN KEY (StavkeUslugaId) REFERENCES dbo.StavkeUsluge(Id)
 );
 GO
 CREATE TABLE StavkeNamestaja(
@@ -100,3 +102,19 @@ DROP TABLE dbo.StavkaProdaje
 
 ALTER TABLE dbo.ProdajaNamestaja ADD StavkeNamestajaId INT FOREIGN KEY (StavkeNamestajaId) REFERENCES dbo.StavkeNamestaja(Id) DEFAULT 1
 ALTER TABLE dbo.ProdajaNamestaja ADD StavkeUslugaId INT FOREIGN KEY (StavkeUslugaId) REFERENCES dbo.StavkeUsluge(Id) DEFAULT 1
+
+ALTER TABLE dbo.ProdajaNamestaja ADD CONSTRAINT StavkaNamestajaId FOREIGN KEY (StavkeNamestajaId) REFERENCES dbo.StavkeNamestaja(Id)
+ALTER TABLE dbo.ProdajaNamestaja ADD CONSTRAINT StavkeUslugaId FOREIGN KEY (StavkeUslugaId) REFERENCES dbo.StavkeUsluge(Id)
+
+ALTER TABLE dbo.StavkeNamestaja DROP CONSTRAINT FK__StavkeNam__IdPro__08B54D69
+ALTER TABLE dbo.StavkeUsluge DROP CONSTRAINT FK__StavkeUsl__IdPro__0C85DE4D
+
+ALTER TABLE dbo.ProdajaNamestaja DROP CONSTRAINT FK__ProdajaNa__Stavk__2B0A656D
+ALTER TABLE dbo.ProdajaNamestaja DROP CONSTRAINT FK__ProdajaNa__Stavk__2BFE89A6
+ALTER TABLE dbo.ProdajaNamestaja DROP COLUMN StavkeNamestajaId
+ALTER TABLE dbo.ProdajaNamestaja DROP COLUMN StavkeUslugaId
+
+ALTER TABLE dbo.NaAkciji ADD Obrisan BIT
+ALTER TABLE dbo.NaAkciji ADD AkcijaId INT FOREIGN KEY (AkcijaId) REFERENCES dbo.AkcijskaProdaja(Id)
+
+ALTER TABLE dbo.ProdajaNamestaja ADD UkupanIznos NUMERIC(9,2) NOT NULL DEFAULT 0

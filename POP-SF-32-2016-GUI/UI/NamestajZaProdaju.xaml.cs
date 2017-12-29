@@ -26,53 +26,51 @@ namespace POP_SF_32_2016_GUI.UI
     {
 
         public ObservableCollection<Namestaj> IzabraniNamestaj { get; set; }
-        public StavkaNamestaja StavkaProdaje { get; set; }
+        public StavkaNamestaja StavkaNamestaja { get; set; }
         public enum Operacija
         {
             DODAVANJE,
             IZMENA
         };
-        public NamestajZaProdaju(StavkaNamestaja stavkaProdaje, Operacija operacija)
+        public NamestajZaProdaju(StavkaNamestaja stavkaNamestaja, Operacija operacija)
         {
 
             InitializeComponent();
 
-            this.stavkaProdaje = stavkaProdaje;
+            this.stavkaNamestaja = stavkaNamestaja;
             this.operacija = operacija;
 
             dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaji;
-            tbKolicina.DataContext = stavkaProdaje;
-            dgNamestajProdaja.DataContext = stavkaProdaje;
-            
-            
+            tbKolicina.DataContext = stavkaNamestaja;
+            dgNamestajProdaja.DataContext = stavkaNamestaja;
+
+            this.DataContext = StavkaNamestaja;
         }
-        
-        private StavkaNamestaja stavkaProdaje;
+
+        private StavkaNamestaja stavkaNamestaja;
         private Operacija operacija;
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listastavki = Projekat.Instance.StavkeNamestaja;
-            var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                   
-                    StavkaNamestaja.Create(stavkaProdaje);
+
+                    StavkaNamestaja.Create(stavkaNamestaja);
                     break;
 
-                case Operacija.IZMENA:
-                    foreach (var s in listastavki)
-                    {
-                        if (s.Id == stavkaProdaje.Id)
-                        {
-                            s.NamestajId = stavkaProdaje.NamestajId;
-                            break;
-                        }
-                    }
+                //case Operacija.IZMENA:
+                //    foreach (var s in listastavki)
+                //    {
+                //        if (s.Id == stavkaProdaje.Id)
+                //        {
+                //            s.NamestajId = stavkaProdaje.NamestajId;
+                //            break;
+                //        }
+                //    }
 
-                    break;
+                //break;
                 default:
                     break;
             }
@@ -120,10 +118,10 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         namestaj.KolicinaUMagacinu = namestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
                     }
-                }  
-                
+                }
 
-            GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
+           
+            //Namestaj.Update(namestaj);
         }
     }
 }

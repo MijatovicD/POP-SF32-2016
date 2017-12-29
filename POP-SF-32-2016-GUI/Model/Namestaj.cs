@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 namespace POP_SF32_2016.Model
 {
-    public class Namestaj : INotifyPropertyChanged, ICloneable
+    public class Namestaj : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
 
         private int id;
@@ -180,6 +180,35 @@ namespace POP_SF32_2016.Model
             }
         }
 
+
+        public string Error
+        {
+            get
+            {
+                return "Neispravni podaci o namestaju";
+            }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "Naziv":
+                        if (string.IsNullOrEmpty(Naziv))
+                            return "Polje ne sme biti prazno";
+                        break;
+                    case "JedinicnaCena":
+                      
+                        break;
+                }
+                return "";
+            }
+        }
+
+
+
         //private StavkaProdaje stavkaProdaje;
         //private int stavkaProdajeId;
         //public int StavkaProdajeId
@@ -218,7 +247,7 @@ namespace POP_SF32_2016.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {AkcijskaProdaja.GetById(AkcijaId).Popust}, {TipNamestaja.GetById(TipNamestajaId).Naziv}";
+            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.GetById(TipNamestajaId).Naziv}";
         }
 
 

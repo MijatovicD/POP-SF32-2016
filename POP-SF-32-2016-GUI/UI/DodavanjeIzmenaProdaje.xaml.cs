@@ -45,9 +45,11 @@ namespace POP_SF_32_2016_GUI.UI
             lbCena.DataContext = prodajaNamestaja;
             tbBrojRacuna.DataContext = prodajaNamestaja;
             tbKupac.DataContext = prodajaNamestaja;
-            dgNamestajP.ItemsSource = prodajaNamestaja.StavkaProdaje;
+            dgNamestajP.ItemsSource = Projekat.Instance.StavkeNamestaja;
             dgNamestajP.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-            dgUslugaP.ItemsSource = Projekat.Instance.DodatnaUsluge;
+            dgUslugaP.ItemsSource = Projekat.Instance.StavkeUsluge;
+            dgUslugaP.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
         }
         
         private ProdajaNamestaja prodajaNamestaja;
@@ -56,58 +58,48 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
-            var listaProdaje = Projekat.Instance.ProdajeNamestaja;
-            var izabranaUsluga = (DodatnaUsluga)dgUslugaP.SelectedItem;
-            var izabraniNamestaj = (StavkaNamestaja)dgNamestajP.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                   
-                    prodajaNamestaja.Id = listaProdaje.Count + 1;
-                    prodajaNamestaja.StavkaProdaje = new ObservableCollection<StavkaNamestaja>();
-                    prodajaNamestaja.DatumProdaje = dDatumProdaje.SelectedDate.Value;
-                    prodajaNamestaja.BrojRacuna = tbBrojRacuna.Text;
-                    prodajaNamestaja.Kupac = tbKupac.Text;
-                    prodajaNamestaja.DodatnaUslugaId = izabranaUsluga.Id;
-                    prodajaNamestaja.UkupanIznos = prodajaNamestaja.PDV * izabranaUsluga.Cena;
+              
+                    ProdajaNamestaja.Create(prodajaNamestaja);
 
-                    listaProdaje.Add(prodajaNamestaja);
+
+                    //var listaProdaje = Projekat.Instance.ProdajeNamestaja;
+
+                    //CollectionViewSource cvs = new CollectionViewSource();
+                    //cvs.Source = listaProdaje;
+
+
+                    //Binding b1 = new Binding();
+                    //b1.Path = new PropertyPath("/UkupanIznos");
+                    //lbCena.SetBinding(Label.ContentProperty, b1);
+          
+
                     break;
                 case Operacija.IZMENA:
-                    foreach (var p in listaProdaje)
-                    {
-                        if (p.Id == prodajaNamestaja.Id)
-                        {
-                            p.StavkaProdaje = prodajaNamestaja.StavkaProdaje;
-                            p.BrojRacuna = prodajaNamestaja.BrojRacuna;
-                            p.Kupac = prodajaNamestaja.Kupac;
-                            p.DodatnaUslugaId = prodajaNamestaja.DodatnaUslugaId;
-                            break;
-                        }
-                    }
+                    //foreach (var p in listaProdaje)
+                    //{
+                    //    if (p.Id == prodajaNamestaja.Id)
+                    //    {
+                    //        p.StavkaNamestaja = prodajaNamestaja.StavkaNamestaja;
+                    //        p.BrojRacuna = prodajaNamestaja.BrojRacuna;
+                    //        p.Kupac = prodajaNamestaja.Kupac;
+                    //        p.DodatnaUslugaId = prodajaNamestaja.DodatnaUslugaId;
+                    //        break;
+                    //    }
+                    //}
                     break;
                 default:
                     break;
             }
 
-            GenericSerializer.Serialize("prodajaNamestaja.xml", listaProdaje);
-
 
             Close();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //var novaProdaje = new StavkaProdaje()
-            //{
-            //    NamestajId = 0,
-            //    KolicinaNamestaja = 0
-            //};
-
-            //var prozor = new NamestajZaProdaju(novaProdaje, NamestajZaProdaju.Operacija.DODAVANJE);
-            //prozor.ShowDialog();
-            //prodajaNamestaja.StavkaProdaje.Add(prozor.StavkaProdaje);
 
             var novaProdaje = new StavkaNamestaja()
             {
@@ -116,10 +108,7 @@ namespace POP_SF_32_2016_GUI.UI
             };
 
             NamestajZaProdaju prodaja = new NamestajZaProdaju(novaProdaje, NamestajZaProdaju.Operacija.DODAVANJE);
-            if (prodaja.ShowDialog() == true)
-            {
-                prodajaNamestaja.StavkaProdaje.Add(prodaja.StavkaProdaje);
-            }
+            prodaja.ShowDialog();
 
         }
 
@@ -130,6 +119,14 @@ namespace POP_SF_32_2016_GUI.UI
                 e.Cancel = true;
             }
             else if ((string)e.Column.Header == "NamestajId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "IdProdaje")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "prodajaNamestaja")
             {
                 e.Cancel = true;
             }
@@ -144,6 +141,28 @@ namespace POP_SF_32_2016_GUI.UI
             else if ((string)e.Column.Header == "Obrisan")
             {
                 e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "UslugaId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "IdProdaje")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Dodaj_Uslugu(object sender, RoutedEventArgs e)
+        {
+            var stavkaUsluge = new StavkaUsluge()
+            {
+                UslugaId = 0
+            };
+
+            UslugaZaProdaju usluga = new UslugaZaProdaju(stavkaUsluge, UslugaZaProdaju.Operacija.DODAVANJE);
+            if (usluga.ShowDialog() == true)
+            {
+                
             }
         }
     }

@@ -26,8 +26,8 @@ INSERT INTO StavkaProdaje (NamestajId, Kolicina, DodatnaUslugaId) VALUES(2, 2, 2
 
 INSERT INTO NaAkciji (NamestajId) VALUES (1)
 
-INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, StavkeNamestajaId, StavkeUslugaId) VALUES ('12-15-2017', 4, 'Darko', 1, 1)
-INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, StavkeNamestajaId, StavkeUslugaId) VALUES ('12-17-2017', 4, 'Miki', 2, 2)
+INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, StavkeNamestajaId, StavkeUslugaId) VALUES ('12-15-2017', 4, 'Diki', 6038, 1)
+INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, StavkeNamestajaId, StavkeUslugaId) VALUES ('12-17-2017', 4, 'Miki', 4, 2)
 
 INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (1,1,5)
 INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (2,2,3)

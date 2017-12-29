@@ -82,6 +82,28 @@ namespace POP_SF_32_2016_GUI.Model
             }
         }
 
+        private ProdajaNamestaja prodaja;
+
+        [XmlIgnore]
+        public ProdajaNamestaja prodajaNamestaja
+        {
+            get
+            {
+                if (prodaja == null)
+                {
+                    prodaja = ProdajaNamestaja.GetById(IdProdaje);
+                }
+                return prodaja;
+            }
+            set
+            {
+                prodaja = value;
+                IdProdaje = prodaja.Id;
+                OnPropertyChanged("IdProdaje");
+            }
+        }
+
+
 
         private int kolicinaNamestaja;
 
@@ -144,11 +166,11 @@ namespace POP_SF_32_2016_GUI.Model
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
 
-                cmd.CommandText = "SELECT * FROM StavkeNamestaja;";
+                cmd.CommandText = "SELECT * FROM StavkeNamestaja WHERE NamestajId NOT IN (SELECT Id FROM Namestaj);";
                 da.SelectCommand = cmd;
                 da.Fill(ds, "StavkeNamestaja");
 
-                foreach (DataRow row in ds.Tables["StavnkeNamestaja"].Rows)
+                foreach (DataRow row in ds.Tables["StavkeNamestaja"].Rows)
                 {
                     var a = new StavkaNamestaja();
                     a.Id = int.Parse(row["Id"].ToString());
@@ -167,9 +189,9 @@ namespace POP_SF_32_2016_GUI.Model
         #endregion
 
         #region CRUD
-        public static StavkaNamestaja Create(StavkaNamestaja a)
+        public static StavkaNamestaja Create(StavkaNamestaja s)
         {
-
+            var lista = Projekat.Instance.ProdajeNamestaja;
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 con.Open();
@@ -179,15 +201,16 @@ namespace POP_SF_32_2016_GUI.Model
 
                 cmd.CommandText = "INSERT INTO StavkeNamestaja (NamestajId, Kolicina) VALUES (@NamestajId, @Kolicina);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
-                cmd.Parameters.AddWithValue("Kolicina", a.KolicinaNamestaja);
-                
-                a.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                cmd.Parameters.AddWithValue("NamestajId", s.NamestajId);
+                cmd.Parameters.AddWithValue("Kolicina", s.KolicinaNamestaja);
+  
+                s.Id = int.Parse(cmd.ExecuteScalar().ToString());
+              
             }
 
-            Projekat.Instance.StavkeNamestaja.Add(a);
+            Projekat.Instance.StavkeNamestaja.Add(s);
 
-            return a;
+            return s;
         }
         #endregion
 

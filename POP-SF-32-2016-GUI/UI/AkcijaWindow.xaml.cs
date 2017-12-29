@@ -47,6 +47,7 @@ namespace POP_SF_32_2016_GUI.UI
         private bool AkcijaFilter(object obj)
         {
             var listaAkcija = Projekat.Instance.AkcijskeProdaje;
+            var listaNamestaja = Projekat.Instance.Namestaji;
             foreach (var akcija in listaAkcija)
             {
                 if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
@@ -100,11 +101,18 @@ namespace POP_SF_32_2016_GUI.UI
                         AkcijskaProdaja.Delete(izabranaAkcija);
                         vieew.Filter = AkcijaFilter;
 
-                        foreach (var namestaj in listaNamestaja)
+                        foreach (var a in listaAkcija)
                         {
-                            if (namestaj.AkcijaId == izabranaAkcija.Id)
+                            if (a.Obrisan == true)
                             {
-                                namestaj.AkcijaId = 0;
+                                foreach (var namestaj in listaNamestaja)
+                                {
+                                    if (a.Id == namestaj.AkcijaId)
+                                    {
+                                        namestaj.AkcijaId = 0;
+                                        Namestaj.Update(namestaj);
+                                    }
+                                }
                             }
                         }
                     }

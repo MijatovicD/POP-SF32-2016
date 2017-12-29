@@ -31,68 +31,6 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        //private int namestajId;
-
-        //public int NamestajId
-        //{
-        //    get
-        //    {
-        //        return namestajId;
-        //    }
-        //    set
-        //    {
-        //        namestajId = value;
-        //        OnPropertyChanged("NamestajId");
-        //    }
-        //}
-
-        private ObservableCollection<StavkaNamestaja> Stavkaprodaje;
-
-        public ObservableCollection<StavkaNamestaja> StavkaProdaje
-        {
-            get
-            {
-                return Stavkaprodaje;
-            }
-            set
-            {
-                Stavkaprodaje = value;
-            }
-        }
-
-        //private StavkaProdaje stavkaProdaje;
-        //private int stavkaProdajeId;
-        //public int StavkaProdajeId
-        //{
-        //    get
-        //    {
-        //        return stavkaProdajeId;
-        //    }
-        //    set
-        //    {
-        //        StavkaProdajeId = value;
-        //        OnPropertyChanged("StavkaProdajeId");
-        //    }
-        //}
-
-        //[XmlIgnore]
-        //public StavkaProdaje stavka
-        //{
-        //    get
-        //    {
-        //        if (stavkaProdaje == null)
-        //        {
-        //            stavkaProdaje = stavka.GetById(StavkaProdajeId);
-        //        }
-        //        return stavkaProdaje;
-        //    }
-        //    set
-        //    {
-        //        stavkaProdaje = value;
-        //        StavkaProdajeId = stavkaProdaje.Id;
-        //        OnPropertyChanged("StavkaProdaje");
-        //    }
-        //}
 
         private DateTime datumProdaje;
 
@@ -139,37 +77,8 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private int dodatnaUslugaId;
-        public int DodatnaUslugaId
-        {
-            get
-            {
-                return dodatnaUslugaId;
-            }
-            set
-            {
-                dodatnaUslugaId = value;
-                OnPropertyChanged("DodatnaUslugaId");
-            }
-        }
-
-        private int namestajId;
-
-        public int NamestajaId
-        {
-            get
-            {
-                return namestajId;
-            }
-            set
-            {
-                namestajId = value;
-                OnPropertyChanged("NamestajId");
-            }
-        }
-
-
         private const double pdv = 0.02;
+
 
         public  double PDV
         {
@@ -183,13 +92,22 @@ namespace POP_SF32_2016.Model
                 OnPropertyChanged("PDV");
             }
         }
-
+        
         private double ukupanIznos;
-
+    
         public double UkupanIznos
         {
             get
             {
+                var listaNamestaja = Projekat.Instance.Namestaji;
+                var listaUsluga = Projekat.Instance.DodatnaUsluge;
+                foreach (var namestaj in listaNamestaja)
+                {
+                    foreach (var usluga in listaUsluga)
+                    {
+                        ukupanIznos = namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena * pdv;
+                    }
+                }
                 return ukupanIznos;
             }
             set
@@ -199,53 +117,12 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        //private Namestaj namestaj;
-
-        //[XmlIgnore]
-        //public Namestaj Namestaj
-        //{
-        //    get
-        //    {
-        //        if (namestaj == null)
-        //        {
-        //            namestaj = Namestaj.GetById(NamestajId);
-        //        }
-        //        return namestaj;
-        //    }
-        //    set
-        //    {
-        //        namestaj = value;
-        //        NamestajId = namestaj.Id;
-        //        OnPropertyChanged("Namestaj");
-        //    }
-        //}
-
-        //private DodatnaUsluga dodatnaUsluga;
-
-        //[XmlIgnore]
-        //public DodatnaUsluga DodatnaUsluga
-        //{
-        //    get
-        //    {
-        //        if (dodatnaUsluga == null)
-        //        {
-        //            dodatnaUsluga = DodatnaUsluga.GetById(DodatnaUslugaId);
-        //        }
-        //        return dodatnaUsluga;
-        //    }
-        //    set
-        //    {
-        //        dodatnaUsluga = value;
-        //        DodatnaUslugaId = dodatnaUsluga.Id;
-        //        OnPropertyChanged("DodatnaUsluga");
-        //    }
-        //}
-
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public override string ToString()
         {
-            return $"{DatumProdaje}, {BrojRacuna}, {Kupac}, {DodatnaUsluga.GetById(DodatnaUslugaId).Naziv} , {PDV}, {UkupanIznos}";
+            return $"{DatumProdaje}, {BrojRacuna}, {Kupac}, {PDV}, {UkupanIznos}";
         }
 
         public static ProdajaNamestaja GetById(int id)
@@ -301,10 +178,9 @@ namespace POP_SF32_2016.Model
                     p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
                     p.BrojRacuna = row["BrojRacuna"].ToString();
                     p.Kupac = row["Kupac"].ToString();
-                    p.NamestajaId = int.Parse(row["StavkeNamestajaId"].ToString());
-                    p.DodatnaUslugaId = int.Parse(row["StavkeUslugaId"].ToString());
+                    p.UkupanIznos = double.Parse(row["UkupanIznos"].ToString());
 
-                   prodaja.Add(p);
+                    prodaja.Add(p);
                 }
 
             }
@@ -315,9 +191,8 @@ namespace POP_SF32_2016.Model
         #endregion
 
         #region CRUD
-        public static Namestaj Create(Namestaj n)
+        public static ProdajaNamestaja Create(ProdajaNamestaja p)
         {
-            Random random = new Random();
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
@@ -326,28 +201,54 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Sifra, Cena, Kolicina, TipNamestajaId, Obrisan) VALUES (@Naziv, @Sifra, @Cena, @Kolicina, @TipNamestajaId, @Obrisan);";
+                cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, UkupanIznos) VALUES (@DatumProdaje, @BrojRacuna, @Kupac, @UkupanIznos);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 50);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                //cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                cmd.Parameters.AddWithValue("DatumProdaje", p.DatumProdaje);
+                cmd.Parameters.AddWithValue("Kupac", p.Kupac);
+                cmd.Parameters.AddWithValue("BrojRacuna", p.BrojRacuna);
+                cmd.Parameters.AddWithValue("UkupanIznos", p.UkupanIznos);
+                
+                p.Id = int.Parse(cmd.ExecuteScalar().ToString());
 
-                n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                var listaNamestaja = Projekat.Instance.StavkeNamestaja;
+           
+
+                //for (int i = 0; i < listaNamestaja.Count; i++)
+                foreach (var namestaj in listaNamestaja)
+                {
+                    SqlCommand command = con.CreateCommand();
+                     
+                    command.CommandText = "INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (@IdProdaje, @NamestajId, @Kolicina);";
+                    command.Parameters.AddWithValue("IdProdaje", p.Id);
+                    command.Parameters.AddWithValue("NamestajId", namestaj.NamestajId);
+                    command.Parameters.AddWithValue("Kolicina", namestaj.KolicinaNamestaja);
+
+                    command.ExecuteScalar();
+
+                }
+
+                var listaUsluga = Projekat.Instance.StavkeUsluge;
+                //for (int i = 0; i < listaUsluga.Count; i++)
+                foreach (var usluga in listaUsluga)
+                {
+                    SqlCommand command = con.CreateCommand();
+
+                    command.CommandText = "INSERT INTO StavkeUsluge (IdProdaje, UslugaId) VALUES (@IdProdaje, @UslugaId);";
+                    command.Parameters.AddWithValue("IdProdaje", p.Id);
+                    command.Parameters.AddWithValue("UslugaId", usluga.UslugaId);
+
+                    command.ExecuteScalar();
+                }
             }
 
-            Projekat.Instance.Namestaji.Add(n);
+            Projekat.Instance.ProdajeNamestaja.Add(p);
 
-            return n;
+            return p;
         }
         #endregion
 
         #region CRUD
-        public static void Update(Namestaj n)
+        public static void Update(ProdajaNamestaja p)
         {
 
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
@@ -357,42 +258,27 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina, TipNamestajaId=@TipNamestajaId, AkcijaId=@AkcijaId, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText = "UPDATE ProdajaNamestaja SET DatumProdaje=@DatumProdaje, BrojRacuna=@BrojRacuna, Kupac=@Kupac, Kolicina=@Kolicina WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", n.Id);
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                cmd.Parameters.AddWithValue("Id", p.Id);
+                cmd.Parameters.AddWithValue("DatumProdaje", p.DatumProdaje);
+                cmd.Parameters.AddWithValue("BrojRacuna", p.BrojRacuna);
+                cmd.Parameters.AddWithValue("Kupac", p.Kupac);
 
                 cmd.ExecuteNonQuery();
             }
 
-            foreach (var namestaj in Projekat.Instance.Namestaji)
+            foreach (var prodaja in Projekat.Instance.ProdajeNamestaja)
             {
-                if (n.Id == namestaj.Id)
+                if (p.Id == prodaja.Id)
                 {
-                    namestaj.Naziv = n.Naziv;
-                    namestaj.Sifra = n.Sifra;
-                    namestaj.JedinicnaCena = n.JedinicnaCena;
-                    namestaj.KolicinaUMagacinu = n.KolicinaUMagacinu;
-                    namestaj.AkcijskaProdaja = n.AkcijskaProdaja;
-                    namestaj.AkcijaId = n.AkcijaId;
-                    namestaj.TipNamestaja = n.TipNamestaja;
-                    namestaj.TipNamestajaId = n.TipNamestajaId;
-                    namestaj.Obrisan = n.Obrisan;
+                    prodaja.DatumProdaje = p.DatumProdaje;
+                    prodaja.BrojRacuna = p.BrojRacuna;
+                    prodaja.Kupac = p.Kupac;
                 }
             }
         }
 
-        public static void Delete(Namestaj n)
-        {
-            n.Obrisan = true;
-            Update(n);
-        }
         #endregion
     }
 }
