@@ -9,17 +9,47 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="56*"/>
-            <RowDefinition Height="264*"/>
-            <RowDefinition Height="67*"/>
+            <RowDefinition Height="255*"/>
+            <RowDefinition Height="76*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" FontSize="20" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="Akcija_broj"/>
-        <Button Grid.Row="2" Content="Dodaj" Margin="32,10,664,16" Click="DodajAkciju_Click"/>
-        <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="165,12,526,16" Click="IzmeniAkciju_Click">
-
-        </Button>
-        <Button Grid.Row="2" Content="Izbrisi" RenderTransformOrigin="-1.371,0.41" Margin="291,10,376,16" Click="ObrsiAkciju_Click"/>
-        <Button Grid.Row="2" Content="Izadji" Margin="613,10,58,16" Click="Zatvori_Click" RenderTransformOrigin="0.489,0.35"/>
         <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="37" Margin="596,10,0,0" VerticalAlignment="Top" Width="152" SelectionChanged="cbSortiraj_SelectionChanged"/>
         <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="37" Margin="502,10,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajAkciju_Click" Height="64" Margin="61,6,692,6" Width="53" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\dodaj.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniAkciju_Click" Height="64" Margin="194,6,559,6" Width="53" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\izmena.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="ObrsiAkciju_Click" Height="64" Margin="325,6,413,6" Width="68" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\obrisi.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Zatvori_Click" Height="60" Margin="670,6,80,10" Width="56" Grid.Row="2" RenderTransformOrigin="2.971,-0.032">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\izadji.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

@@ -71,7 +71,6 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.Close();
         }
-        private TipNamestaja tipNamestaja;
 
         private void Izbrisi_Clik(object sender, RoutedEventArgs e)
         {
@@ -84,24 +83,17 @@ namespace POP_SF_32_2016_GUI.UI
                 {
                     if (tip.Id == izabraniTip.Id)
                     {
-                        //        tip.Obrisan = true;
                         TipNamestaja.Delete(izabraniTip);
                         vieew.Filter = FilterTipNamestaja;
-                        foreach (var tipa in listaTipa)
-                        {
-                            if (tipa.Obrisan == true)
-                            {
-                                foreach (var namestaj in listaNamestaja)
-                                {
-                                    if (namestaj.TipNamestajaId == tipa.Id)
-                                    {
-                                        Namestaj.Delete(namestaj);
-                                    }
 
-
-                                }
-                            }
-                        }
+                        foreach (var namestaj in listaNamestaja)
+                         {
+                              if (namestaj.TipNamestajaId == tip.Id)
+                              {
+                                   Namestaj.Delete(namestaj);
+                              }
+                       
+                         }
                     }
 
                 }

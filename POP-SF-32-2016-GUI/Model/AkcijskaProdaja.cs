@@ -125,11 +125,28 @@ namespace POP_SF32_2016.Model
             }
         }
 
+
+        private string naziv;
+
+        public string Naziv
+        {
+            get
+            {
+                return naziv;
+            }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
-            return $"{DatumPocetka}, {Popust}, {DatumZavrsetka}";
+            return $"{Naziv}, {Popust}";
         }
 
         public static AkcijskaProdaja GetById(int id)
@@ -157,7 +174,8 @@ namespace POP_SF32_2016.Model
                 DatumPocetka = datumPocetka,
                 Popust = popust,
                 DatumZavrsetka = datumZavrsetka,
-                NamestajId = namestajId
+                NamestajId = namestajId,
+                Naziv = naziv
             };
         }
 
@@ -185,6 +203,7 @@ namespace POP_SF32_2016.Model
                     a.DatumZavrsetka = DateTime.Parse(row["DatumZavrsetka"].ToString());
                     a.NamestajId = int.Parse(row["NamestajId"].ToString());
                     a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                    a.Naziv = row["Naziv"].ToString();
 
                     akcijskaProdaja.Add(a);
                 }
@@ -198,43 +217,6 @@ namespace POP_SF32_2016.Model
 
 
         #region CRUD
-        public static ObservableCollection<Namestaj> NaAkciji()
-        {
-            var namestaj = new ObservableCollection<Namestaj>();
-
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
-            {
-                SqlCommand cmd = con.CreateCommand();
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                cmd.CommandText = "SELECT * FROM Namestaj WHERE Id NOT IN (SELECT NamestajId FROM NaAkciji) AND Obrisan=0;";
-                da.SelectCommand = cmd;
-                da.Fill(ds, "Namestaj");
-
-                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
-                {
-                    var n = new Namestaj();
-                    n.Id = int.Parse(row["Id"].ToString());
-                    n.Naziv = row["Naziv"].ToString();
-                    n.Sifra = row["Sifra"].ToString();
-                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
-                    n.KolicinaUMagacinu = int.Parse(row["Kolicina"].ToString());
-                    n.AkcijaId = int.Parse(row["AkcijaId"].ToString());
-                    n.TipNamestajaId = int.Parse(row["TipNamestajaId"].ToString());
-                    n.Obrisan = bool.Parse(row["Obrisan"].ToString());
-
-                    namestaj.Add(n);
-                }
-
-            }
-
-
-            return namestaj;
-        }
-        #endregion
-
-        #region CRUD
         public static AkcijskaProdaja Create(AkcijskaProdaja a)
         {
 
@@ -245,15 +227,28 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "INSERT INTO AkcijskaProdaja (DatumPocetka, Popust, DatumZavrsetka, NamestajId, Obrisan) VALUES (@DatumPocetka, @Popust, @DatumZavrsetka, @NamestajId, @Obrisan);";
+                cmd.CommandText = "INSERT INTO AkcijskaProdaja (DatumPocetka, Popust, DatumZavrsetka, Naziv, NamestajId, Obrisan) VALUES (@DatumPocetka, @Popust, @DatumZavrsetka, @Naziv, @NamestajId, @Obrisan);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
                 cmd.Parameters.AddWithValue("Popust", a.Popust);
                 cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("Naziv", a.Naziv);
                 cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
                 cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
 
                 a.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                var listaNamestaja = Projekat.Instance.Namestaji;
+
+                foreach (var namestaj in listaNamestaja)
+                {
+                    SqlCommand command = con.CreateCommand();
+
+                    command.CommandText = "UPDATE Namestaj SET AkcijaId = (SELECT a.Id FROM AkcijskaProdaja a, Namestaj n WHERE a.Id=n.AkcijaId);";
+                    command.Parameters.AddWithValue("AkcijaId", a.Id);
+
+                    command.ExecuteScalar();
+                }
             }
 
             Projekat.Instance.AkcijskeProdaje.Add(a);
@@ -273,7 +268,7 @@ namespace POP_SF32_2016.Model
                 SqlCommand cmd = con.CreateCommand();
 
 
-                cmd.CommandText = "UPDATE AkcijskaProdaja SET DatumPocetka=@DatumPocetka, Popust=@Popust, DatumZavrsetka=@DatumZavrsetka, NamestajId=@NamestajId, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText = "UPDATE AkcijskaProdaja SET DatumPocetka=@DatumPocetka, Popust=@Popust, DatumZavrsetka=@DatumZavrsetka, NamestajId=@NamestajId, Obrisan=@Obrisan, @Naziv=Naziv WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", a.Id);
                 cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
@@ -281,6 +276,7 @@ namespace POP_SF32_2016.Model
                 cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
                 cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
                 cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+                cmd.Parameters.AddWithValue("Naziv", a.Naziv);
 
                 cmd.ExecuteNonQuery();
             }
@@ -295,6 +291,7 @@ namespace POP_SF32_2016.Model
                     akcijskaProdaja.Namestaj = a.Namestaj;
                     akcijskaProdaja.NamestajId = a.NamestajId;
                     akcijskaProdaja.Obrisan = a.Obrisan;
+                    akcijskaProdaja.Naziv = a.Naziv;
                 }
             }
         }

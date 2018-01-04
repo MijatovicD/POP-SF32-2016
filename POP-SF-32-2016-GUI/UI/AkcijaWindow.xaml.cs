@@ -47,7 +47,6 @@ namespace POP_SF_32_2016_GUI.UI
         private bool AkcijaFilter(object obj)
         {
             var listaAkcija = Projekat.Instance.AkcijskeProdaje;
-            var listaNamestaja = Projekat.Instance.Namestaji;
             foreach (var akcija in listaAkcija)
             {
                 if (akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
@@ -70,6 +69,7 @@ namespace POP_SF_32_2016_GUI.UI
                 DatumPocetka = DateTime.Today,
                 Popust = 0,
                 DatumZavrsetka = DateTime.Today,
+                Naziv = "",
                 NamestajId = 0
             };
 
@@ -92,7 +92,7 @@ namespace POP_SF_32_2016_GUI.UI
             var izabranaAkcija = (AkcijskaProdaja)dgAkcija.SelectedItem;
             var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             var listaNamestaja = Projekat.Instance.Namestaji;
-            if (MessageBox.Show($"Da li zelite da obrisete: {izabranaAkcija.Id}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Da li zelite da obrisete: {izabranaAkcija.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var akcija in listaAkcija)
                 {
@@ -101,20 +101,17 @@ namespace POP_SF_32_2016_GUI.UI
                         AkcijskaProdaja.Delete(izabranaAkcija);
                         vieew.Filter = AkcijaFilter;
 
-                        foreach (var a in listaAkcija)
-                        {
-                            if (a.Obrisan == true)
+                            foreach (var a in listaAkcija)
                             {
-                                foreach (var namestaj in listaNamestaja)
-                                {
-                                    if (a.Id == namestaj.AkcijaId)
-                                    {
+                               foreach (var namestaj in listaNamestaja)
+                               {
+                                   if (a.Id == namestaj.AkcijaId)
+                                   {
                                         namestaj.AkcijaId = 0;
                                         Namestaj.Update(namestaj);
-                                    }
-                                }
+                                   }
+                               }
                             }
-                        }
                     }
                 }
 

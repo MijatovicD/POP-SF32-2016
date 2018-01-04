@@ -247,7 +247,7 @@ namespace POP_SF32_2016.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.GetById(TipNamestajaId).Naziv}";
+            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.GetById(TipNamestajaId).Naziv}, {AkcijskaProdaja.GetById(AkcijaId)?.Naziv}";
         }
 
 
@@ -332,24 +332,34 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Namestaj (Naziv, Sifra, Cena, Kolicina, AkcijaId, TipNamestajaId, Obrisan) VALUES (@Naziv, @Sifra, @Cena, @Kolicina, @AkcijaId, @TipNamestajaId, @Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                    n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 50) + n.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
+                    cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                    cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                    cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                    cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
+                    cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
-                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Sifra, Cena, Kolicina, TipNamestajaId, Obrisan) VALUES (@Naziv, @Sifra, @Cena, @Kolicina, @TipNamestajaId, @Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 50);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                //cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                }
 
-                n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                Projekat.Instance.Namestaji.Add(n);
+
+                return n;
+
             }
-
-            Projekat.Instance.Namestaji.Add(n);
-
-            return n;
+                
         }
         #endregion
 
@@ -363,19 +373,27 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
 
-                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina, TipNamestajaId=@TipNamestajaId, AkcijaId=@AkcijaId, Obrisan=@Obrisan WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", n.Id);
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina, TipNamestajaId=@TipNamestajaId, AkcijaId=@AkcijaId, Obrisan=@Obrisan WHERE Id=@Id;";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", n.Id);
+                    cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                    cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                    cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                    cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                    cmd.Parameters.AddWithValue("AkcijaId", n.AkcijaId);
+                    cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
 
             foreach (var namestaj in Projekat.Instance.Namestaji)

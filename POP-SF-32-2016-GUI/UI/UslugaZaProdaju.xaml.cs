@@ -38,6 +38,7 @@ namespace POP_SF_32_2016_GUI.UI
             dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluge;
             dgUsluga.DataContext = stavkaUsluge;
 
+            dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
             this.DataContext = StavkaUsluge;
         }
 

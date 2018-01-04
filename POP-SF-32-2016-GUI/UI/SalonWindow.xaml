@@ -8,15 +8,30 @@
         Title="SalonWindow" Height="440" Width="762" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="221*"/>
-            <RowDefinition Height="48*"/>
+            <RowDefinition Height="330*"/>
+            <RowDefinition Height="79*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Row="0" FontSize="20" Name="dgSalon" SelectedItem="{Binding Path=IzabraniSalon}" AutoGeneratingColumn="dgSalon_AutoGeneratingColumn" CanUserAddRows="false"/>
-        <Button Content="Izmeni" Margin="28,22,608,20" Grid.Row="1" Click="Izmeni_Click"/>
-        <Button Content="Izadji" Margin="574,22,41,20" Click="Zatvori" Grid.Row="1"/>
-
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Izmeni_Click" Height="62" Margin="39,7,662,10" Width="53" Grid.Row="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\dodaj.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Zatvori" Height="59" Margin="655,10,44,10" Width="55" Grid.Row="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\izadji.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

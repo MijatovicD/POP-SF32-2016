@@ -10,20 +10,61 @@
     <Border Background="AliceBlue">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="64*"/>
-                <RowDefinition Height="369*"/>
+                <RowDefinition Height="68*"/>
+                <RowDefinition Height="365*"/>
                 <RowDefinition Height="106*"/>
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj"/>
-            <Button Grid.Row="2" Content="Dodaj" Margin="12,35,656,33" Click="DodajNamestaj_Click"/>
-            <Button Grid.Row="2" Content="Izmeni" RenderTransformOrigin="-1.614,0.957" Margin="149,35,524,33" Click="IzmeniNamestaj_Click"/>
-            <Button Grid.Row="2" Content="Izbrisi" RenderTransformOrigin="-1.371,0.41" Margin="275,35,387,33" Click="ObrsiNamestaj_Click"/>
-            <Button Grid.Row="2" Content="Izadji" Margin="662,35,10,31" Click="Zatvori_Click"/>
+            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj" SelectedIndex="0"/>
             <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
             <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="42" Margin="587,10,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="0.333,0.548"/>
             <Label Content="Pretraga namestaja:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>
             <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="42" Margin="496,10,0,0" VerticalAlignment="Top" Width="86"/>
-            <Button Content="Pretrazi" HorizontalAlignment="Left" Height="42" Margin="320,10,0,0" VerticalAlignment="Top" Width="115" Click="Button_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="381,0" Width="0"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajNamestaj_Click" Height="63" Margin="39,21,670,22" Width="53" Grid.Row="2">
+                <Button.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="..\Images\dodaj.png"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniNamestaj_Click" Height="63" Margin="172,21,537,22" Width="53" Grid.Row="2">
+                <Button.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="..\Images\izmena.png"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="ObrsiNamestaj_Click" Height="63" Margin="303,21,391,22" Width="68" Grid.Row="2">
+                <Button.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="..\Images\obrisi.png" RenderTransformOrigin="3.132,0.8"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Zatvori_Click" Height="63" Margin="652,21,49,22" Width="61" Grid.Row="2" RenderTransformOrigin="2.971,-0.032">
+                <Button.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="..\Images\izadji.png" RenderTransformOrigin="3.132,0.8"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="42" Margin="325,10,391,16" Width="46">
+                <Button.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="..\Images\pretraga.png"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
     </Border>
 </Window>

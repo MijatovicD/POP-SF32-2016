@@ -118,3 +118,9 @@ ALTER TABLE dbo.NaAkciji ADD Obrisan BIT
 ALTER TABLE dbo.NaAkciji ADD AkcijaId INT FOREIGN KEY (AkcijaId) REFERENCES dbo.AkcijskaProdaja(Id)
 
 ALTER TABLE dbo.ProdajaNamestaja ADD UkupanIznos NUMERIC(9,2) NOT NULL DEFAULT 0
+
+ALTER TABLE dbo.AkcijskaProdaja ADD Naziv VARCHAR(50)
+
+ALTER TABLE dbo.Namestaj DROP CONSTRAINT FK__Namestaj__TipNam__25869641
+ALTER TABLE dbo.Namestaj DROP COLUMN TipNamestajaId
+ALTER TABLE dbo.Namestaj ADD TipNamestajaId INT FOREIGN KEY(TipNamestajaId) REFERENCES dbo.TipNamestaja(Id) DEFAULT 0

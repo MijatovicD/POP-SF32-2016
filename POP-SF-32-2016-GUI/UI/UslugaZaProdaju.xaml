@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UslugaZaProdaju" Height="300" Width="300">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="220" Margin="-4,-2,0,0" VerticalAlignment="Top" Width="296" Name="dgUsluga" SelectedItem="{Binding Path=DodatnaUsluga}" AutoGeneratingColumn="dgUsluga_AutoGeneratingColumn"/>
+        <DataGrid HorizontalAlignment="Left" Height="220" Margin="-4,-2,0,0" VerticalAlignment="Top" Width="296" Name="dgUsluga" SelectedItem="{Binding Path=DodatnaUsluga}" AutoGeneratingColumn="dgUsluga_AutoGeneratingColumn" CanUserAddRows="False"/>
         <Button x:Name="Dodaj_Click" Content="Dodaj" HorizontalAlignment="Left" Height="36" Margin="23,223,0,0" VerticalAlignment="Top" Width="240" Click="Dodaj"/>
 
     </Grid>

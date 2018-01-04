@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace POP_SF_32_2016_GUI.Model
 {
@@ -86,7 +87,7 @@ namespace POP_SF_32_2016_GUI.Model
 
         public override string ToString()
         {
-            return $"{Namestaj.GetById(NamestajId).Naziv}, {AkcijskaProdaja.GetById(AkcijaId).Popust}";
+            return $"{Namestaj.GetById(NamestajId).Naziv}, {AkcijskaProdaja.GetById(AkcijaId).Naziv}";
         }
 
 

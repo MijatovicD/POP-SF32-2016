@@ -69,25 +69,11 @@ namespace POP_SF_32_2016_GUI.UI
 
                     Namestaj.Update(namestaj);
 
-                    foreach (var namestaj in listaNamestaja)
-                    {
-                        foreach (var akcija in listaAkcija)
-                        {
-
-                            if (namestaj.AkcijaId == akcija.Id)
-                            {
-                                namestaj.JedinicnaCena = (namestaj.JedinicnaCena * (Double)akcija.Popust) / 100;
-                            }
-
-                        }
-
-                    }
                     break;
                 default:
                     break;
             }
 
-            //GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
                 
             Close();
         }

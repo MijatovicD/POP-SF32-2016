@@ -36,13 +36,15 @@ namespace POP_SF_32_2016_GUI.UI
         {
 
             InitializeComponent();
-
+          
             this.stavkaNamestaja = stavkaNamestaja;
             this.operacija = operacija;
 
             dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaji;
             tbKolicina.DataContext = stavkaNamestaja;
             dgNamestajProdaja.DataContext = stavkaNamestaja;
+
+            dgNamestajProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             this.DataContext = StavkaNamestaja;
         }
@@ -52,12 +54,26 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
+            var listaNamestaja = Projekat.Instance.Namestaji;
+            var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
 
-                    StavkaNamestaja.Create(stavkaNamestaja);
+
+                    if (int.Parse(tbKolicina.Text) > izabraniNamestaj.KolicinaUMagacinu || int.Parse(tbKolicina.Text) == 0 || int.Parse(tbKolicina.Text) < 0)
+                    {
+                        MessageBox.Show("Kolicina mora biti manja", "Greska");
+                    }
+                    else
+                    {
+                        izabraniNamestaj.KolicinaUMagacinu = izabraniNamestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
+                        StavkaNamestaja.Create(stavkaNamestaja);
+                        Namestaj.Update(izabraniNamestaj);
+                    }
+
+                    
                     break;
 
                 //case Operacija.IZMENA:
@@ -105,23 +121,28 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var listaStavke = Projekat.Instance.StavkeNamestaja;
-            var listaNamestaja = Projekat.Instance.Namestaji;
-            var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
+ 
+
+        //private void tbKolicina_TextInput(object sender, TextCompositionEventArgs e)
+        //{
+        //    var listaNamestaja = Projekat.Instance.Namestaji;
+        //    var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
+
 
             
-                foreach (var namestaj in listaNamestaja)
-                {
-                    if (int.Parse(tbKolicina.Text) < namestaj.KolicinaUMagacinu)
-                    {
-                        namestaj.KolicinaUMagacinu = namestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
-                    }
-                }
 
-           
-            //Namestaj.Update(namestaj);
-        }
+
+        //        if (int.Parse(tbKolicina.Text) < izabraniNamestaj.KolicinaUMagacinu)
+        //        {
+        //            izabraniNamestaj.KolicinaUMagacinu = izabraniNamestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
+        //        }
+
+        //        Namestaj.Update(izabraniNamestaj);
+        //        //if (int.Parse(tbKolicina.Text) < namestaj.KolicinaUMagacinu)
+        //        //{
+        //        //    namestaj.KolicinaUMagacinu = namestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
+        //        //}
+            
+        //}
     }
 }

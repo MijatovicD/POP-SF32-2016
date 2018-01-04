@@ -77,7 +77,7 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private const double pdv = 0.02;
+        private const double pdv = 0.2;
 
 
         public  double PDV
@@ -88,7 +88,7 @@ namespace POP_SF32_2016.Model
             }
             set
             {
-                //pdv = 0.02;
+                //pdv = 0.2;
                 OnPropertyChanged("PDV");
             }
         }
@@ -105,7 +105,7 @@ namespace POP_SF32_2016.Model
                 {
                     foreach (var usluga in listaUsluga)
                     {
-                        ukupanIznos = namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena * pdv;
+                        ukupanIznos = namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena;
                     }
                 }
                 return ukupanIznos;
@@ -118,11 +118,37 @@ namespace POP_SF32_2016.Model
         }
 
 
+        private double ukupanIznosPdv;
+
+        public double UkupanIznosPDV
+        {
+            get
+            {
+                var listaNamestaja = Projekat.Instance.Namestaji;
+                var listaUsluga = Projekat.Instance.DodatnaUsluge;
+
+                foreach (var namestaj in listaNamestaja)
+                {
+                    foreach (var usluga in listaUsluga)
+                    {
+                        ukupanIznos = (namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena) * pdv;
+                    }
+                }
+
+                return ukupanIznosPdv;
+            }
+            set {
+                ukupanIznosPdv = value;
+                OnPropertyChanged("UkupanIznosPDV");
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
-            return $"{DatumProdaje}, {BrojRacuna}, {Kupac}, {PDV}, {UkupanIznos}";
+            return $"{DatumProdaje}, {BrojRacuna}, {Kupac}, {UkupanIznos}";
         }
 
         public static ProdajaNamestaja GetById(int id)
@@ -147,7 +173,6 @@ namespace POP_SF32_2016.Model
             return new ProdajaNamestaja()
             {
                 Id = id,
-                //StavkaProdaje = stavkaProdaje,
                 DatumProdaje = datumProdaje,
                 BrojRacuna = brojRacuna,
                 Kupac = kupac,
@@ -179,6 +204,7 @@ namespace POP_SF32_2016.Model
                     p.BrojRacuna = row["BrojRacuna"].ToString();
                     p.Kupac = row["Kupac"].ToString();
                     p.UkupanIznos = double.Parse(row["UkupanIznos"].ToString());
+
 
                     prodaja.Add(p);
                 }
@@ -217,7 +243,7 @@ namespace POP_SF32_2016.Model
                 foreach (var namestaj in listaNamestaja)
                 {
                     SqlCommand command = con.CreateCommand();
-                     
+                  
                     command.CommandText = "INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (@IdProdaje, @NamestajId, @Kolicina);";
                     command.Parameters.AddWithValue("IdProdaje", p.Id);
                     command.Parameters.AddWithValue("NamestajId", namestaj.NamestajId);

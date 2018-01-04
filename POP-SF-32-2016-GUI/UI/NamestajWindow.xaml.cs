@@ -27,7 +27,7 @@ namespace POP_SF_32_2016_GUI.UI
     public partial class NamestajWindow : Window
     {
         ICollectionView vieew;
-       
+
         public Namestaj IzabraniNamestaj { get; set; }
 
         public NamestajWindow()
@@ -37,8 +37,8 @@ namespace POP_SF_32_2016_GUI.UI
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = vieew;
-           
-        
+
+
             cbSortiraj.Items.Add("");
             cbSortiraj.Items.Add("Naziv");
             cbSortiraj.Items.Add("Sifra");
@@ -48,9 +48,9 @@ namespace POP_SF_32_2016_GUI.UI
             cbSortiraj.Items.Add("Tipu namestaja");
 
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-      
+
             vieew.Filter = NamestajFilter;
-            
+
         }
 
         private bool NamestajFilter(object obj)
@@ -59,15 +59,15 @@ namespace POP_SF_32_2016_GUI.UI
             var listaNamestaja = Projekat.Instance.Namestaji;
             foreach (var akcija in listaAkcija)
             {
-                    foreach (var namestaj in listaNamestaja)
+                foreach (var namestaj in listaNamestaja)
+                {
+                    if (namestaj.AkcijaId == akcija.Id)
                     {
-                        if (namestaj.AkcijaId == akcija.Id)
+                        if (akcija.Obrisan == true || akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
                         {
-                            if (akcija.Obrisan == true || akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
-                            {
-                                namestaj.AkcijaId = 0;
-                            }
+                            namestaj.AkcijaId = 0;
                         }
+                    }
                 }
             }
             return ((Namestaj)obj).Obrisan == false;
@@ -75,6 +75,7 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void DodajNamestaj_Click(object sender, RoutedEventArgs e)
         {
+
             var noviNamestaj = new Namestaj()
             {
                 Naziv = "",
@@ -101,7 +102,7 @@ namespace POP_SF_32_2016_GUI.UI
         {
             this.Close();
         }
-   
+
         private void ObrsiNamestaj_Click(object sender, RoutedEventArgs e)
         {
             var izabranNamestaj = (Namestaj)dgNamestaj.SelectedItem;
@@ -158,7 +159,7 @@ namespace POP_SF_32_2016_GUI.UI
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Descending));
             }
 
-            else if(cbSortiraj.SelectedIndex == 3)
+            else if (cbSortiraj.SelectedIndex == 3)
             {
                 dgNamestaj.Items.SortDescriptions.Clear();
                 dgNamestaj.Items.SortDescriptions.Add(new SortDescription("JedinicnaCena", ListSortDirection.Descending));
@@ -208,28 +209,24 @@ namespace POP_SF_32_2016_GUI.UI
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
-        //DataTable table = new DataTable("Namestaj");
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //    var namestaj = new ObservableCollection<Namestaj>();
 
-            //    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
-            //    {
-            //        con.Open();
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
 
-            //        using(SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Namestaj", con))
-            //        {
-            //            da.Fill(table);
-            //            dgNamestaj.DataContext = table;
-            //        }
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Namestaj WHERE Obrisan=0 AND Naziv LIKE'" + tbPretraga.Text + "%'", con);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dgNamestaj.DataContext = ds;
 
-            //        DataView dv = table.DefaultView;
-            //        dv.RowFilter = string.Format("Naziv LIKE '%{0}%'", tbPretraga.Text);
-            //        dgNamestaj.DataContext = dv.ToTable();
+                //cmd.CommandText = ("SELECT * FROM Namestaj WHERE Obrisan=0 AND Naziv LIKE'" + tbPretraga.Text + "%'", con);
+                //da.SelectCommand = cmd;
+                //da.Fill(ds, "Namestaj");
 
-
-
-            //    }
+            }
         }
     }
 }

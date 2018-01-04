@@ -39,10 +39,9 @@ namespace POP_SF_32_2016_GUI.UI
             this.prodajaNamestaja = prodajaNamestaja;
             this.operacija = operacija;
 
-            //dgNamestajP.ItemsSource = Projekat.Instance.StavkaProdaje;
 
             dDatumProdaje.DataContext = prodajaNamestaja;
-            lbCena.DataContext = prodajaNamestaja;
+            lbCena.DataContext = prodajaNamestaja.UkupanIznos;
             tbBrojRacuna.DataContext = prodajaNamestaja;
             tbKupac.DataContext = prodajaNamestaja;
             dgNamestajP.ItemsSource = Projekat.Instance.StavkeNamestaja;
@@ -51,7 +50,7 @@ namespace POP_SF_32_2016_GUI.UI
             dgUslugaP.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
         }
-        
+
         private ProdajaNamestaja prodajaNamestaja;
         private Operacija operacija;
 
@@ -64,32 +63,12 @@ namespace POP_SF_32_2016_GUI.UI
                 case Operacija.DODAVANJE:
               
                     ProdajaNamestaja.Create(prodajaNamestaja);
-
-
-                    //var listaProdaje = Projekat.Instance.ProdajeNamestaja;
-
-                    //CollectionViewSource cvs = new CollectionViewSource();
-                    //cvs.Source = listaProdaje;
-
-
-                    //Binding b1 = new Binding();
-                    //b1.Path = new PropertyPath("/UkupanIznos");
-                    //lbCena.SetBinding(Label.ContentProperty, b1);
-          
+                    
 
                     break;
                 case Operacija.IZMENA:
-                    //foreach (var p in listaProdaje)
-                    //{
-                    //    if (p.Id == prodajaNamestaja.Id)
-                    //    {
-                    //        p.StavkaNamestaja = prodajaNamestaja.StavkaNamestaja;
-                    //        p.BrojRacuna = prodajaNamestaja.BrojRacuna;
-                    //        p.Kupac = prodajaNamestaja.Kupac;
-                    //        p.DodatnaUslugaId = prodajaNamestaja.DodatnaUslugaId;
-                    //        break;
-                    //    }
-                    //}
+
+                    ProdajaNamestaja.Update(prodajaNamestaja);
                     break;
                 default:
                     break;

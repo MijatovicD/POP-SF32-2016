@@ -7,20 +7,49 @@
         mc:Ignorable="d"
         Title="TipNamestajaWindow" Height="388" Width="801" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="63*"/>
             <RowDefinition Height="171*"/>
             <RowDefinition Height="56*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" FontSize="20" Name="dgTipNamestaja" SelectedItem="{Binding Path=IzabraniTip}" AutoGeneratingColumn="dgTipNamestaja_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="TipNamestja_broj"/>
-        <Button Content="Dodaj" Margin="10,17,659,10" Click="DodajTip_Click" Grid.Row="2"/>
-        <Button Content="Izmeni" Margin="151,17,510,10" Click="IzmeniTip_Click" Grid.Row="2"/>
-        <Button Content="Izbrisi" Margin="314,17,324,10" Click="Izbrisi_Clik" Grid.Row="2"/>
-        <Button Content="Izadji" Margin="591,17,41,10" Click="Zatvori_Click" Grid.Row="2"/>
         <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="31" Margin="617,22,0,0" VerticalAlignment="Top" Width="135" SelectionChanged="cbSortiraj_SelectionChanged"/>
         <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="31" Margin="528,22,0,0" VerticalAlignment="Top" Width="73" RenderTransformOrigin="0.542,0.032"/>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajTip_Click" Height="56" Margin="31,5,714,8" Width="48" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\dodaj.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniTip_Click" Height="56" Margin="178,5,563,8" Width="52" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\izmena.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Izbrisi_Clik" Height="54" Margin="321,7,411,8" Width="61" Grid.Row="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\obrisi.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Zatvori_Click" Height="51" Margin="678,5,63,13" Width="52" Grid.Row="2" RenderTransformOrigin="2.971,-0.032">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\izadji.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

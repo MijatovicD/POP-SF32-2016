@@ -39,13 +39,14 @@ namespace POP_SF_32_2016_GUI.UI
             this.operacija = operacija;
 
 
-            //dgNametajLista.ItemsSource = Projekat.Instance.Namestaj;
             dpDatumPocetka.DataContext = akcijskaProdaja;
             tbPopust.DataContext = akcijskaProdaja;
+            tbNaziv.DataContext = akcijskaProdaja;
             dgNametajLista.DataContext = akcijskaProdaja;
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
 
-            dgNametajLista.ItemsSource = AkcijskaProdaja.NaAkciji();
+            dgNametajLista.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+            dgNametajLista.ItemsSource = Projekat.Instance.Akcija;
 
         }
 
@@ -64,6 +65,7 @@ namespace POP_SF_32_2016_GUI.UI
                     
                     AkcijskaProdaja.Create(akcijskaProdaja);
 
+
                     break;
 
                 case Operacija.IZMENA:
@@ -74,7 +76,6 @@ namespace POP_SF_32_2016_GUI.UI
                     break;
             }
 
-            //GenericSerializer.Serialize("akcijskaProdaja.xml", listaAkcija);
 
             Close();
         }

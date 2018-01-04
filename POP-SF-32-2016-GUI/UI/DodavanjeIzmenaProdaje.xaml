@@ -18,7 +18,7 @@
         <Button Content="Sacuvaj" HorizontalAlignment="Left" Height="43" Click="SacuvajIzmene" Margin="234,463,0,0" VerticalAlignment="Top" Width="170"/>
         <TextBox HorizontalAlignment="Left" Height="36" Margin="122,173,0,0" TextWrapping="Wrap" Name="tbBrojRacuna" VerticalAlignment="Top" Width="282" Text="{Binding Path=BrojRacuna}"/>
         <TextBox HorizontalAlignment="Left" Height="41" Margin="122,209,0,0" VerticalAlignment="Top" Name="tbKupac" Width="282" Text="{Binding Path=Kupac}"/>
-        <Label Name="lbCena" HorizontalAlignment="Left" Height="51" Margin="122,393,0,0" VerticalAlignment="Top" Width="282" RenderTransformOrigin="0.471,2.717" Content="{Binding Path=UkupanIznos}"/>
+        <Label Name="lbCena" HorizontalAlignment="Left" Height="51" Margin="122,393,0,0" VerticalAlignment="Top" Width="282" RenderTransformOrigin="0.471,2.717" Content="{Binding ElementName=dgNamestajP, Path=SelectedItem.JedinicnaCena}"/>
         <Button Content="Dodavanje" HorizontalAlignment="Left" Height="36" Margin="0,72,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
         <DataGrid x:Name="dgNamestajP" HorizontalAlignment="Left" Height="137" Margin="122,36,0,0" VerticalAlignment="Top" Width="282" AutoGeneratingColumn="dgNamestajP_AutoGeneratingColumn" SelectedItem="{Binding Path=StavkeNamestajaId}" CanUserAddRows="False"/>
         <DataGrid x:Name="dgUslugaP" HorizontalAlignment="Left" Height="148" Margin="122,245,0,0" VerticalAlignment="Top" Width="282" RenderTransformOrigin="0.5,0.5" AutoGeneratingColumn="dgUslugaP_AutoGeneratingColumn" SelectedItem="{Binding Path=StavkeUslugeId}" CanUserAddRows="False">

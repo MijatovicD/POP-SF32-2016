@@ -69,7 +69,6 @@ namespace POP_SF_32_2016_GUI.UI
                     break;
             }
 
-            //GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
 
             Close();
         }
