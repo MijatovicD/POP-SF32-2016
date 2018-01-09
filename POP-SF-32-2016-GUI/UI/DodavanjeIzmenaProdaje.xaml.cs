@@ -42,7 +42,6 @@ namespace POP_SF_32_2016_GUI.UI
 
             dDatumProdaje.DataContext = prodajaNamestaja;
             lbCena.DataContext = prodajaNamestaja.UkupanIznos;
-            tbBrojRacuna.DataContext = prodajaNamestaja;
             tbKupac.DataContext = prodajaNamestaja;
             dgNamestajP.ItemsSource = Projekat.Instance.StavkeNamestaja;
             dgNamestajP.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -57,18 +56,19 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
+            var listaProdaje = Projekat.Instance.ProdajeNamestaja;
 
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-              
+                    prodajaNamestaja.BrojRacuna = listaProdaje.Count + 1;
                     ProdajaNamestaja.Create(prodajaNamestaja);
                     
-
                     break;
                 case Operacija.IZMENA:
 
                     ProdajaNamestaja.Update(prodajaNamestaja);
+
                     break;
                 default:
                     break;

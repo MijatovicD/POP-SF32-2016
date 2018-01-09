@@ -36,9 +36,10 @@ namespace POP_SF_32_2016_GUI.UI
 
             this.namestaj = namestaj;
             this.operacija = operacija;
-
+      
             cbTip.ItemsSource = Projekat.Instance.TipoviNamestaja;
             cbAkcija.ItemsSource = Projekat.Instance.AkcijskeProdaje;
+
 
             tbNaziv.DataContext = namestaj;
             tbCena.DataContext = namestaj;
@@ -60,7 +61,7 @@ namespace POP_SF_32_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-
+                    
                     Namestaj.Create(namestaj);
 
                     break;

@@ -13,8 +13,10 @@
             <RowDefinition Height="76*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" FontSize="20" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="Akcija_broj"/>
-        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="37" Margin="596,10,0,0" VerticalAlignment="Top" Width="152" SelectionChanged="cbSortiraj_SelectionChanged"/>
-        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="37" Margin="502,10,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="36" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
+        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="37" Margin="610,10,0,0" VerticalAlignment="Top" Width="152" SelectionChanged="cbSortiraj_SelectionChanged"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="37" Margin="488,10,0,0" VerticalAlignment="Top" Width="76"/>
+        <Label Content="Pretraga akcija:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajAkciju_Click" Height="64" Margin="61,6,692,6" Width="53" Grid.Row="2">
             <Button.Template>
                 <ControlTemplate>
@@ -47,6 +49,15 @@
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
                         <Image Source="..\Images\izadji.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="36" Margin="355,10,413,10" Width="38" RenderTransformOrigin="-0.382,0.431">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\pretraga.png"/>
                     </StackPanel>
                 </ControlTemplate>
             </Button.Template>

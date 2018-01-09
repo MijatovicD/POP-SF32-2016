@@ -13,7 +13,9 @@
             <RowDefinition Height="56*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" FontSize="20" Name="dgTipNamestaja" SelectedItem="{Binding Path=IzabraniTip}" AutoGeneratingColumn="dgTipNamestaja_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="TipNamestja_broj"/>
+        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
         <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="31" Margin="617,22,0,0" VerticalAlignment="Top" Width="135" SelectionChanged="cbSortiraj_SelectionChanged"/>
+        <Label Content="Pretraga namestaja:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>
         <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="31" Margin="528,22,0,0" VerticalAlignment="Top" Width="73" RenderTransformOrigin="0.542,0.032"/>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajTip_Click" Height="56" Margin="31,5,714,8" Width="48" Grid.Row="2">
             <Button.Template>
@@ -47,6 +49,15 @@
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
                         <Image Source="..\Images\izadji.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Pretrazi_Click" Height="42" Margin="336,10,411,25" Width="46" RenderTransformOrigin="0.957,0.571">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\pretraga.png"/>
                     </StackPanel>
                 </ControlTemplate>
             </Button.Template>

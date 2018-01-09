@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_SF32_2016.Model
@@ -104,9 +105,16 @@ namespace POP_SF32_2016.Model
             }
             set
             {
-                namestaj = value;
-                NamestajId = namestaj.Id;
-                OnPropertyChanged("Namestaj");
+                try
+                {
+                    namestaj = value;
+                    NamestajId = namestaj.Id;
+                    OnPropertyChanged("Namestaj");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greska");
+                }
             }
         }
 
@@ -226,29 +234,40 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-
-                cmd.CommandText = "INSERT INTO AkcijskaProdaja (DatumPocetka, Popust, DatumZavrsetka, Naziv, NamestajId, Obrisan) VALUES (@DatumPocetka, @Popust, @DatumZavrsetka, @Naziv, @NamestajId, @Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
-                cmd.Parameters.AddWithValue("Popust", a.Popust);
-                cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
-                cmd.Parameters.AddWithValue("Naziv", a.Naziv);
-                cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
-                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
-
-                a.Id = int.Parse(cmd.ExecuteScalar().ToString());
-
-                var listaNamestaja = Projekat.Instance.Namestaji;
-
-                foreach (var namestaj in listaNamestaja)
+                try
                 {
-                    SqlCommand command = con.CreateCommand();
+                    cmd.CommandText = "INSERT INTO AkcijskaProdaja (DatumPocetka, Popust, DatumZavrsetka, Naziv, NamestajId, Obrisan) VALUES (@DatumPocetka, @Popust, @DatumZavrsetka, @Naziv, @NamestajId, @Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
+                    cmd.Parameters.AddWithValue("Popust", a.Popust);
+                    cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                    cmd.Parameters.AddWithValue("Naziv", a.Naziv);
+                    cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
+                    cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
 
-                    command.CommandText = "UPDATE Namestaj SET AkcijaId = (SELECT a.Id FROM AkcijskaProdaja a, Namestaj n WHERE a.Id=n.AkcijaId);";
-                    command.Parameters.AddWithValue("AkcijaId", a.Id);
+                    a.Id = int.Parse(cmd.ExecuteScalar().ToString());
 
-                    command.ExecuteScalar();
+                    var listaAkcija = Projekat.Instance.Akcija;
+
+                    foreach (var akcija in listaAkcija)
+                    {
+                        SqlCommand command = con.CreateCommand();
+
+
+                        command.CommandText = "INSERT INTO NaAkciji (NamestajId, AkcijaId, Obrisan) VALUES (@NamestajId, @AkcijaId, @Obrisan);";
+                        command.Parameters.AddWithValue("NamestajId", a.NamestajId);
+                        command.Parameters.AddWithValue("AkcijaId", a.Id);
+                        command.Parameters.AddWithValue("Obrisan", akcija.Obrisan);
+
+                        command.ExecuteScalar();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno dodavanje", "Greska");
+                }
+           
+
             }
 
             Projekat.Instance.AkcijskeProdaje.Add(a);
@@ -267,18 +286,25 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "UPDATE AkcijskaProdaja SET DatumPocetka=@DatumPocetka, Popust=@Popust, DatumZavrsetka=@DatumZavrsetka, NamestajId=@NamestajId, Obrisan=@Obrisan, @Naziv=Naziv WHERE Id=@Id;";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", a.Id);
+                    cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
+                    cmd.Parameters.AddWithValue("Popust", a.Popust);
+                    cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                    cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
+                    cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+                    cmd.Parameters.AddWithValue("Naziv", a.Naziv);
 
-                cmd.CommandText = "UPDATE AkcijskaProdaja SET DatumPocetka=@DatumPocetka, Popust=@Popust, DatumZavrsetka=@DatumZavrsetka, NamestajId=@NamestajId, Obrisan=@Obrisan, @Naziv=Naziv WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", a.Id);
-                cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
-                cmd.Parameters.AddWithValue("Popust", a.Popust);
-                cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
-                cmd.Parameters.AddWithValue("NamestajId", a.NamestajId);
-                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
-                cmd.Parameters.AddWithValue("Naziv", a.Naziv);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno azuriranje", "Greska");
+                }
 
-                cmd.ExecuteNonQuery();
             }
 
             foreach (var akcijskaProdaja in Projekat.Instance.AkcijskeProdaje)
@@ -298,8 +324,15 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(AkcijskaProdaja a)
         {
-            a.Obrisan = true;
-            Update(a);
+            try
+            {
+                a.Obrisan = true;
+                Update(a);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neuspesno brisanje", "Greska");
+            }
         }
         #endregion
     }

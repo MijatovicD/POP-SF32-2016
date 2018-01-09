@@ -47,9 +47,9 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private string brojRacuna;
+        private int brojRacuna;
 
-        public string BrojRacuna
+        public int BrojRacuna
         {
             get
             {
@@ -201,7 +201,7 @@ namespace POP_SF32_2016.Model
                     var p = new ProdajaNamestaja();
                     p.Id = int.Parse(row["Id"].ToString());
                     p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
-                    p.BrojRacuna = row["BrojRacuna"].ToString();
+                    p.BrojRacuna = int.Parse(row["BrojRacuna"].ToString());
                     p.Kupac = row["Kupac"].ToString();
                     p.UkupanIznos = double.Parse(row["UkupanIznos"].ToString());
 
@@ -226,7 +226,7 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-
+                var listaProdaje = Projekat.Instance.ProdajeNamestaja;
                 cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, UkupanIznos) VALUES (@DatumProdaje, @BrojRacuna, @Kupac, @UkupanIznos);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumProdaje", p.DatumProdaje);

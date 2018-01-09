@@ -3,6 +3,9 @@ using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,7 +91,7 @@ namespace POP_SF_32_2016_GUI.UI
 
                         foreach (var namestaj in listaNamestaja)
                          {
-                              if (namestaj.TipNamestajaId == tip.Id)
+                              if (namestaj.TipNamestajaId == izabraniTip.Id)
                               {
                                    Namestaj.Delete(namestaj);
                               }
@@ -124,11 +127,36 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+            else if ((string)e.Column.Header == "Error")
+            {
+                e.Cancel = true;
+            }
         }
 
         private void TipNamestja_broj(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
+
+        private void Pretrazi_Click(object sender, RoutedEventArgs e)
+        {
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+
+                cmd.CommandText = ("SELECT * FROM TipNamestaja WHERE Obrisan=0 AND Naziv LIKE'" + tbPretraga.Text + "%'");
+                DataSet ds = new DataSet(); 
+
+                da.SelectCommand = cmd;
+                da.Fill(ds, "TipNamestaja");
+                dgTipNamestaja.ItemsSource = ds.Tables[0].DefaultView;
+            }
+
         }
     }
 }

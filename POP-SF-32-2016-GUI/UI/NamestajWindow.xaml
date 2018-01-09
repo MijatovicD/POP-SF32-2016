@@ -14,13 +14,13 @@
                 <RowDefinition Height="365*"/>
                 <RowDefinition Height="106*"/>
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj" SelectedIndex="0"/>
+            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj"/>
             <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
             <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="42" Margin="587,10,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="0.333,0.548"/>
             <Label Content="Pretraga namestaja:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>
             <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="42" Margin="496,10,0,0" VerticalAlignment="Top" Width="86"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="381,0" Width="0"/>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajNamestaj_Click" Height="63" Margin="39,21,670,22" Width="53" Grid.Row="2">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajNamestaj_Click" Height="63" Margin="46,21,659,22" Width="57" Grid.Row="2">
                 <Button.Template>
                     <ControlTemplate>
                         <StackPanel Orientation="Vertical">
@@ -29,7 +29,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniNamestaj_Click" Height="63" Margin="172,21,537,22" Width="53" Grid.Row="2">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniNamestaj_Click" Height="63" Margin="185,21,515,22" Width="62" Grid.Row="2">
                 <Button.Template>
                     <ControlTemplate>
                         <StackPanel Orientation="Vertical">
@@ -38,7 +38,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="ObrsiNamestaj_Click" Height="63" Margin="303,21,391,22" Width="68" Grid.Row="2">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="ObrsiNamestaj_Click" Height="63" Margin="313,21,381,22" Width="68" Grid.Row="2">
                 <Button.Template>
                     <ControlTemplate>
                         <StackPanel Orientation="Vertical">

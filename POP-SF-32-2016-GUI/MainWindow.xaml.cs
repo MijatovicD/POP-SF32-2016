@@ -80,5 +80,10 @@ namespace POP_SF_32_2016_GUI
             this.Close();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var racunProzor = new Racun();
+            racunProzor.ShowDialog();
+        }
     }
 }

@@ -19,5 +19,6 @@
         <Button Content="Rad sa korisnikom" Click="Korisnik" Height="45" Margin="25,145,237,109" RenderTransformOrigin="0.527,-0.633" Grid.Row="1"/>
         <Button Content="Rad sa akcijskom &#xD;&#xA;prodajom" Click="AkcijskaProdaja" Height="45" Margin="195,155,64,119" Grid.Row="1"/>
         <Button Content="Prodaja namestaja" Height="45" Click="ProdajaNamestaja" Margin="25,213,237,42" RenderTransformOrigin="0.527,-0.633" Grid.Row="1"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="46" Margin="195,222,0,0" Grid.Row="1" VerticalAlignment="Top" Width="131" Click="Button_Click"/>
     </Grid>
 </Window>

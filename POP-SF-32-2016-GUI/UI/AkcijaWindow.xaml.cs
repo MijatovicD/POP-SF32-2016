@@ -100,18 +100,16 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         AkcijskaProdaja.Delete(izabranaAkcija);
                         vieew.Filter = AkcijaFilter;
-
-                            foreach (var a in listaAkcija)
-                            {
-                               foreach (var namestaj in listaNamestaja)
+                       
+                          foreach (var namestaj in listaNamestaja)
+                          {
+                               if (izabranaAkcija.Id == namestaj.AkcijaId)
                                {
-                                   if (a.Id == namestaj.AkcijaId)
-                                   {
-                                        namestaj.AkcijaId = 0;
-                                        Namestaj.Update(namestaj);
-                                   }
+                                    namestaj.AkcijaId = 0;
+                                  
                                }
-                            }
+                          }
+                           
                     }
                 }
 
@@ -176,11 +174,20 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+            else if ((string)e.Column.Header == "Error")
+            {
+                e.Cancel = true;
+            }
         }
 
         private void Akcija_broj(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -20,9 +20,27 @@
             <ColumnDefinition Width="187*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Ime:" FontSize="15"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbIme" Text="{Binding Path=Ime}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Name="tbIme" Text="{Binding Path=Ime, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
         <Label Grid.Row="1" Grid.Column="0" Content="Prezime:" FontSize="15"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbPrezime" Text="{Binding Path=Prezime}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbPrezime" Text="{Binding Path=Prezime, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
         <Label Grid.Row="2" Grid.Column="0" Content="Korisnicko ime:" FontSize="15"/>
         <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKoriIme" Text="{Binding Path=KorisnickoIme}"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Lozinka:" FontSize="15"/>

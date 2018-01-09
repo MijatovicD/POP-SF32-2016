@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace POP_SF32_2016.Model
 {
-    public class DodatnaUsluga : INotifyPropertyChanged, ICloneable
+    public class DodatnaUsluga : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
 
         private int id;
@@ -71,6 +71,35 @@ namespace POP_SF32_2016.Model
             {
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return "Neispravni podaci o dodatnoj usluzi";
+            }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "Naziv":
+                        if (string.IsNullOrEmpty(Naziv))
+                            return "Polje ne sme biti prazno";
+                        break;
+                    case "Cena":
+                        if (Cena < 0)
+                        {
+                            return "Mora biti veca od nule";
+                        }
+                        break;
+                }
+                return "";
             }
         }
 

@@ -53,5 +53,14 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="42" Margin="354,10,419,16" Width="46">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\pretraga.png"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

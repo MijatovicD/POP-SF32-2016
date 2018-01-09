@@ -46,7 +46,7 @@ namespace POP_SF_32_2016_GUI.UI
             dpDatumZavrsetka.DataContext = akcijskaProdaja;
 
             dgNametajLista.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-            dgNametajLista.ItemsSource = Projekat.Instance.Akcija;
+            dgNametajLista.ItemsSource = Projekat.Instance.Namestaji;
 
         }
 

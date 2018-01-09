@@ -50,7 +50,7 @@ namespace POP_SF_32_2016_GUI.UI
             {
 
                 DatumProdaje = DateTime.Today,
-                BrojRacuna = "",
+                BrojRacuna = 0,
                 Kupac = "",
                 UkupanIznos = 0
             };

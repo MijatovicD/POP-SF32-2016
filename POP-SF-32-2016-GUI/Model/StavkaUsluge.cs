@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_SF_32_2016_GUI.Model
@@ -150,12 +151,19 @@ namespace POP_SF_32_2016_GUI.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "INSERT INTO StavkeUsluge (UslugaId) VALUES (@UslugaId);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("UslugaId", u.UslugaId);
 
-                cmd.CommandText = "INSERT INTO StavkeUsluge (UslugaId) VALUES (@UslugaId);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("UslugaId", u.UslugaId);
+                    u.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno dodavanje", "Greska");
+                }
 
-                u.Id = int.Parse(cmd.ExecuteScalar().ToString());
             }
 
             Projekat.Instance.StavkeUsluge.Add(u);

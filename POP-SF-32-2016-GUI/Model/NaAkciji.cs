@@ -60,6 +60,26 @@ namespace POP_SF_32_2016_GUI.Model
             }
         }
 
+        private AkcijskaProdaja akcijskaProdaja;
+
+        [XmlIgnore]
+        public AkcijskaProdaja AkcijskaProdaja
+        {
+            get
+            {
+                if (akcijskaProdaja == null)
+                {
+                    akcijskaProdaja = AkcijskaProdaja.GetById(AkcijaId);
+                }
+                return akcijskaProdaja;
+            }
+            set
+            {
+                akcijskaProdaja = value;
+                AkcijaId = akcijskaProdaja.Id;
+                OnPropertyChanged("AkcijskaProdaja");
+            }
+        }
 
         private bool obrisan;
 

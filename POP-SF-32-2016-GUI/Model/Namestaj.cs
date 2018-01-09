@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_SF32_2016.Model
@@ -154,9 +155,17 @@ namespace POP_SF32_2016.Model
             }
             set
             {
-                tipNamestaja = value;
-                TipNamestajaId = tipNamestaja.Id;
-                OnPropertyChanged("TipNamestaja");
+                try
+                {
+                    tipNamestaja = value;
+                    TipNamestajaId = tipNamestaja.Id;
+                    OnPropertyChanged("TipNamestaja");
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Greska");
+                }
             }
         }
 
@@ -174,9 +183,16 @@ namespace POP_SF32_2016.Model
             }
             set
             {
-                akcijskaProdaja = value;
-                AkcijaId = akcijskaProdaja.Id;
-                OnPropertyChanged("AkcijskaProdaja");
+                try
+                {
+                    akcijskaProdaja = value;
+                    AkcijaId = akcijskaProdaja.Id;
+                    OnPropertyChanged("AkcijskaProdaja");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Greska");
+                }
             }
         }
 
@@ -200,7 +216,16 @@ namespace POP_SF32_2016.Model
                             return "Polje ne sme biti prazno";
                         break;
                     case "JedinicnaCena":
-                      
+                        if (JedinicnaCena < 0)
+                        {
+                            return "Mora biti veca od nule";
+                        }
+                        break;
+                    case "KolicinaUMagacinu":
+                        if (KolicinaUMagacinu < 0)
+                        {
+                            return "Mora biti veca od nule";
+                        }
                         break;
                 }
                 return "";
@@ -247,7 +272,7 @@ namespace POP_SF32_2016.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.GetById(TipNamestajaId).Naziv}, {AkcijskaProdaja.GetById(AkcijaId)?.Naziv}";
+            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.GetById(TipNamestajaId)?.Naziv}, {AkcijskaProdaja.GetById(AkcijaId)?.Naziv}";
         }
 
 
@@ -337,7 +362,7 @@ namespace POP_SF32_2016.Model
                     cmd.CommandText = "INSERT INTO Namestaj (Naziv, Sifra, Cena, Kolicina, AkcijaId, TipNamestajaId, Obrisan) VALUES (@Naziv, @Sifra, @Cena, @Kolicina, @AkcijaId, @TipNamestajaId, @Obrisan);";
                     cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                     cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                    n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 50) + n.TipNamestaja.Naziv.Substring(0, 2).ToUpper();
+                    n.Sifra = n.Naziv.Substring(0, 2).ToUpper() + random.Next(1, 50) + n.TipNamestaja.Naziv.Substring(0,2).ToUpper();
                     cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                     cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
                     cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
@@ -349,9 +374,9 @@ namespace POP_SF32_2016.Model
                 }
 
 
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    MessageBox.Show("Neuspesno dodavanje", "Greska");
                 }
 
                 Projekat.Instance.Namestaji.Add(n);
@@ -390,9 +415,9 @@ namespace POP_SF32_2016.Model
                     cmd.ExecuteNonQuery();
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    MessageBox.Show("Neuspesno azuriranje", "Greska");
                 }
             }
 
@@ -415,8 +440,17 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(Namestaj n)
         {
-            n.Obrisan = true;
-            Update(n);
+
+            try
+            {
+                n.Obrisan = true;
+                Update(n);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ne uspesno brisanje", "Greska");                
+            }
         }
         #endregion
     }

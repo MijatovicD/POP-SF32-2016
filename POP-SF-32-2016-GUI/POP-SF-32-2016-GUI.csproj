@@ -100,6 +100,9 @@
     <Compile Include="UI\ProdajaNamestajaWindow.xaml.cs">
       <DependentUpon>ProdajaNamestajaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Racun.xaml.cs">
+      <DependentUpon>Racun.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\SalonWindow.xaml.cs">
       <DependentUpon>SalonWindow.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\ProdajaNamestajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Racun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

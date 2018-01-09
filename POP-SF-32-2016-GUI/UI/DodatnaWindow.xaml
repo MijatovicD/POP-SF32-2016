@@ -13,8 +13,10 @@
             <RowDefinition Height="95*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" FontSize="20" Name="dgUsluga" SelectedItem="{Binding Path=IzabranaUsluga}" AutoGeneratingColumn="dgUsluga_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="Dodatna_broj"/>
+        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="170,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="42" Margin="726,10,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortiraj_SelectionChanged"/>
         <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="42" Margin="630,10,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label Content="Pretraga usluga:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajUslugu_Click" Height="64" Margin="30,14,865,17" Width="53" Grid.Row="2">
             <Button.Template>
                 <ControlTemplate>
@@ -47,6 +49,15 @@
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
                         <Image Source="..\Images\izadji.png" RenderTransformOrigin="3.132,0.8"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Height="42" Margin="344,10,558,26" Width="46">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="..\Images\pretraga.png"/>
                     </StackPanel>
                 </ControlTemplate>
             </Button.Template>

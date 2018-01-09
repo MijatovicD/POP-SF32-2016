@@ -49,3 +49,5 @@ C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\POP-SF-32-
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\UslugaZaProdaju.g.cs
 C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\UslugaZaProdaju.baml
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Racun.g.cs
+C:\Users\Dimitrije\Desktop\POP SF32_2016\POP-SF-32-2016-GUI\obj\Debug\UI\Racun.baml

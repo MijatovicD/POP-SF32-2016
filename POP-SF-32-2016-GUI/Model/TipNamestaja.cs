@@ -8,10 +8,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace POP_SF32_2016.Model
 {
-    public class TipNamestaja : INotifyPropertyChanged, ICloneable
+    public class TipNamestaja : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
 
 
@@ -58,6 +59,29 @@ namespace POP_SF32_2016.Model
             {
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return "Neispravni podaci o tipu namestaja";
+            }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "Naziv":
+                        if (string.IsNullOrEmpty(Naziv))
+                            return "Polje ne sme biti prazno";
+                        break;
+                }
+                return "";
             }
         }
 
@@ -140,13 +164,19 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES (@Naziv, @Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                    cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
 
-                cmd.CommandText = "INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES (@Naziv, @Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
-                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
-
-                tn.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                    tn.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno dodavanje", "Greska");
+                }
             }
 
             Projekat.Instance.TipoviNamestaja.Add(tn);
@@ -165,14 +195,21 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "UPDATE TipNamestaja SET Naziv=@Naziv, Obrisan=@Obrisan WHERE Id=@Id;";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", tn.Id);
+                    cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                    cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
 
-                cmd.CommandText = "UPDATE TipNamestaja SET Naziv=@Naziv, Obrisan=@Obrisan WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", tn.Id);
-                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
-                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspseno azuriranje", "Greska");
+                }
 
-                cmd.ExecuteNonQuery();
             }
 
             foreach (var tipNamestaja in Projekat.Instance.TipoviNamestaja)
@@ -187,8 +224,8 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(TipNamestaja tn)
         {
-            tn.Obrisan = true;
-            Update(tn);
+                tn.Obrisan = true;
+                Update(tn);
         }
         #endregion
     }

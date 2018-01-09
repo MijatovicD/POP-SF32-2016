@@ -72,8 +72,7 @@ namespace POP_SF_32_2016_GUI.UI
                         StavkaNamestaja.Create(stavkaNamestaja);
                         Namestaj.Update(izabraniNamestaj);
                     }
-
-                    
+                   
                     break;
 
                 //case Operacija.IZMENA:

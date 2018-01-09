@@ -1,0 +1,18 @@
+﻿<Window x:Class="POP_SF_32_2016_GUI.UI.Racun"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="Racun" Height="351.51" Width="176.028" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="===================" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="164"/>
+        <TextBlock x:Name="tbNaziv" HorizontalAlignment="Left" Height="62" Margin="0,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164"><Run Text="    Salon namestaja FTNale"/><LineBreak/><Run Text="    Trg Dositeja Obradovica 6"/><LineBreak/><Run Text="    21000 Novi Sad"/><LineBreak/><Run Text="PIB:32489624"/></TextBlock>
+        <Label Content="---------------------------------" HorizontalAlignment="Left" Height="25" Margin="0,86,0,0" VerticalAlignment="Top" Width="164"/>
+        <Label Content="--------------------------------" HorizontalAlignment="Left" Height="22" Margin="0,261,0,0" VerticalAlignment="Top" Width="168"/>
+        <ListBox x:Name="lbStavke" HorizontalAlignment="Left" Height="58" Margin="0,111,0,0" VerticalAlignment="Top" Width="168"/>
+        <ListBox x:Name="lbUsluge" HorizontalAlignment="Left" Height="59" Margin="0,169,0,0" VerticalAlignment="Top" Width="168"/>
+
+    </Grid>
+</Window>

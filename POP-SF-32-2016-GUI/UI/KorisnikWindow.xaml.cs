@@ -157,11 +157,20 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+            else if ((string)e.Column.Header == "Error")
+            {
+                e.Cancel = true;
+            }
         }
 
         private void Korisnik_broj(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

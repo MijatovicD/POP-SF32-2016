@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace POP_SF32_2016.Model
 {
@@ -17,7 +18,7 @@ namespace POP_SF32_2016.Model
         Administrator,
         Prodavac
     }
-    public class Korisnik : INotifyPropertyChanged, ICloneable
+    public class Korisnik : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
 
         private int id;
@@ -126,6 +127,35 @@ namespace POP_SF32_2016.Model
             }
         }
 
+        public string Error
+        {
+            get
+            {
+                return "Neispravni podaci o korisniku";
+            }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "Ime":
+                        if (string.IsNullOrEmpty(Ime))
+                            return "Polje ne sme biti prazno";
+                        break;
+                    case "Prezime":
+                        if (string.IsNullOrEmpty(Prezime))
+                        {
+                            return "Polje ne sme biti prazno";
+                        }
+                        break;
+                }
+                return "";
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -211,22 +241,29 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Korisnik (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisan) VALUES (@Ime, @Prezime, @KorisnickoIme, @Lozinka, @TipKorisnika, @Obrisan);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Ime", ko.Ime);
+                    cmd.Parameters.AddWithValue("Prezime", ko.Prezime);
+                    cmd.Parameters.AddWithValue("KorisnickoIme", ko.KorisnickoIme);
+                    cmd.Parameters.AddWithValue("Lozinka", ko.Lozinka);
+                    cmd.Parameters.AddWithValue("TipKorisnika", ko.TipKorisnika);
+                    cmd.Parameters.AddWithValue("Obrisan", ko.Obrisan);
 
-                cmd.CommandText = "INSERT INTO Korisnik (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisan) VALUES (@Ime, @Prezime, @KorisnickoIme, @Lozinka, @TipKorisnika, @Obrisan);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Ime", ko.Ime);
-                cmd.Parameters.AddWithValue("Prezime", ko.Prezime);
-                cmd.Parameters.AddWithValue("KorisnickoIme", ko.KorisnickoIme);
-                cmd.Parameters.AddWithValue("Lozinka", ko.Lozinka);
-                cmd.Parameters.AddWithValue("TipKorisnika", ko.TipKorisnika);
-                cmd.Parameters.AddWithValue("Obrisan", ko.Obrisan);
+                    ko.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno dodavanje", "Greska");
+                }
 
-                ko.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                Projekat.Instance.Korisnici.Add(ko);
+
+                return ko;
             }
 
-            Projekat.Instance.Korisnici.Add(ko);
-
-            return ko;
         }
         #endregion
 
@@ -240,18 +277,25 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "UPDATE Korisnik SET Ime=@Ime, Prezime=@Prezime, KorisnickoIme=@KorisnickoIme, Lozinka=@Lozinka, TipKorisnika=@TipKorisnika, Obrisan=@Obrisan WHERE Id=@Id;";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", ko.Id);
+                    cmd.Parameters.AddWithValue("Ime", ko.Ime);
+                    cmd.Parameters.AddWithValue("Prezime", ko.Prezime);
+                    cmd.Parameters.AddWithValue("KorisnickoIme", ko.KorisnickoIme);
+                    cmd.Parameters.AddWithValue("Lozinka", ko.Lozinka);
+                    cmd.Parameters.AddWithValue("TipKorisnika", ko.TipKorisnika);
+                    cmd.Parameters.AddWithValue("Obrisan", ko.Obrisan);
 
-                cmd.CommandText = "UPDATE Korisnik SET Ime=@Ime, Prezime=@Prezime, KorisnickoIme=@KorisnickoIme, Lozinka=@Lozinka, TipKorisnika=@TipKorisnika, Obrisan=@Obrisan WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", ko.Id);
-                cmd.Parameters.AddWithValue("Ime", ko.Ime);
-                cmd.Parameters.AddWithValue("Prezime", ko.Prezime);
-                cmd.Parameters.AddWithValue("KorisnickoIme", ko.KorisnickoIme);
-                cmd.Parameters.AddWithValue("Lozinka", ko.Lozinka);
-                cmd.Parameters.AddWithValue("TipKorisnika", ko.TipKorisnika);
-                cmd.Parameters.AddWithValue("Obrisan", ko.Obrisan);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno azuriranje", "Greska");
+                }
 
-                cmd.ExecuteNonQuery();
             }
 
             foreach (var korisnik in Projekat.Instance.Korisnici)
@@ -270,8 +314,15 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(Korisnik ko)
         {
-            ko.Obrisan = true;
-            Update(ko);
+            try
+            {
+                ko.Obrisan = true;
+                Update(ko);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neuspesno brisanje", "Greska");
+            }
         }
         #endregion
     }

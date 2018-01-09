@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_SF_32_2016_GUI.Model
@@ -138,7 +139,7 @@ namespace POP_SF_32_2016_GUI.Model
 
         public override string ToString()
         {
-            return $"{Namestaj.GetById(NamestajId).Naziv}";
+            return $"{Namestaj.GetById(NamestajId).Naziv}, {Namestaj.GetById(NamestajId).JedinicnaCena}, {KolicinaNamestaja}";
         }
 
         protected void OnPropertyChanged(string propertyName)
@@ -198,14 +199,21 @@ namespace POP_SF_32_2016_GUI.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
+                try
+                {
+                    cmd.CommandText = "INSERT INTO StavkeNamestaja (NamestajId, Kolicina) VALUES (@NamestajId, @Kolicina);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("NamestajId", s.NamestajId);
+                    cmd.Parameters.AddWithValue("Kolicina", s.KolicinaNamestaja);
 
-                cmd.CommandText = "INSERT INTO StavkeNamestaja (NamestajId, Kolicina) VALUES (@NamestajId, @Kolicina);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("NamestajId", s.NamestajId);
-                cmd.Parameters.AddWithValue("Kolicina", s.KolicinaNamestaja);
-  
-                s.Id = int.Parse(cmd.ExecuteScalar().ToString());
-              
+                    s.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Neuspesno dodavanje", "Greska");
+                }
+
             }
 
             Projekat.Instance.StavkeNamestaja.Add(s);
