@@ -13,7 +13,7 @@
             <RowDefinition Height="37*"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" FontSize="20" Name="dgKorisnik" SelectedItem="{Binding Path=IzabraniKorisnik}" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" CanUserAddRows="False" Margin="0,0,-10,0" LoadingRow="Korisnik_broj"/>
-        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="156,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TextChanged="tbPretraga_TextChanged" RenderTransformOrigin="-0.841,-3.095"/>
+        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="156,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" RenderTransformOrigin="-0.841,-3.095"/>
         <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="42" Margin="649,10,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="0.484,0.5"/>
         <Label Content="Pretraga korisnika:" HorizontalAlignment="Left" Height="42" Margin="28,10,0,0" VerticalAlignment="Top" Width="114"/>
         <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="42" Margin="563,10,0,0" VerticalAlignment="Top" Width="69"/>

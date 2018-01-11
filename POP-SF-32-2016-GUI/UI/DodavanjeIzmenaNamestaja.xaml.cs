@@ -50,13 +50,13 @@ namespace POP_SF_32_2016_GUI.UI
 
         private Namestaj namestaj;
         private Operacija operacija;
-
         private void SacuvajIzmene(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaji;
             var listaAkcija = Projekat.Instance.AkcijskeProdaje;
             var izabraniTipNamestaja = (TipNamestaja)cbTip.SelectedItem;
             var izabranaAkcija = (AkcijskaProdaja)cbAkcija.SelectedItem;
+
 
             switch (operacija)
             {
@@ -69,7 +69,13 @@ namespace POP_SF_32_2016_GUI.UI
                 case Operacija.IZMENA:
 
                     Namestaj.Update(namestaj);
-
+         
+                      if (namestaj.AkcijaId == izabranaAkcija.Id)
+                      {
+                           namestaj.JedinicnaCena = (namestaj.JedinicnaCena * izabranaAkcija.Popust) / 100;
+                      }
+             
+                   
                     break;
                 default:
                     break;

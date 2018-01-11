@@ -20,13 +20,12 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="91*"/>
+            <RowDefinition Height="45*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -44,8 +43,8 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <Label Grid.Row="2" Grid.Column="0" Content="Cena:" FontSize="15"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbCena" Text="{Binding Path=JedinicnaCena, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+        <Label Grid.Row="1" Grid.Column="0" Content="Cena:" FontSize="15" Margin="0,1,0,0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Name="tbCena" Text="{Binding Path=JedinicnaCena, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
             <Validation.ErrorTemplate>
                 <ControlTemplate>
                     <StackPanel>
@@ -55,8 +54,8 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <Label Grid.Row="3" Grid.Column="0" Content="Kolicina:" FontSize="15"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbKolicina" Text="{Binding Path=KolicinaUMagacinu, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+        <Label Grid.Row="2" Grid.Column="0" Content="Kolicina:" FontSize="15" Margin="0,0,0,45" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKolicina" Text="{Binding Path=KolicinaUMagacinu, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,45" Grid.RowSpan="2">
             <Validation.ErrorTemplate>
                 <ControlTemplate>
                     <StackPanel>
@@ -66,11 +65,31 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <Label Grid.Row="4" Grid.Column="0" Content="Akcija:" FontSize="15"/>
-        <ComboBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="cbAkcija" SelectedItem="{Binding Path=AkcijskaProdaja}"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Tip:" FontSize="15"/>
-        <ComboBox Grid.Row="5" Grid.Column="1" Width="Auto" Name="cbTip" SelectedItem="{Binding Path=TipNamestaja}"/>
-        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="6" Click="SacuvajIzmene"/>
-        <Button Grid.Row="6" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Akcija:" FontSize="15" Margin="0,1,0,0"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="cbAkcija" SelectedItem="{Binding Path=AkcijskaProdaja}"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Tip:" FontSize="15" Margin="0,0,0,45"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="cbTip" SelectedItem="{Binding Path=TipNamestaja}" Margin="0,0,0,45"/>
+        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="5" Click="SacuvajIzmene">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="false" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding  ElementName=tbNaziv, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbCena, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbKolicina, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" 
+                            Value="true" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="5" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
     </Grid>
 </Window>

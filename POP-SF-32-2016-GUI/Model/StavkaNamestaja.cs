@@ -14,7 +14,7 @@ using System.Xml.Serialization;
 
 namespace POP_SF_32_2016_GUI.Model
 {
-    public class StavkaNamestaja : INotifyPropertyChanged, ICloneable
+    public class StavkaNamestaja : INotifyPropertyChanged, ICloneable, IDataErrorInfo
 
     {
         private int id;
@@ -31,6 +31,7 @@ namespace POP_SF_32_2016_GUI.Model
                 OnPropertyChanged("Id");
             }
         }
+
 
         private int namestajId;
 
@@ -49,7 +50,6 @@ namespace POP_SF_32_2016_GUI.Model
 
         private Namestaj namestaj;
 
-        [XmlIgnore]
         public Namestaj Namestaj
         {
             get
@@ -85,7 +85,6 @@ namespace POP_SF_32_2016_GUI.Model
 
         private ProdajaNamestaja prodaja;
 
-        [XmlIgnore]
         public ProdajaNamestaja prodajaNamestaja
         {
             get
@@ -121,6 +120,31 @@ namespace POP_SF_32_2016_GUI.Model
             }
         }
 
+        public string Error
+        {
+            get
+            {
+                return "Neispravni podaci o stavci namestaja";
+            }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "KolicinaNamestaja":
+                        if (KolicinaNamestaja <= 0 || KolicinaNamestaja > namestaj.KolicinaUMagacinu )
+                        {
+                            return "Mora biti veca od nule";
+                        }
+                        break;
+                }
+                return "";
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -139,7 +163,7 @@ namespace POP_SF_32_2016_GUI.Model
 
         public override string ToString()
         {
-            return $"{Namestaj.GetById(NamestajId).Naziv}, {Namestaj.GetById(NamestajId).JedinicnaCena}, {KolicinaNamestaja}";
+            return $"{Namestaj.GetById(NamestajId)?.Naziv}, {Namestaj.GetById(NamestajId).JedinicnaCena}, {KolicinaNamestaja}";
         }
 
         protected void OnPropertyChanged(string propertyName)
@@ -167,7 +191,7 @@ namespace POP_SF_32_2016_GUI.Model
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
 
-                cmd.CommandText = "SELECT * FROM StavkeNamestaja WHERE NamestajId NOT IN (SELECT Id FROM Namestaj);";
+                cmd.CommandText = "SELECT * FROM StavkeNamestaja;";
                 da.SelectCommand = cmd;
                 da.Fill(ds, "StavkeNamestaja");
 

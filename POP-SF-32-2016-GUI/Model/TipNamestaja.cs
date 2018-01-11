@@ -224,8 +224,8 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(TipNamestaja tn)
         {
-                tn.Obrisan = true;
-                Update(tn);
+            tn.Obrisan = true;
+            Update(tn);
         }
         #endregion
     }

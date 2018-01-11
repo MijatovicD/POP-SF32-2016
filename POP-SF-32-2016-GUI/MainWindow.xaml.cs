@@ -25,8 +25,8 @@ namespace POP_SF_32_2016_GUI
         public MainWindow()
         {
             InitializeComponent();
-            
-           
+
+            this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Images/pocetna.jpg")));
         }
        
 
@@ -70,20 +70,10 @@ namespace POP_SF_32_2016_GUI
             akcijaProzor.Show();
         }
 
-        private void ProdajaNamestaja(object sender, RoutedEventArgs e)
-        {
-            var prodajaProzor = new ProdajaNamestajaWindow();
-            prodajaProzor.Show();
-        }
         private void Zatvori(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var racunProzor = new Racun();
-            racunProzor.ShowDialog();
-        }
     }
 }

@@ -71,6 +71,18 @@ namespace POP_SF_32_2016_GUI.UI
                 case Operacija.IZMENA:
 
                     AkcijskaProdaja.Update(akcijskaProdaja);
+
+                    foreach (var akcija in listaAkcija)
+                    {
+                        foreach (var namestaj in listaNamestaja)
+                        {
+                            if (namestaj.AkcijaId == akcija.Id)
+                            {
+                                namestaj.AkcijaId = akcija.Id;
+                                Namestaj.Update(namestaj);
+                            }
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -104,6 +116,10 @@ namespace POP_SF_32_2016_GUI.UI
                 e.Cancel = true;
             }
             else if ((string)e.Column.Header == "TipNamestajaId")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Error")
             {
                 e.Cancel = true;
             }

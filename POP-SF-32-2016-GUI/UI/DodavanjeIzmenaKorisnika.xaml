@@ -42,12 +42,52 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <Label Grid.Row="2" Grid.Column="0" Content="Korisnicko ime:" FontSize="15"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKoriIme" Text="{Binding Path=KorisnickoIme}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Name="tbKoriIme" Text="{Binding Path=KorisnickoIme, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <TextBox x:Name="tbLozinka" Grid.Column="1" HorizontalAlignment="Left" Text="{Binding Path=Lozinka, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Height="45" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="186">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Lozinka:" FontSize="15"/>
-        <PasswordBox Grid.Row="3" Grid.Column="1" Width="Auto" Name="tbLozinka"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Tip korisnika:" FontSize="15"/>
         <ComboBox Grid.Row="4" Grid.Column="1" Width="Auto" Name="cbTipKorisnika" SelectedItem="{Binding Path=TipKorisnika}"/>
-        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="5" Click="SacuvajIzmene"/>
+        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="5" Click="SacuvajIzmene">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="false" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding  ElementName=tbIme, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbPrezime, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbKoriIme, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbLozinka, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" 
+                            Value="true" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Grid.Row="5" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
     </Grid>
 </Window>

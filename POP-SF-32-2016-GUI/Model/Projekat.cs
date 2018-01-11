@@ -36,7 +36,6 @@ namespace POP_SF32_2016.Model
             StavkeNamestaja = StavkaNamestaja.GetAll();
             StavkeUsluge = StavkaUsluge.GetAll();
             Akcija = NaAkciji.GetAll();
-            //StavkeProdaje = StavkaProdaje.GetAll();
         }
     }
 }

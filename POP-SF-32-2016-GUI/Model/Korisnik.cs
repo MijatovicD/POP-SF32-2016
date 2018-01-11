@@ -151,6 +151,18 @@ namespace POP_SF32_2016.Model
                             return "Polje ne sme biti prazno";
                         }
                         break;
+                    case "KorisnickoIme":
+                        if (string.IsNullOrEmpty(Prezime))
+                        {
+                            return "Polje ne sme biti prazno";
+                        }
+                        break;
+                    case "Lozinka":
+                        if (string.IsNullOrEmpty(Prezime))
+                        {
+                            return "Polje ne sme biti prazno";
+                        }
+                        break;
                 }
                 return "";
             }

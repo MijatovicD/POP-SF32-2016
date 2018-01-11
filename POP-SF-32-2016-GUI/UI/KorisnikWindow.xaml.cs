@@ -3,6 +3,9 @@ using POP_SF32_2016.Until;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,28 +106,6 @@ namespace POP_SF_32_2016_GUI.UI
         }
 
 
-        private bool Pretraga(object item)
-        {
-
-            if (String.IsNullOrEmpty(tbPretraga.Text))
-            {
-                return true;
-            }
-
-            else
-            {
-                return ((item as Korisnik).Ime.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Korisnik).Prezime.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0 || (item as Korisnik).KorisnickoIme.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-            }
-
-        }
-
-        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource);
-            view.Filter = Pretraga;
-            CollectionViewSource.GetDefaultView(dgKorisnik.ItemsSource).Refresh();
-        }
-
         private void cbSortiraj_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -170,7 +151,21 @@ namespace POP_SF_32_2016_GUI.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
 
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = ("SELECT * FROM Korisnik WHERE Obrisan=0 AND Ime LIKE'" + tbPretraga.Text + "%'" + "OR Prezime LIKE'" + tbPretraga.Text + "%'" + "OR KorisnickoIme LIKE'" + tbPretraga.Text + "%'" + "OR TipKorisnika LIKE'" + tbPretraga.Text + "%'");
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Korisnik");
+
+                dgKorisnik.ItemsSource = ds.Tables[0].DefaultView;
+            }
         }
     }
 }

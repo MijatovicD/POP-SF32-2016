@@ -32,6 +32,15 @@ namespace POP_SF32_2016.Model
         }
 
 
+        public ObservableCollection<StavkaNamestaja> StavkaNamestaja { get; set; }
+        public ObservableCollection<StavkaUsluge> StavkaUsluge { get; set; }
+        
+        public ProdajaNamestaja()
+        {
+            StavkaNamestaja = new ObservableCollection<StavkaNamestaja>();
+            StavkaUsluge = new ObservableCollection<StavkaUsluge>();
+        }
+
         private DateTime datumProdaje;
 
         public DateTime DatumProdaje
@@ -99,15 +108,6 @@ namespace POP_SF32_2016.Model
         {
             get
             {
-                var listaNamestaja = Projekat.Instance.Namestaji;
-                var listaUsluga = Projekat.Instance.DodatnaUsluge;
-                foreach (var namestaj in listaNamestaja)
-                {
-                    foreach (var usluga in listaUsluga)
-                    {
-                        ukupanIznos = namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena;
-                    }
-                }
                 return ukupanIznos;
             }
             set
@@ -126,18 +126,17 @@ namespace POP_SF32_2016.Model
             {
                 var listaNamestaja = Projekat.Instance.Namestaji;
                 var listaUsluga = Projekat.Instance.DodatnaUsluge;
-
                 foreach (var namestaj in listaNamestaja)
                 {
                     foreach (var usluga in listaUsluga)
                     {
-                        ukupanIznos = (namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena) * pdv;
+                        ukupanIznos = namestaj.JedinicnaCena * namestaj.KolicinaUMagacinu + usluga.Cena;
                     }
                 }
-
                 return ukupanIznosPdv;
             }
-            set {
+            set
+            {
                 ukupanIznosPdv = value;
                 OnPropertyChanged("UkupanIznosPDV");
             }
@@ -215,7 +214,7 @@ namespace POP_SF32_2016.Model
             return prodaja;
         }
         #endregion
-
+        
         #region CRUD
         public static ProdajaNamestaja Create(ProdajaNamestaja p)
         {
@@ -226,7 +225,6 @@ namespace POP_SF32_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-                var listaProdaje = Projekat.Instance.ProdajeNamestaja;
                 cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, UkupanIznos) VALUES (@DatumProdaje, @BrojRacuna, @Kupac, @UkupanIznos);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumProdaje", p.DatumProdaje);
@@ -237,33 +235,41 @@ namespace POP_SF32_2016.Model
                 p.Id = int.Parse(cmd.ExecuteScalar().ToString());
 
                 var listaNamestaja = Projekat.Instance.StavkeNamestaja;
-           
 
-                //for (int i = 0; i < listaNamestaja.Count; i++)
-                foreach (var namestaj in listaNamestaja)
+                for (int i = 0; i < p.StavkaNamestaja.Count; i++)
                 {
                     SqlCommand command = con.CreateCommand();
-                  
+
                     command.CommandText = "INSERT INTO StavkeNamestaja (IdProdaje, NamestajId, Kolicina) VALUES (@IdProdaje, @NamestajId, @Kolicina);";
                     command.Parameters.AddWithValue("IdProdaje", p.Id);
-                    command.Parameters.AddWithValue("NamestajId", namestaj.NamestajId);
-                    command.Parameters.AddWithValue("Kolicina", namestaj.KolicinaNamestaja);
+                    command.Parameters.AddWithValue("NamestajId", p.StavkaNamestaja[i].Namestaj.Id);
+                    command.Parameters.AddWithValue("Kolicina", p.StavkaNamestaja[i].KolicinaNamestaja);
 
-                    command.ExecuteScalar();
 
+                    command.ExecuteNonQuery();
+
+                    var lista = Projekat.Instance.Namestaji;
+
+                    foreach (var namestaj in lista)
+                    {
+                        if (p.StavkaNamestaja[i].Namestaj.Id == namestaj.Id)
+                        {
+                            namestaj.KolicinaUMagacinu = namestaj.KolicinaUMagacinu - p.StavkaNamestaja[i].KolicinaNamestaja;
+                            Namestaj.Update(namestaj);
+                        }
+                    }
                 }
 
-                var listaUsluga = Projekat.Instance.StavkeUsluge;
-                //for (int i = 0; i < listaUsluga.Count; i++)
-                foreach (var usluga in listaUsluga)
+
+                for (int i = 0; i < p.StavkaUsluge.Count; i++)
                 {
                     SqlCommand command = con.CreateCommand();
 
                     command.CommandText = "INSERT INTO StavkeUsluge (IdProdaje, UslugaId) VALUES (@IdProdaje, @UslugaId);";
                     command.Parameters.AddWithValue("IdProdaje", p.Id);
-                    command.Parameters.AddWithValue("UslugaId", usluga.UslugaId);
+                    command.Parameters.AddWithValue("UslugaId", p.StavkaUsluge[i].UslugaId);
 
-                    command.ExecuteScalar();
+                    command.ExecuteNonQuery();
                 }
             }
 

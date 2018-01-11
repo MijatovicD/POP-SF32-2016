@@ -49,7 +49,6 @@ namespace POP_SF_32_2016_GUI.Model
 
         private DodatnaUsluga dodatnaUsluga;
 
-        [XmlIgnore]
         public DodatnaUsluga DodatnaUsluga
         {
             get
@@ -94,7 +93,7 @@ namespace POP_SF_32_2016_GUI.Model
 
         public override string ToString()
         {
-            return $"{DodatnaUsluga.GetById(UslugaId).Naziv}";
+            return $"{DodatnaUsluga.GetById(UslugaId)?.Naziv}";
         }
 
         public static StavkaUsluge GetById(int id)
@@ -120,7 +119,7 @@ namespace POP_SF_32_2016_GUI.Model
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
 
-                cmd.CommandText = "SELECT * FROM StavkeUsluge WHERE UslugaId NOT IN (SELECT Id FROM DodatnaUsluga);";
+                cmd.CommandText = "SELECT * FROM StavkeUsluge;";
                 da.SelectCommand = cmd;
                 da.Fill(ds, "StavkeUsluge");
 

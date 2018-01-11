@@ -21,15 +21,64 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Datum pocetka:" FontSize="15" Margin="0,0,490,0"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Popust:" FontSize="15" Margin="0,0,490,0" Height="55" VerticalAlignment="Top"/>
-        <TextBox Grid.Row="1" Width="Auto" Name="tbPopust" Margin="174,0,0,0" Text="{Binding Path=Popust}"/>
+        <TextBox Grid.Row="1" Width="Auto" Name="tbPopust" Margin="174,0,0,0" Text="{Binding Path=Popust, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Datum &#xD;&#xA;zavrsetka:" FontSize="15" Margin="0,0,490,0"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Namestaj na &#xD;&#xA;popustu:" FontSize="15" Margin="0,0,490,108"/>
-        <Button Content="Sacuvaj" Width="Auto"  Grid.Row="5" Click="SacuvajIzmene" Margin="428,0,0,0"/>
+        <Button Content="Sacuvaj" Width="Auto"  Grid.Row="5" Click="SacuvajIzmene" Margin="428,0,0,0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="false" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding  ElementName=tbNaziv, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbPopust, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=dpDatumPocetka, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=dpDatumZavrsetka, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" 
+                            Value="true" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Grid.Row="5" Content="Izadji" Width="Auto" Click="Zatvori" Margin="0,0,439,0"/>
-        <DatePicker x:Name="dpDatumPocetka" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="490" Margin="174,0,0,0" Text="{Binding Path=DatumPocetka}"/>
+        <DatePicker x:Name="dpDatumPocetka" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="490" Margin="174,0,0,0" Text="{Binding Path=DatumPocetka, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="dataPicker"/>
+                        <DatePicker Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </DatePicker>
         <DatePicker x:Name="dpDatumZavrsetka" HorizontalAlignment="Left" Height="55" Grid.Row="3" VerticalAlignment="Top" Width="490" Margin="174,0,0,0" Text="{Binding Path=DatumZavrsetka, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.515,0.837"/>
         <DataGrid x:Name="dgNametajLista" HorizontalAlignment="Left" Height="176" Margin="174,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="490" SelectedItem="{Binding Path=Namestaj}" AutoGeneratingColumn="dgNametajLista_AutoGeneratingColumn" CanUserAddRows="False"/>
         <Label Content="Naziv:" HorizontalAlignment="Right" Height="56" Grid.Row="2" VerticalAlignment="Top" Width="174" Margin="0,0,490,0" FontSize="15"/>
-        <TextBox x:Name="tbNaziv" HorizontalAlignment="Left" Height="56" Margin="174,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="490" Text="{Binding Path=Naziv}"/>
+        <TextBox x:Name="tbNaziv" HorizontalAlignment="Left" Height="56" Margin="174,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="490" Text="{Binding Path=Naziv, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Polje ne sme biti prazno" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using POP_SF32_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace POP_SF_32_2016_GUI.UI
     /// </summary>
     public partial class UslugaZaProdaju : Window
     {
+
         public StavkaUsluge StavkaUsluge { get; set; }
         public enum Operacija
         {
@@ -35,11 +37,13 @@ namespace POP_SF_32_2016_GUI.UI
             this.stavkaUsluge = stavkaUsluge;
             this.operacija = operacija;
 
+
             dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluge;
             dgUsluga.DataContext = stavkaUsluge;
+            StavkaUsluge = stavkaUsluge;
 
             dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-            this.DataContext = StavkaUsluge;
+
         }
 
         private StavkaUsluge stavkaUsluge;
@@ -50,8 +54,9 @@ namespace POP_SF_32_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    
-                    StavkaUsluge.Create(stavkaUsluge);
+
+                    StavkaUsluge.DodatnaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
+
                     break;
                 case Operacija.IZMENA:
                     break;
@@ -69,6 +74,10 @@ namespace POP_SF_32_2016_GUI.UI
                 e.Cancel = true;
             }
             else if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+            else if ((string)e.Column.Header == "Error")
             {
                 e.Cancel = true;
             }

@@ -40,13 +40,13 @@ namespace POP_SF_32_2016_GUI.UI
             this.stavkaNamestaja = stavkaNamestaja;
             this.operacija = operacija;
 
-            dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaji;
+            StavkaNamestaja = stavkaNamestaja;
             tbKolicina.DataContext = stavkaNamestaja;
-            dgNamestajProdaja.DataContext = stavkaNamestaja;
+            dgNamestajProdaja.ItemsSource = Projekat.Instance.Namestaji;
+            dgNamestajProdaja.DataContext = StavkaNamestaja;
 
             dgNamestajProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
-            this.DataContext = StavkaNamestaja;
         }
 
         private StavkaNamestaja stavkaNamestaja;
@@ -61,36 +61,16 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
 
+                  
+                        StavkaNamestaja.Namestaj = dgNamestajProdaja.SelectedItem as Namestaj;
 
-                    if (int.Parse(tbKolicina.Text) > izabraniNamestaj.KolicinaUMagacinu || int.Parse(tbKolicina.Text) == 0 || int.Parse(tbKolicina.Text) < 0)
-                    {
-                        MessageBox.Show("Kolicina mora biti manja", "Greska");
-                    }
-                    else
-                    {
-                        izabraniNamestaj.KolicinaUMagacinu = izabraniNamestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
-                        StavkaNamestaja.Create(stavkaNamestaja);
-                        Namestaj.Update(izabraniNamestaj);
-                    }
-                   
+
                     break;
 
-                //case Operacija.IZMENA:
-                //    foreach (var s in listastavki)
-                //    {
-                //        if (s.Id == stavkaProdaje.Id)
-                //        {
-                //            s.NamestajId = stavkaProdaje.NamestajId;
-                //            break;
-                //        }
-                //    }
-
-                //break;
                 default:
                     break;
             }
 
-            //GenericSerializer.Serialize("stavkaProdaje.xml", listastavki);
 
             Close();
         }
@@ -120,28 +100,5 @@ namespace POP_SF_32_2016_GUI.UI
             }
         }
 
- 
-
-        //private void tbKolicina_TextInput(object sender, TextCompositionEventArgs e)
-        //{
-        //    var listaNamestaja = Projekat.Instance.Namestaji;
-        //    var izabraniNamestaj = (Namestaj)dgNamestajProdaja.SelectedItem;
-
-
-            
-
-
-        //        if (int.Parse(tbKolicina.Text) < izabraniNamestaj.KolicinaUMagacinu)
-        //        {
-        //            izabraniNamestaj.KolicinaUMagacinu = izabraniNamestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
-        //        }
-
-        //        Namestaj.Update(izabraniNamestaj);
-        //        //if (int.Parse(tbKolicina.Text) < namestaj.KolicinaUMagacinu)
-        //        //{
-        //        //    namestaj.KolicinaUMagacinu = namestaj.KolicinaUMagacinu - int.Parse(tbKolicina.Text);
-        //        //}
-            
-        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_SF_32_2016_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Xml.Serialization;
 
 namespace POP_SF32_2016.Model
 {
-    public class AkcijskaProdaja : INotifyPropertyChanged, ICloneable
+    public class AkcijskaProdaja : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
         private int id;
 
@@ -45,9 +46,9 @@ namespace POP_SF32_2016.Model
             }
         }
 
-        private decimal popust;
+        private double popust;
 
-        public decimal Popust
+        public double Popust
         {
             get
             {
@@ -92,7 +93,6 @@ namespace POP_SF32_2016.Model
 
         private Namestaj namestaj;
 
-        [XmlIgnore]
         public Namestaj Namestaj
         {
             get
@@ -149,12 +149,52 @@ namespace POP_SF32_2016.Model
             }
         }
 
+        public string Error
+        {
+            get
+            {
+                return "Neispravni podaci o akciji";
+            }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "Naziv":
+                        if (string.IsNullOrEmpty(Naziv))
+                            return "Polje ne sme biti prazno";
+                        break;
+                    case "Popust":
+                        if (Popust <= 0)
+                        {
+                            return "Mora biti veca od nule";
+                        }
+                        break;
+                    case "DatumPocetka":
+                        if (DatumPocetka > DateTime.Today)
+                        {
+                            return "Morate izabrani dobar datum";
+                        }
+                        break;
+                    case "DatumZavrsetka":
+                        if (DatumZavrsetka < DateTime.Today)
+                        {
+                            return "Morate izabrani dobar datum";
+                        }
+                        break;
+                }
+                return "";
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
-            return $"{Naziv}, {Popust}";
+            return $"{Naziv}";
         }
 
         public static AkcijskaProdaja GetById(int id)
@@ -207,7 +247,7 @@ namespace POP_SF32_2016.Model
                     var a = new AkcijskaProdaja();
                     a.Id = int.Parse(row["Id"].ToString());
                     a.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
-                    a.Popust = decimal.Parse(row["Popust"].ToString());
+                    a.Popust = double.Parse(row["Popust"].ToString());
                     a.DatumZavrsetka = DateTime.Parse(row["DatumZavrsetka"].ToString());
                     a.NamestajId = int.Parse(row["NamestajId"].ToString());
                     a.Obrisan = bool.Parse(row["Obrisan"].ToString());
@@ -249,10 +289,12 @@ namespace POP_SF32_2016.Model
 
                     var listaAkcija = Projekat.Instance.Akcija;
 
-                    foreach (var akcija in listaAkcija)
+                    //foreach (var akcija in listaAkcija)
+                    for (int i = 0; i < listaAkcija.Count; i++)
                     {
                         SqlCommand command = con.CreateCommand();
 
+                        NaAkciji akcija = new NaAkciji();
 
                         command.CommandText = "INSERT INTO NaAkciji (NamestajId, AkcijaId, Obrisan) VALUES (@NamestajId, @AkcijaId, @Obrisan);";
                         command.Parameters.AddWithValue("NamestajId", a.NamestajId);
@@ -299,6 +341,34 @@ namespace POP_SF32_2016.Model
                     cmd.Parameters.AddWithValue("Naziv", a.Naziv);
 
                     cmd.ExecuteNonQuery();
+
+                    //var listaAkcija = Projekat.Instance.Akcija;
+
+                    //foreach (var akcija in listaAkcija)
+                    //{
+                    //    SqlCommand command = con.CreateCommand();
+
+
+                    //    command.CommandText = "UPDATE NaAkciji SET NamestajId=@NamestajId, AkcijaId=@AkcijaId, Obirsan=@Obrisan WHERE Id=@Id;";
+                    //    command.CommandText += "SELECT SCOPE_IDENTITY();";
+                    //    command.Parameters.AddWithValue("Id", akcija.Id);
+                    //    command.Parameters.AddWithValue("NamestajId", akcija.NamestajId);
+                    //    command.Parameters.AddWithValue("AkcijaId", akcija.AkcijaId);
+                    //    command.Parameters.AddWithValue("Obrisan", akcija.Obrisan);
+
+                    //    command.ExecuteScalar();
+
+                    //    foreach (var akcijskaProdaja in Projekat.Instance.Akcija)
+                    //    {
+                    //        if (akcija.Id == akcijskaProdaja.Id)
+                    //        {
+                    //            akcija.AkcijaId = akcijskaProdaja.AkcijaId;
+                    //            akcijskaProdaja.NamestajId = a.NamestajId;
+                    //            akcijskaProdaja.Obrisan = a.Obrisan;
+
+                    //        }
+                    //    }
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -324,15 +394,10 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(AkcijskaProdaja a)
         {
-            try
-            {
+     
                 a.Obrisan = true;
                 Update(a);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Neuspesno brisanje", "Greska");
-            }
+         
         }
         #endregion
     }

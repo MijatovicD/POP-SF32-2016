@@ -142,7 +142,6 @@ namespace POP_SF32_2016.Model
         private TipNamestaja tipNamestaja;
         private AkcijskaProdaja akcijskaProdaja;
 
-        [XmlIgnore]
         public TipNamestaja TipNamestaja
         {
             get
@@ -170,7 +169,6 @@ namespace POP_SF32_2016.Model
         }
 
 
-        [XmlIgnore]
         public AkcijskaProdaja AkcijskaProdaja
         {
             get
@@ -216,13 +214,13 @@ namespace POP_SF32_2016.Model
                             return "Polje ne sme biti prazno";
                         break;
                     case "JedinicnaCena":
-                        if (JedinicnaCena < 0)
+                        if (JedinicnaCena <= 0)
                         {
                             return "Mora biti veca od nule";
                         }
                         break;
                     case "KolicinaUMagacinu":
-                        if (KolicinaUMagacinu < 0)
+                        if (KolicinaUMagacinu <= 0)
                         {
                             return "Mora biti veca od nule";
                         }
@@ -397,7 +395,7 @@ namespace POP_SF32_2016.Model
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-
+                
                 try
                 {
 
@@ -440,17 +438,9 @@ namespace POP_SF32_2016.Model
 
         public static void Delete(Namestaj n)
         {
-
-            try
-            {
                 n.Obrisan = true;
                 Update(n);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Ne uspesno brisanje", "Greska");                
-            }
+          
         }
         #endregion
     }

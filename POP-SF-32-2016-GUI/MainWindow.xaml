@@ -5,20 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="400" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="MainWindow" Height="465" Width="511" WindowStartupLocation="CenterScreen">
+    <Grid RenderTransformOrigin="0.201,0.249">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="36"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <HeaderedContentControl HorizontalAlignment="Center">Dobro dosli u salon namestaja</HeaderedContentControl>
-        <Button Content="Rad sa namestajem" Click="Namestaji" Margin="25,34,237,239" Grid.Row="1" />
-        <Button Content="Rad sa tipom namestaja" Click="TipNamestaja" Margin="195,34,64,239" Grid.Row="1" HorizontalAlignment="Left"/>
-        <Button Content="Rad sa dodatnom &#xD;&#xA;uslugom" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="133" Click="DodatnaUsluga" Margin="195,91,0,0" Grid.Row="1"/>
-        <Button Content="Rad sa salonom" HorizontalAlignment="Left" Height="45" Margin="25,91,0,0" VerticalAlignment="Top" Width="130" Click="Salon" RenderTransformOrigin="0.548,0.431" Grid.Row="1"/>
-        <Button Content="Rad sa korisnikom" Click="Korisnik" Height="45" Margin="25,145,237,109" RenderTransformOrigin="0.527,-0.633" Grid.Row="1"/>
-        <Button Content="Rad sa akcijskom &#xD;&#xA;prodajom" Click="AkcijskaProdaja" Height="45" Margin="195,155,64,119" Grid.Row="1"/>
-        <Button Content="Prodaja namestaja" Height="45" Click="ProdajaNamestaja" Margin="25,213,237,42" RenderTransformOrigin="0.527,-0.633" Grid.Row="1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="46" Margin="195,222,0,0" Grid.Row="1" VerticalAlignment="Top" Width="131" Click="Button_Click"/>
+        <HeaderedContentControl HorizontalAlignment="Center" Margin="172,0,171,0" Width="160">Dobro dosli u salon namestaja</HeaderedContentControl>
+        <Button Content="Namestaj" Click="Namestaji" Margin="10,10,348,352" Grid.Row="1" />
+        <Button Content="Tip namestaja" Click="TipNamestaja" Margin="348,10,0,352" HorizontalAlignment="Left" Width="145" Grid.Row="1"/>
+        <Button Content="Dodatna usluga" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="145" Click="DodatnaUsluga" Margin="348,51,0,0" Grid.Row="1"/>
+        <Button Content="Salon" HorizontalAlignment="Left" Height="36" Margin="172,10,0,0" VerticalAlignment="Top" Width="144" Click="Salon" Grid.Row="1"/>
+        <Button Content="Korisnik" Click="Korisnik" Margin="10,51,348,311" Grid.Row="1"/>
+        <Button Content="Akcija" Click="AkcijskaProdaja" Margin="172,51,187,311" Grid.Row="1"/>
     </Grid>
 </Window>

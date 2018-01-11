@@ -52,7 +52,8 @@ namespace POP_SF_32_2016_GUI.UI
                 DatumProdaje = DateTime.Today,
                 BrojRacuna = 0,
                 Kupac = "",
-                UkupanIznos = 0
+                UkupanIznos = 0,
+                StavkaNamestaja = new ObservableCollection<StavkaNamestaja>()
             };
 
             var prodajaNamestajaProzor = new DodavanjeIzmenaProdaje(novaProdaja, DodavanjeIzmenaProdaje.Operacija.DODAVANJE);
@@ -132,10 +133,20 @@ namespace POP_SF_32_2016_GUI.UI
             {
                 e.Cancel = true;
             }
-            else if ((string)e.Column.Header == "StavkaProdaje")
+            else if ((string)e.Column.Header == "StavkaNamestaja")
             {
                 e.Cancel = true;
             }
+            else if ((string)e.Column.Header == "StavkaUsluge")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Racun racun = new Racun();
+            racun.ShowDialog();
         }
     }
 }

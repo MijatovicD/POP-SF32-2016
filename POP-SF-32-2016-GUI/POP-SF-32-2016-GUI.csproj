@@ -254,6 +254,7 @@
   <ItemGroup>
     <Content Include="Db_scripts\crebas.sql" />
     <Content Include="Db_scripts\seed.sql" />
+    <Resource Include="Images\pocetna.jpg" />
     <Resource Include="Images\pretraga.png" />
     <Resource Include="Images\izadji.png" />
     <Resource Include="Images\obrisi.png" />

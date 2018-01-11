@@ -93,7 +93,7 @@ namespace POP_SF32_2016.Model
                             return "Polje ne sme biti prazno";
                         break;
                     case "Cena":
-                        if (Cena < 0)
+                        if (Cena <= 0)
                         {
                             return "Mora biti veca od nule";
                         }

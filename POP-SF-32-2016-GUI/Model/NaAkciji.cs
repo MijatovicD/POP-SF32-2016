@@ -62,7 +62,6 @@ namespace POP_SF_32_2016_GUI.Model
 
         private AkcijskaProdaja akcijskaProdaja;
 
-        [XmlIgnore]
         public AkcijskaProdaja AkcijskaProdaja
         {
             get

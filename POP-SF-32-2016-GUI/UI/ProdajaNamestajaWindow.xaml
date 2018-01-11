@@ -8,13 +8,14 @@
         Title="ProdajaNamestajaWindow" Height="570" Width="770" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="406*"/>
-            <RowDefinition Height="127*"/>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="350*"/>
+            <RowDefinition Height="128*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" FontSize="20" Name="dgProdaja" SelectedItem="{Binding Path=IzabranaProdaja}" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn" CanUserAddRows="False"/>
-        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="293,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="tbPretraga_TextChanged" Grid.Row="1"/>
-        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="40" Margin="475,47,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="0.473,0.136"/>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajProdaju_Click" Height="57" Margin="39,32,666,39" Width="57" Grid.Row="1" RenderTransformOrigin="0.585,0.429">
+        <DataGrid Grid.Row="1" FontSize="20" Name="dgProdaja" SelectedItem="{Binding Path=IzabranaProdaja}" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn" CanUserAddRows="False"/>
+        <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="41" Margin="132,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" TextChanged="tbPretraga_TextChanged"/>
+        <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="40" Margin="596,10,0,0" VerticalAlignment="Top" Width="98" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="-0.33,-8.425"/>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="DodajProdaju_Click" Height="57" Margin="39,32,666,39" Width="57" Grid.Row="2" RenderTransformOrigin="0.585,0.429">
             <Button.Template>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
@@ -23,7 +24,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniProdaju_Click" Height="57" Margin="171,32,536,39" Width="55" Grid.Row="1" RenderTransformOrigin="0.566,0.302">
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="IzmeniProdaju_Click" Height="57" Margin="171,32,536,39" Width="55" Grid.Row="2" RenderTransformOrigin="0.566,0.302">
             <Button.Template>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
@@ -32,7 +33,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Zatvori_Click" Height="57" Margin="653,32,51,39" Width="58" Grid.Row="1" RenderTransformOrigin="2.971,-0.032">
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Zatvori_Click" Height="57" Margin="653,32,51,39" Width="58" Grid.Row="2" RenderTransformOrigin="2.971,-0.032">
             <Button.Template>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
@@ -41,5 +42,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Label Content="Pretraga prodaje:" HorizontalAlignment="Left" Height="31" Margin="19,10,0,0" VerticalAlignment="Top" Width="108"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Height="41" Margin="492,10,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button Content="Racun" HorizontalAlignment="Left" Height="48" Margin="399,32,0,0" Grid.Row="2" VerticalAlignment="Top" Width="149" Click="Button_Click"/>
     </Grid>
 </Window>

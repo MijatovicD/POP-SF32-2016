@@ -5,12 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_32_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajZaProdaju" Height="431" Width="730">
+        Title="NamestajZaProdaju" Height="431" Width="730" WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid x:Name="dgNamestajProdaja" HorizontalAlignment="Left" Height="318" VerticalAlignment="Top" Width="495" AutoGeneratingColumn="dgNamestajProdaja_AutoGeneratingColumn" Margin="227,0,0,0" SelectedItem="{Binding Path=Namestaj}" SelectedIndex="0" CanUserAddRows="False"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Height="42" Margin="0,348,0,0" VerticalAlignment="Top" Width="116" Click="SacuvajIzmene"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Height="42" Margin="0,348,0,0" VerticalAlignment="Top" Width="116" Click="SacuvajIzmene">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="false" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding  ElementName=tbKolicina, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" 
+                            Value="true" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Content="Izadji" HorizontalAlignment="Left" Height="42" Margin="596,348,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="2.534,2.667"/>
-        <TextBox HorizontalAlignment="Left" Height="39" Margin="94,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" x:Name="tbKolicina" Text="{Binding Path=KolicinaNamestaja}"/>
-
+        <TextBox HorizontalAlignment="Left" Height="39" Margin="94,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" x:Name="tbKolicina" Text="{Binding Path=KolicinaNamestaja, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="Pogresan format" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+        <Label Content="Unesite&#xD;&#xA;kolicinu:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Height="39" Width="79"/>
     </Grid>
 </Window>

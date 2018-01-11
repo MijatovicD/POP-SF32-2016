@@ -50,8 +50,8 @@ namespace POP_SF_32_2016_GUI.UI
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             vieew.Filter = NamestajFilter;
-  
-  
+
+
         }
 
         private bool NamestajFilter(object obj)
@@ -66,7 +66,8 @@ namespace POP_SF_32_2016_GUI.UI
                     {
                         if (akcija.Obrisan == true || akcija.DatumPocetka < DateTime.Today && akcija.DatumZavrsetka < DateTime.Today)
                         {
-                            namestaj.AkcijaId = 0;
+                            namestaj.AkcijaId = 1;
+                            Namestaj.Update(namestaj);
                         }
                     }
                 }
@@ -96,7 +97,6 @@ namespace POP_SF_32_2016_GUI.UI
             Namestaj kopija = (Namestaj)IzabraniNamestaj.Clone();
             var namestajProzor = new DodavanjeIzmenaNamestaja(kopija, DodavanjeIzmenaNamestaja.Operacija.IZMENA);
             namestajProzor.ShowDialog();
-
         }
 
         private void Zatvori_Click(object sender, RoutedEventArgs e)
@@ -118,13 +118,14 @@ namespace POP_SF_32_2016_GUI.UI
                         Namestaj.Delete(izabranNamestaj);
                         vieew.Filter = NamestajFilter;
 
-                            foreach (var akcija in listaAkcija)
+                        foreach (var akcija in listaAkcija)
+                        {
+                            if (izabranNamestaj.AkcijaId == akcija.Id)
                             {
-                                if (izabranNamestaj.AkcijaId == akcija.Id)
-                                {
-                                    akcija.Obrisan = true;
-                                }
+                                akcija.Obrisan = true;
+                                AkcijskaProdaja.Update(akcija);
                             }
+                        }
                     }
                 }
 
@@ -144,37 +145,14 @@ namespace POP_SF_32_2016_GUI.UI
 
             else if (cbSortiraj.SelectedIndex == 1)
             {
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
-                {
-                    con.Open();
-
-
-                    SqlCommand cmd = con.CreateCommand();
-                    SqlDataAdapter da = new SqlDataAdapter();
-
-                    cmd.CommandText = ("SELECT * FROM Namestaj WHERE Obrisan=0 ORDER BY Naziv asc");
-                    DataSet table = new DataSet("Namestaj");
-
-                    da.SelectCommand = cmd;
-                    da.Fill(table);
-                    dgNamestaj.ItemsSource = table.Tables[0].DefaultView;
-                }
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Naziv", ListSortDirection.Descending));
             }
 
             else if (cbSortiraj.SelectedIndex == 2)
             {
-                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
-                {
-                    con.Open();
-
-
-                    SqlCommand cmd = con.CreateCommand();
-                    SqlDataAdapter da = new SqlDataAdapter();
-
-                    cmd.CommandText = ("SELECT * FROM Namestaj WHERE Obrisan=0 ORDER BY Sifra asc");
-                    DataSet table = new DataSet();
-
-                }
+                dgNamestaj.Items.SortDescriptions.Clear();
+                dgNamestaj.Items.SortDescriptions.Add(new SortDescription("Sifra", ListSortDirection.Descending));
             }
 
             else if (cbSortiraj.SelectedIndex == 3)
@@ -237,18 +215,17 @@ namespace POP_SF_32_2016_GUI.UI
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 con.Open();
-                 
+
 
                 SqlCommand cmd = con.CreateCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
 
                 cmd.CommandText = ("SELECT * FROM Namestaj WHERE Obrisan=0 AND Naziv LIKE'" + tbPretraga.Text + "%'" + "OR Sifra LIKE'" + tbPretraga.Text + "%'");
-                DataSet table = new DataSet();
-
                 da.SelectCommand = cmd;
-                da.Fill(table);
-                dgNamestaj.ItemsSource = table.Tables[0].DefaultView;
+                da.Fill(ds, "Namestaj");
 
+                dgNamestaj.ItemsSource = ds.Tables[0].DefaultView;
             }
         }
     }

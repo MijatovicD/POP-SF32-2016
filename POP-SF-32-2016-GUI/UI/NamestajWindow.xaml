@@ -14,7 +14,7 @@
                 <RowDefinition Height="365*"/>
                 <RowDefinition Height="106*"/>
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj"/>
+            <DataGrid Grid.Row="1" FontSize="20" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" CanUserAddRows="False" LoadingRow="dgNamestaj_broj" SelectedIndex="0"/>
             <TextBox x:Name="tbPretraga" HorizontalAlignment="Left" Height="42" Margin="158,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
             <ComboBox x:Name="cbSortiraj" HorizontalAlignment="Left" Height="42" Margin="587,10,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortiraj_SelectionChanged" RenderTransformOrigin="0.333,0.548"/>
             <Label Content="Pretraga namestaja:" HorizontalAlignment="Left" Height="42" Margin="25,10,0,0" VerticalAlignment="Top" Width="128"/>

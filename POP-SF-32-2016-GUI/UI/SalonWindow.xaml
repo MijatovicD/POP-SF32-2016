@@ -19,7 +19,7 @@
             <Button.Template>
                 <ControlTemplate>
                     <StackPanel Orientation="Vertical">
-                        <Image Source="..\Images\dodaj.png"/>
+                        <Image Source="..\Images\izmena.png"/>
                     </StackPanel>
                 </ControlTemplate>
             </Button.Template>

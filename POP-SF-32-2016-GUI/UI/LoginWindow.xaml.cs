@@ -51,13 +51,19 @@ namespace POP_SF_32_2016_GUI.UI
                             this.Close();
                             break;
                         case TipKorisnika.Prodavac:
-                            NamestajWindow nw = new NamestajWindow();
-                            nw.Show();
+                            ProdajaNamestajaWindow pn = new ProdajaNamestajaWindow();
+                            pn.Show();
+                            this.Close();
                             break;
                         default:
                             break;
                     }
                 }
+                if (tbKoriIme.Text.Equals("") || tbLozinka.Password.Equals(""))
+                {
+                    MessageBox.Show("Morate uneti sva polja", "Greska");
+                }
+        
             }
            
         }

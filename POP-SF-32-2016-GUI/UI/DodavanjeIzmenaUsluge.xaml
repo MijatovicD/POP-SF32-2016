@@ -39,7 +39,25 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="2" Click="SacuvajIzmene"/>
+        <Button Content="Sacuvaj" Grid.Column="0" Width="Auto"  Grid.Row="2" Click="SacuvajIzmene">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="false" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding  ElementName=tbNaziv, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                                <Condition Binding="{Binding  ElementName=tbCena, Path=(Validation.HasError)}" 
+                                       Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" 
+                            Value="true" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Grid.Row="2" Content="Izadji" Grid.Column="1" Width="Auto" Click="Zatvori"/>
     </Grid>
 </Window>
